@@ -72,7 +72,6 @@ def load_mappings(config_file="modules/00-options.json"):
     return mappings
 
 # --- HELPER: BUILD JOBS ---
-# (This was missing in your version but is required for run_scraper)
 def build_jobs(mappings, mode, year):
     jobs = []
     for (gender, age_category), discipline_list in mappings.items():
