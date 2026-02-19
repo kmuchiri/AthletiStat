@@ -5,7 +5,9 @@ import pandas as pd
 from collections import defaultdict
 import json
 
-# --- CONFIGURATION ---
+'''
+CONFIGURATION
+'''
 try:
     with open("modules/00-options.json", "r") as f:
         options_data = json.load(f)
@@ -48,7 +50,9 @@ for item in options_data:
             if code and label:
                 country_lookup[code] = label
 
-# --- HELPER FUNCTIONS ---
+'''
+HELPER FUNCTIONS
+'''
 def parse_mark(mark):
     mark = str(mark).strip().lower().replace("h", "")
     try:
@@ -88,7 +92,9 @@ def extract_country_code_from_venue(venue):
     match = re.search(r"\((\w{3})\)", str(venue))
     return match.group(1) if match else None
 
-# --- CORE PREPROCESSING LOGIC ---
+'''
+PROCESSING LOGIC
+'''
 def process_data(mode):
     files_by_key = defaultdict(list)
     
@@ -205,7 +211,7 @@ def process_data(mode):
         if "date" in df.columns:
             df["season"] = df["date"].dt.year
         
-        # Output processed files (Nested by gender, skipping the redundant 'all-time' folder)
+        # Output processed files
         if mode == "seasons":
             target_dir = os.path.join(output_root, str(out_label), gender)
         else:
@@ -219,7 +225,10 @@ def process_data(mode):
         df.to_csv(output_path, index=False)
         print(f"[{mode.upper()}] Saved: {output_path}")
 
-# --- MAIN CLI EXECUTION ---
+''' 
+CLI EXECUTION 
+'''
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AthletiStat Data Preprocessor")
     
