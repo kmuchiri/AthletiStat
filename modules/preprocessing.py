@@ -213,13 +213,14 @@ def process_data(mode):
         
         # Output processed files
         if mode == "seasons":
-            target_dir = os.path.join(output_root, str(out_label), gender)
+            target_dir = os.path.join(output_root, str(out_label))
         else:
-            target_dir = os.path.join(output_root, gender)
+            target_dir = os.path.join(output_root)
             
         os.makedirs(target_dir, exist_ok=True)
-        
-        output_filename = f"{type_slug}_{gender}_{discipline_key}.csv"
+
+        prefix = f"{year}_" if mode == "seasons" else ""
+        output_filename = f"{prefix}{gender}_{type_slug}_{discipline_key}.csv"
         output_path = os.path.join(target_dir, output_filename)
         
         df.to_csv(output_path, index=False)

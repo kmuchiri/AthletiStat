@@ -6,3 +6,6 @@
 - better formatting for queues
 - Add flags for main program
     - scraper, processing, combine, split_by_type
+- edit README
+- requirements document
+- all-time: add resume function that only adds records produced after the last time scraped
