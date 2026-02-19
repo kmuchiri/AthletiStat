@@ -1,0 +1,23 @@
+.
+├── seasons
+│   ├── queues
+│   ├── processing
+│   ├── datasets
+│   └── completed.json
+├── all-time
+│   ├── queues
+│   ├── processing
+│   └── datasets
+├── logs
+│   ├── seasons
+│   └── all-time
+├── modules
+│   ├── split_by_type.py
+│   ├── 00-options.json
+│   ├── scraper.py
+│   ├── preprocessing.py
+│   └── generator.py
+├── run.py
+├── requirements.txt
+└── README.md
+
