@@ -4,6 +4,7 @@ IMPORTS
 import os
 import json
 import time
+import glob
 import threading
 import argparse
 from datetime import datetime
@@ -76,9 +77,9 @@ def build_jobs(mappings, mode, year):
     jobs = []
     for (gender, age_category), discipline_list in mappings.items():
         if mode == "seasons":
-            output_dir = os.path.join(f"processing/output/{year}/", gender)
+            output_dir = os.path.join(f"{mode}/processing/output/{year}/", gender)
         else:
-            output_dir = os.path.join("processing/output/all-time/", gender)
+            output_dir = os.path.join(f"{mode}/processing/output/all-time/", gender)
             
         for discipline_slug, type_slug in discipline_list:
             jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, mode, year))
@@ -174,8 +175,8 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
     print(f"Starting {mode.upper()} scrape using {max_workers} workers...")
     start_time = time.time()
 
-    queue_file = f"seasons/queue/queue_seasons_{year}.json"
-    completed_file = "completed.json"
+    queue_file = None
+    completed_file = "seasons/completed_seasons.json"
     
     log_dir = os.path.join(f"logs/{mode}", today)
     os.makedirs(log_dir, exist_ok=True)
@@ -183,6 +184,8 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
     # Evaluate Job Logic Based on Year and Mode
     if mode == "seasons":
         if year != current_year:
+            queue_file = f"{mode}/queues/queue_seasons_{year}.json"
+            
             # Historical Year Logic
             if os.path.exists(completed_file):
                 with open(completed_file, "r") as f:
@@ -190,7 +193,7 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
             
             if year in completed_years:
                 print(f"Data for the year {year} is already completely retrieved. Skipping scrape.")
-                return # Exit early
+                return 
 
             if os.path.exists(queue_file) and os.path.getsize(queue_file) > 0:
                 with open(queue_file, "r") as f:
@@ -205,9 +208,27 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
             # No queue for current year
             jobs = build_jobs(mappings, mode, year)
             print(f"Current year ({year}) detected. Running {len(jobs)} jobs from scratch (no queue).")
-    else:
-        # All-time Logic
-        jobs = build_jobs(mappings, mode, year)
+            
+    elif mode == "all-time":
+        queue_file = f"{mode}/queues/queue_all_time_{today}.json"
+        
+        # Clean up all-time queues from previous days
+        for old_queue in glob.glob(f"{mode}/queue/queue_all_time_*.json"):
+            if old_queue != queue_file:
+                os.remove(old_queue)
+                print(f"Removed outdated queue file: {old_queue}")
+                
+        # Resume today's queue if it exists
+        if os.path.exists(queue_file) and os.path.getsize(queue_file) > 0:
+            with open(queue_file, "r") as f:
+                jobs = [tuple(job) for job in json.load(f)] 
+            print(f"Resuming {len(jobs)} incomplete jobs from {queue_file}...")
+        else:
+            jobs = build_jobs(mappings, mode, year)
+            with open(queue_file, "w") as f:
+                json.dump(jobs, f)
+            print(f"Created new queue with {len(jobs)} jobs for all-time ({today}).")
+
 
     # Execute Jobs
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -218,11 +239,12 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
             try:
                 success = future.result()
                 
-                # Queue Management on Success (Only for historical seasons)
-                if success and mode == "seasons" and year != current_year:
-                    jobs.remove(job)
-                    with open(queue_file, "w") as f:
-                        json.dump(jobs, f)
+                # Queue Management on Success (For historical seasons or all-time)
+                if success:
+                    if (mode == "seasons" and year != current_year) or (mode == "all-time"):
+                        jobs.remove(job)
+                        with open(queue_file, "w") as f:
+                            json.dump(jobs, f)
                         
             except Exception as e:
                 with lock:
@@ -230,13 +252,14 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
                         log_file.write(f"UNCAUGHT ERROR in job {job}: {repr(e)}\n")
 
     # Final Cleanup & Logging
-    if mode == "seasons" and year != current_year:
+    if (mode == "seasons" and year != current_year) or (mode == "all-time"):
         if not jobs:
-            print(f"All jobs for {year} completed successfully! Updating logs.")
+            print(f"All jobs for {mode} completed successfully! Updating logs.")
             if os.path.exists(queue_file):
                 os.remove(queue_file)
             
-            if year not in completed_years:
+            # Record completed seasons
+            if mode == "seasons" and year not in completed_years:
                 completed_years.append(year)
                 with open(completed_file, "w") as f:
                     json.dump(completed_years, f)
@@ -246,7 +269,7 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
     end_time = time.time()
     total_time = end_time - start_time
     print("-" * 38)
-    print(f"{mode.capitalize()} scraping finished in {total_time:.2f} seconds ({total_time / 60:.2f} minutes)\n")
+    print(f"{mode.capitalize()} scraping finished in {total_time:.1f} seconds ({total_time / 60:.2f} minutes)\n")
 
 '''
 MAIN EXECUTION WITH ARGPARSE
