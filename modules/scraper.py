@@ -208,7 +208,7 @@ if __name__ == "__main__":
 
     # Load configuration
     try:
-        discipline_mappings = load_mappings("options.json")
+        discipline_mappings = load_mappings("/modules/1-options.json")
     except FileNotFoundError:
         print("Error: 'options.json' not found. Please ensure the file is in the same directory.")
         exit(1)
