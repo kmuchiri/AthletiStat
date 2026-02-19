@@ -275,7 +275,7 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
 MAIN EXECUTION WITH ARGPARSE
 '''
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="World Athletics Web Scraper")
+    parser = argparse.ArgumentParser(description="AthletiStat: Athletics Data Web Scraper")
     
     parser.add_argument(
         "--mode", 

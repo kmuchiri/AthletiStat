@@ -221,7 +221,7 @@ def process_data(mode):
 
 # --- MAIN CLI EXECUTION ---
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="World Athletics Data Preprocessor")
+    parser = argparse.ArgumentParser(description="AthletiStat Data Preprocessor")
     
     parser.add_argument(
         "--mode", 
