@@ -7,7 +7,7 @@ import json
 
 # --- CONFIGURATION ---
 try:
-    with open("options.json", "r") as f:
+    with open("modules/00-options.json", "r") as f:
         options_data = json.load(f)
 except FileNotFoundError:
     print("Error: 'options.json' not found. Ensure it is in the root directory.")
@@ -92,68 +92,66 @@ def extract_country_code_from_venue(venue):
 def process_data(mode):
     files_by_key = defaultdict(list)
     
-    # Dynamically set root directories based on mode
+    # Setup paths based on mode
     if mode == "seasons":
         input_root = os.path.join("seasons", "processing", "output")
         output_root = os.path.join("seasons", "processing", "combined")
-        
-        if not os.path.exists(input_root):
-            print(f"[{mode.upper()}] Input directory not found: {input_root}")
-            return
-            
-        # Target only numeric folders (years)
-        target_dirs = [d for d in os.listdir(input_root) if os.path.isdir(os.path.join(input_root, d)) and d.isdigit()]
-        
     elif mode == "all-time":
         input_root = os.path.join("all-time", "processing", "output")
         output_root = os.path.join("all-time", "processing", "combined")
-        
-        # Accommodate if the scraper nested it under an extra 'all-time' folder
-        if os.path.exists(os.path.join(input_root, "all-time")):
-            input_root = os.path.join(input_root, "all-time")
-            
-        if not os.path.exists(input_root):
-            print(f"[{mode.upper()}] Input directory not found: {input_root}")
-            return
-            
-        # Use a dot to represent the current directory for the inner loop
-        target_dirs = ["."] 
     else:
         return
 
-    if not target_dirs:
-        print(f"[{mode.upper()}] No target data directories found in {input_root}.")
+    if not os.path.exists(input_root):
+        print(f"[{mode.upper()}] Input directory not found: {input_root}")
         return
         
     print(f"[{mode.upper()}] Scanning files in: {input_root}")
 
-    # Map files to their base groupings
-    for dir_name in target_dirs:
-        dir_path = os.path.join(input_root, dir_name)
-        
-        # Determine the label for output (the year, or "all-time")
-        out_label = dir_name if mode == "seasons" else "all-time"
-        
-        # Loop through Genders inside the directory
-        for gender in os.listdir(dir_path):
-            gender_path = os.path.join(dir_path, gender)
+    #Map files to their base groupings explicitly using 'male' and 'female'
+    if mode == "seasons":
+        # Look for year folders (numeric)
+        years = [d for d in os.listdir(input_root) if os.path.isdir(os.path.join(input_root, d)) and d.isdigit()]
+        for year in years:
+            for gender in ["male", "female"]:
+                gender_path = os.path.join(input_root, year, gender)
+                if not os.path.exists(gender_path):
+                    continue
+                    
+                for file in os.listdir(gender_path):
+                    if file.endswith(".csv"):
+                        parts = file.replace(".csv", "").split("_")
+                        if len(parts) >= 4:
+                            type_slug = parts[1]
+                            discipline_slug = "_".join(parts[2:-1]) 
+                            base_discipline = normalize_discipline(discipline_slug)
+                            
+                            key = (year, gender, type_slug, base_discipline)
+                            files_by_key[key].append(os.path.join(gender_path, file))
+
+    elif mode == "all-time":
+        # Look for gender folders directly
+        base_dir = input_root
+            
+        for gender in os.listdir(base_dir):
+            gender_path = os.path.join(base_dir, gender)
             
             if not os.path.isdir(gender_path):
                 continue
-                
+            
             for file in os.listdir(gender_path):
                 if file.endswith(".csv"):
-                    # Split filename to extract parts
                     parts = file.replace(".csv", "").split("_")
-                    if len(parts) >= 4:
-                        type_slug = parts[1]
-                        discipline_slug = "_".join(parts[2:-1]) 
+                    if len(parts) >= 3:
+                        type_slug = parts[0]
+                        discipline_slug = "_".join(parts[1:-1]) 
                         base_discipline = normalize_discipline(discipline_slug)
                         
-                        key = (out_label, gender, type_slug, base_discipline)
+                        # Use None for out_label since all-time has no year
+                        key = (None, gender, type_slug, base_discipline)
                         files_by_key[key].append(os.path.join(gender_path, file))
 
-    # 3. Combine, Process, and Save Data
+    # Combine, Process, and Save Data
     for (out_label, gender, type_slug, discipline_key), file_list in files_by_key.items():
         
         # Combine files
@@ -172,7 +170,7 @@ def process_data(mode):
             df["track_field"] = "unknown"
 
         if "mark" not in df.columns:
-            print(f"[{out_label}] Skipping {discipline_key} — missing 'Mark'")
+            print(f"[Skipping] {discipline_key} — missing 'Mark'")
             continue
 
         # Sorting
@@ -207,8 +205,12 @@ def process_data(mode):
         if "date" in df.columns:
             df["season"] = df["date"].dt.year
         
-        # Output processed files
-        target_dir = os.path.join(output_root, out_label)
+        # Output processed files (Nested by gender, skipping the redundant 'all-time' folder)
+        if mode == "seasons":
+            target_dir = os.path.join(output_root, str(out_label), gender)
+        else:
+            target_dir = os.path.join(output_root, gender)
+            
         os.makedirs(target_dir, exist_ok=True)
         
         output_filename = f"{type_slug}_{gender}_{discipline_key}.csv"
