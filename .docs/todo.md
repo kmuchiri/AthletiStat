@@ -2,3 +2,5 @@
 - Add queue for seasons
 - Add log for completed runs.
 - Add function that if one page is not retrieved, the entire discipline is refetched (scrape failed url)
+- Add flags for main program
+    - scraper, processing, combine, split_by_type
