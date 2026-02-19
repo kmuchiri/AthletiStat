@@ -1,7 +1,6 @@
 '''
 IMPORTS
 '''
-
 import os
 import json
 import time
@@ -26,7 +25,7 @@ today = datetime.now().strftime("%Y-%m-%d")
 current_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
 current_year = int(datetime.now().strftime("%Y"))
 
-log_dir = os.path.join("logs", today)
+
 os.makedirs(log_dir, exist_ok=True)
 
 # Threading lock for safe file writing
@@ -77,6 +76,9 @@ def scrape_event(gender, age_category, discipline_slug, type_slug, output_dir, m
     page = 1
     data = []
     
+    log_dir = os.path.join("logs",mode, today)
+    os.makedirs(log_dir, exist_ok=True)
+
     while True:
         if mode == "seasons":
             url = BASE_URL_SEASONS.format(
@@ -88,6 +90,7 @@ def scrape_event(gender, age_category, discipline_slug, type_slug, output_dir, m
                 type_slug=type_slug, discipline_slug=discipline_slug,
                 gender=gender, age_category=age_category, page=page, today=today
             )
+        
 
         headers = {"User-Agent": "Mozilla/5.0"}
         
@@ -133,12 +136,12 @@ def scrape_event(gender, age_category, discipline_slug, type_slug, output_dir, m
             })
 
         page += 1
-        time.sleep(1) # Be polite to the server
+        time.sleep(2) # Do not give too low of a value, will overwhelm server.
 
     # Save to CSV
     if data:
         os.makedirs(output_dir, exist_ok=True)
-        prefix = f"{year}_" if mode == "seasons" else "alltime_"
+        prefix = f"{year}_" if mode == "seasons" else ""
         filename = f"{prefix}{type_slug}_{discipline_slug}_{age_category}.csv".replace(" ", "_").replace("/", "-")
         filepath = os.path.join(output_dir, filename)
         
@@ -156,9 +159,9 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
     # Build job parameters
     for (gender, age_category), discipline_list in mappings.items():
         if mode == "seasons":
-            output_dir = os.path.join(f"processing/output/{year}/", gender)
+            output_dir = os.path.join(f"seasons/processing/output/{year}/", gender)
         else:
-            output_dir = os.path.join("processing/output/alltime/", gender)
+            output_dir = os.path.join("all-time/processing/output/", gender)
             
         for discipline_slug, type_slug in discipline_list:
             jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, mode, year))
@@ -200,15 +203,15 @@ if __name__ == "__main__":
     parser.add_argument(
         "--workers", 
         type=int, 
-        default=30, 
-        help="Maximum number of parallel threads to use (default: 30)."
+        default=20, 
+        help="Maximum number of parallel threads to use (default: 20)."
     )
 
     args = parser.parse_args()
 
     # Load configuration
     try:
-        discipline_mappings = load_mappings("/modules/1-options.json")
+        discipline_mappings = load_mappings("/modules/00-options.json")
     except FileNotFoundError:
         print("Error: 'options.json' not found. Please ensure the file is in the same directory.")
         exit(1)
