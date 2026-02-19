@@ -1,12 +1,38 @@
 import os
 import pandas as pd
-
+import argparse
 # folder directory containing all the combined csv files
-def generator(mode):
+def generate_datasets(mode):
     combined_dir = f"{mode}/processing/combined"
+    output_dataset_dir = f"{mode}/datasets"
+    os.makedirs(output_dataset_dir, exist_ok=True)
 
     if mode == "seasons":
-        continue
+        year_dirs = [d for d in os.listdir(combined_dir) if os.path.isdir(os.path.join(combined_dir, d))]
+        for year in year_dirs:
+            year_path = os.path.join(combined_dir, year)
+            csv_files = [f for f in os.listdir(year_path) if f.endswith(".csv")]
+            all_dataframes = []
+            
+            # Read files in folder
+            for file in csv_files:
+                file_path = os.path.join(year_path, file)
+                try:
+                    df = pd.read_csv(file_path)
+                    all_dataframes.append(df)
+                except Exception as e:
+                    print(f"Error reading {file}: {e}")
+                    
+            # Combine and save
+            if all_dataframes:
+                combined_df = pd.concat(all_dataframes, ignore_index=True)
+                output_filename = os.path.join(output_dataset_dir, f"{year}_track_field_performances.csv")
+                
+                combined_df.to_csv(output_filename, index=False)
+                print(f"Success: Saved {year} data to {output_filename}")
+            else:
+                print(f"No CSV files found in {year_path}")
+
     
     else:
         # List all CSV files
@@ -15,16 +41,39 @@ def generator(mode):
         # Load and concatenate
         all_dataframes = []
         for file in csv_files:
-            df = pd.read_csv(os.path.join(combined_dir, file))
-            all_dataframes.append(df)
+            try:
+                df = pd.read_csv(os.path.join(combined_dir, file))
+                all_dataframes.append(df)
+            except Exception as e:
+                print(f"Error reading {file}: {e}")
+        if all_dataframes:
+            # Combine into a single DataFrame
+            combined_df = pd.concat(all_dataframes, ignore_index=True)
 
-        # Combine into a single DataFrame
-        combined_df = pd.concat(all_dataframes, ignore_index=True)
+            # Save to a new CSV
+            output_filename = os.path.join(output_dataset_dir,"top_track_field_performances_all_time.csv",)
+            combined_df.to_csv(output_filename, index=False)
+            print(f"Combined CSV saved as {output_filename}" )
+        else:
+            print(f"No CSV files found in {combined_dir}")
 
-        # Save to a new CSV
-        combined_df.to_csv("datasets/all_disciplines_combined.csv", index=False)
-        print("Combined CSV saved as 'all_disciplines_combined.csv'")
 
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="AthletiStat Dataset Generator")
+    parser.add_argument(
+        "--mode", 
+        type=str, 
+        choices=["seasons", "all-time", "both"], 
+        default="both", 
+        help="Choose the dataset generator mode: 'seasons', 'all-time', or 'both'."
+    )
+    
+    args = parser.parse_args()
 
+    if args.mode in ["seasons", "both"]:
+        generate_datasets("seasons")
+        
+    if args.mode in ["all-time", "both"]:
+        generate_datasets("all-time")
 
 

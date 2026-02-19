@@ -9,3 +9,4 @@
 - edit README
 - requirements document
 - all-time: add resume function that only adds records produced after the last time scraped
+- run.py : (the main python file) should be able to take nested arguments - passing arguments from file to module
