@@ -26,8 +26,6 @@ current_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
 current_year = int(datetime.now().strftime("%Y"))
 
 
-os.makedirs(log_dir, exist_ok=True)
-
 # Threading lock for safe file writing
 lock = threading.Lock()
 
@@ -43,6 +41,9 @@ adapter = HTTPAdapter(max_retries=retries)
 session.mount("https://", adapter)
 session.mount("http://", adapter)
 
+'''
+CONFIG
+'''
 # --- URL TEMPLATES ---
 BASE_URL_ALLTIME = (
     "https://worldathletics.org/records/all-time-toplists/{type_slug}/{discipline_slug}/all/{gender}/{age_category}"
@@ -71,12 +72,15 @@ def load_mappings(config_file="options.json"):
                 ]
     return mappings
 
+'''
+SCRAPER
+'''
 # --- SCRAPER ---
 def scrape_event(gender, age_category, discipline_slug, type_slug, output_dir, mode="seasons", year=None):
     page = 1
     data = []
     
-    log_dir = os.path.join("logs",mode, today)
+    log_dir = os.path.join(f"logs/{mode}", today)
     os.makedirs(log_dir, exist_ok=True)
 
     while True:
@@ -162,7 +166,8 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
             output_dir = os.path.join(f"seasons/processing/output/{year}/", gender)
         else:
             output_dir = os.path.join("all-time/processing/output/", gender)
-            
+        
+        os.makedirs(output_dir,exist_ok=True)
         for discipline_slug, type_slug in discipline_list:
             jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, mode, year))
 
@@ -183,7 +188,9 @@ def run_scraper(mappings, mode="seasons", max_workers=10, year=None):
     print("-" * 38)
     print(f"{mode.capitalize()} scraping completed in {total_time:.2f} seconds ({total_time / 60:.2f} minutes)\n")
 
-# --- MAIN EXECUTION WITH ARGPARSE ---
+'''
+MAIN EXECUTION WITH ARGPARSE
+'''
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="World Athletics Web Scraper")
     
@@ -203,7 +210,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--workers", 
         type=int, 
-        default=20, 
+        default=10, 
         help="Maximum number of parallel threads to use (default: 20)."
     )
 
@@ -211,9 +218,9 @@ if __name__ == "__main__":
 
     # Load configuration
     try:
-        discipline_mappings = load_mappings("/modules/00-options.json")
+        discipline_mappings = load_mappings("modules/00-options.json")
     except FileNotFoundError:
-        print("Error: 'options.json' not found. Please ensure the file is in the same directory.")
+        print("Error: 'options.json' not found. Please ensure the file is in the correct directory.")
         exit(1)
 
     # Execute based on arguments
