@@ -79,7 +79,7 @@ def build_jobs(mappings, mode, year):
         if mode == "seasons":
             output_dir = os.path.join(f"{mode}/processing/output/{year}/", gender)
         else:
-            output_dir = os.path.join(f"{mode}/processing/output/all-time/", gender)
+            output_dir = os.path.join(f"{mode}/processing/output/", gender)
             
         for discipline_slug, type_slug in discipline_list:
             jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, mode, year))
