@@ -152,7 +152,7 @@ def scrape_event(gender, age_category, discipline_slug, type_slug, output_dir, m
             })
 
         page += 1
-        time.sleep(2) # Do not give too low of a value, will overwhelm server.
+        time.sleep(1.5) # Do not give too low of a value, will overwhelm server.
 
     # Save to CSV
     if data:

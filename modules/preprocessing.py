@@ -219,7 +219,7 @@ def process_data(mode):
             
         os.makedirs(target_dir, exist_ok=True)
 
-        prefix = f"{year}_" if mode == "seasons" else ""
+        prefix = f"{out_label}_" if mode == "seasons" else ""
         output_filename = f"{prefix}{gender}_{type_slug}_{discipline_key}.csv"
         output_path = os.path.join(target_dir, output_filename)
         

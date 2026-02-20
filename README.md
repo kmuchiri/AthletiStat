@@ -15,15 +15,16 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed
   * [6.2 Step 2: Transform Data](#62-step-2-transform-data)
   * [6.3 Step 3: Generate Datasets](#63-step-3-generate-datasets)
 
----
+
 
 ## 1.0 Features
 
 * **Automated Extraction:** Multithreaded scraper with automatic pagination, exponential backoff, and robust state management (resumes interrupted queues safely).
 * **Data Transformation:** Standardizes event names, converts complex time strings (e.g., `1:45.30`) into numeric seconds, calculates athlete ages at the time of the event, and maps ISO country codes.
-* **Aggregated Output:** Generates monolithic CSV datasets separated by historical all-time lists and specific calendar years.
+* **Aggregated Output:** Generates CSV datasets separated by historical all-time lists and specific calendar years.
 
----
+
+
 
 ## 2.0 Pipeline Architecture
 
@@ -33,7 +34,6 @@ The system consists of three distinct modules executed sequentially:
 2. **Transformation (`preprocessing.py`):** Reads raw data, normalizes strings, calculates metrics (e.g., age, numeric marks), maps country codes, and saves cleaned individual files.
 3. **Loading (`generator.py`):** Merges all cleaned, fragmented files into ready datasets.
 
----
 
 ## 3.0 Directory Structure
 
@@ -63,7 +63,7 @@ AthletiStat
 └── README.md
 ```
 
----
+
 
 ## 4.0 Dataset Description
 
@@ -100,7 +100,7 @@ The pipeline outputs final aggregated datasets into the `seasons/datasets/` and 
 | **`age_at_event`** | Integer | *[Generated]* The calculated age of the athlete on the day of the performance. | `22` |
 | **`season`** | Integer | *[Generated]* The calendar year the event took place. | `2009` |
 
----
+
 
 ## 5.0 Installation and Setup
 
@@ -119,7 +119,7 @@ Ensure `modules/00-options.json` is present in your root directory. This file di
 **Note:**
 To use with actual multithreading (GIL removed), run any version of python >= 3.13.xt
 
----
+
 
 
 
