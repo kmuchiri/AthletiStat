@@ -57,6 +57,35 @@ def generate_datasets(mode):
         else:
             print(f"No CSV files found in {combined_dir}")
 
+def combine_seasons():
+    dataset_dir = "seasons/datasets"
+    processed_dir = "seasons/preprocessing/combined"
+
+    # List CSV files directly inside the Year folder
+    csv_files = [f for f in os.listdir(dataset_dir) if f.endswith(".csv")]
+    all_dataframes = []
+
+    min_year = min(os.listdir(processed_dir))
+    max_year = max(os.listdir(processed_dir))
+
+    # Loop through files and read them
+    for file in csv_files:
+        file_path = os.path.join(dataset_dir, file)
+        try:
+            df = pd.read_csv(file_path)
+            all_dataframes.append(df)
+        except Exception as e:
+            print(f"Error reading {file}: {e}")
+
+    # Combine and Save
+    if all_dataframes:
+        combined_df = pd.concat(all_dataframes, ignore_index=True)
+        output_filename = os.path.join(dataset_dir, f"seasons_{min_year}_{max_year}.csv")
+        combined_df.to_csv(output_filename, index=False)
+        print(f"Success: Saved data to {output_filename}")
+    else:
+        print(f"No CSV files found in {dataset_dir}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AthletiStat Dataset Generator")
@@ -72,6 +101,7 @@ if __name__ == "__main__":
 
     if args.mode in ["seasons", "both"]:
         generate_datasets("seasons")
+        combine_seasons()
         
     if args.mode in ["all-time", "both"]:
         generate_datasets("all-time")
