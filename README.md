@@ -1,6 +1,6 @@
 # AthletiStat
 
-An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed to scrape, clean, and aggregate track and field performance data from World Athletics. The system outputs machine-learning-ready datasets for statistical analysis, modeling, and historical tracking.
+An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed to scrape, clean, and aggregate track and field performance data from World Athletics.
 
 ## Table of Contents
 * [1.0 Features](#10-features)
