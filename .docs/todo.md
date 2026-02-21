@@ -11,4 +11,4 @@
 - all-time: add resume function that only adds records produced after the last time scraped
 - run.py : (the main python file) should be able to take nested arguments - passing arguments from file to module
 - README: edit readme to include size of datasets, additonal combination feature. 
-- Info.py: generate size of dataset
+- Info.py: generate size of dataset (might be function for generator)
