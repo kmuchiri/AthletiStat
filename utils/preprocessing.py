@@ -9,7 +9,7 @@ import json
 CONFIGURATION
 '''
 try:
-    with open("modules/00-options.json", "r") as f:
+    with open("utils/options.json", "r") as f:
         options_data = json.load(f)
 except FileNotFoundError:
     print("Error: 'options.json' not found. Ensure it is in the root directory.")
@@ -33,7 +33,7 @@ manual_aliases = {
     "heptathlon-girls": "heptathlon",
 }
 
-# --- COUNTRY LOOKUP ---
+# Country Lookup
 country_lookup = {}
 for item in options_data:
     if item.get("name") != "region":
@@ -114,9 +114,7 @@ def process_data(mode):
         
     print(f"[{mode.upper()}] Scanning files in: {input_root}")
 
-    #Map files to their base groupings explicitly using 'male' and 'female'
     if mode == "seasons":
-        # Look for year folders (numeric)
         years = [d for d in os.listdir(input_root) if os.path.isdir(os.path.join(input_root, d)) and d.isdigit()]
         for year in years:
             for gender in ["male", "female"]:
@@ -136,7 +134,7 @@ def process_data(mode):
                             files_by_key[key].append(os.path.join(gender_path, file))
 
     elif mode == "all-time":
-        # Look for gender folders directly
+
         base_dir = input_root
             
         for gender in os.listdir(base_dir):
