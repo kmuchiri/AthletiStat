@@ -1,7 +1,7 @@
 import os
 import pandas as pd
 import argparse
-# folder directory containing all the combined csv files
+
 def generate_datasets(mode):
     combined_dir = f"{mode}/processing/combined"
     output_dataset_dir = f"{mode}/datasets"
@@ -60,7 +60,7 @@ def generate_datasets(mode):
 
 def combine_seasons():
     dataset_dir = "seasons/datasets"
-    processed_dir = "seasons/preprocessing/combined"
+    processed_dir = "seasons/processing/combined"
 
     # List CSV files directly inside the Year folder
     csv_files = [f for f in os.listdir(dataset_dir) if f.endswith(".csv")]
