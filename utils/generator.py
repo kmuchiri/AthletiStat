@@ -49,6 +49,7 @@ def generate_datasets(mode):
         if all_dataframes:
             # Combine into a single DataFrame
             combined_df = pd.concat(all_dataframes, ignore_index=True)
+            combined_df.drop_duplicates()
 
             # Save to a new CSV
             output_filename = os.path.join(output_dataset_dir,"top_track_field_performances_all_time.csv",)
