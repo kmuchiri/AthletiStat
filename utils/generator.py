@@ -91,11 +91,17 @@ def combine_seasons():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="AthletiStat Dataset Generator")
     parser.add_argument(
+        '-m',
         "--mode", 
         type=str, 
         choices=["seasons", "all-time", "both"], 
         default="both", 
         help="Choose the dataset generator mode: 'seasons', 'all-time', or 'both'."
+    )
+    parser.add_argument(
+        '-c',
+        "--combine",
+        help = "Combines all season datasets into one"
     )
     
     args = parser.parse_args()
