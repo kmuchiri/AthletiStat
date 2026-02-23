@@ -81,7 +81,7 @@ def combine_seasons():
     # Combine and Save
     if all_dataframes:
         combined_df = pd.concat(all_dataframes, ignore_index=True)
-        output_filename = os.path.join(dataset_dir, f"seasons_{min_year}_{max_year}.csv")
+        output_filename = os.path.join(dataset_dir, f"combined_track_field_performances_{min_year}_{max_year}.csv")
         combined_df.to_csv(output_filename, index=False)
         print(f"Success: Saved data to {output_filename}")
     else:
@@ -101,6 +101,10 @@ if __name__ == "__main__":
     parser.add_argument(
         '-c',
         "--combine",
+        action='store_true',
+        default=False,
+        dest='combine',
+        required=False,
         help = "Combines all season datasets into one"
     )
     
@@ -112,5 +116,8 @@ if __name__ == "__main__":
         
     if args.mode in ["all-time", "both"]:
         generate_datasets("all-time")
+
+    if args.combine:
+        combine_seasons()
 
 
