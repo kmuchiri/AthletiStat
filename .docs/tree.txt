@@ -1,23 +1,25 @@
 .
-├── seasons
-│   ├── queues
-│   ├── processing
-│   ├── datasets
-│   └── completed.json
 ├── all-time
-│   ├── queues
+│   ├── datasets
 │   ├── processing
-│   └── datasets
+│   ├── queues
+│   └── doc.md
 ├── logs
-│   ├── seasons
-│   └── all-time
-├── modules
-│   ├── split_by_type.py
-│   ├── 00-options.json
-│   ├── scraper.py
+│   ├── all-time
+│   └── seasons
+├── seasons
+│   ├── datasets
+│   ├── processing
+│   ├── queues
+│   ├── completed_seasons.json
+│   └── doc.md
+├── utils
+│   ├── generator.py
+│   ├── options.json
 │   ├── preprocessing.py
-│   └── generator.py
-├── run.py
+│   └── scraper.py
+├── README.md
 ├── requirements.txt
-└── README.md
+└── run.py
 
+13 directories, 10 files

@@ -12,3 +12,5 @@
 - run.py : (the main python file) should be able to take nested arguments - passing arguments from file to module
 - README: edit readme to include size of datasets, additonal combination feature. 
 - Info.py: generate size of dataset (might be function for generator)
+- create cli folder
+- separate seasons and all-time (maybe)
