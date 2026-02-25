@@ -40,27 +40,29 @@ The system consists of three distinct modules executed sequentially:
 
 ```bash
 AthletiStat
-├── seasons
-│   ├── queues
-│   ├── processing
-│   ├── datasets
-│   └── completed.json
+.
 ├── all-time
-│   ├── queues
+│   ├── datasets
 │   ├── processing
-│   └── datasets
+│   ├── queues
+│   └── doc.md
 ├── logs
-│   ├── seasons
-│   └── all-time
-├── modules
-│   ├── split_by_type.py
-│   ├── 00-options.json
-│   ├── scraper.py
+│   ├── all-time
+│   └── seasons
+├── seasons
+│   ├── datasets
+│   ├── processing
+│   ├── queues
+│   └── completed_seasons.json
+├── utils
+│   ├── generator.py
+│   ├── options.json
 │   ├── preprocessing.py
-│   └── generator.py
-├── run.py
+│   ├── scraper.py
+│   └── split_by_type.py
+├── README.md
 ├── requirements.txt
-└── README.md
+└── run.py
 ```
 
 

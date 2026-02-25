@@ -11,13 +11,13 @@
 │   ├── datasets
 │   ├── processing
 │   ├── queues
-│   ├── completed_seasons.json
-│   └── doc.md
+│   └── completed_seasons.json
 ├── utils
 │   ├── generator.py
 │   ├── options.json
 │   ├── preprocessing.py
-│   └── scraper.py
+│   ├── scraper.py
+│   └── split_by_type.py
 ├── README.md
 ├── requirements.txt
 └── run.py
