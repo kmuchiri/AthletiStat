@@ -13,4 +13,4 @@
 - README: edit readme to include size of datasets, additonal combination feature. 
 - Info.py: generate size of dataset (might be function for generator)
 - create cli folder
-- separate seasons and all-time (maybe)
+- update dataset description
