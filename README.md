@@ -3,21 +3,21 @@
 An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed to scrape, clean, and aggregate track and field performance data from World Athletics.
 
 ## Table of Contents
-* [1.0 Features](#10-features)
-* [2.0 Pipeline Architecture](#20-pipeline-architecture)
-* [3.0 Directory Structure](#30-directory-structure)
-* [4.0 Dataset Description](#40-dataset-description)
-  * [4.1 Output Files](#41-output-files)
-  * [4.2 Data Dictionary](#42-data-dictionary)
-* [5.0 Installation and Setup](#50-installation-and-setup)
-* [6.0 Usage](#60-usage)
-  * [6.1 Step 1: Extract Data](#61-step-1-extract-data)
-  * [6.2 Step 2: Transform Data](#62-step-2-transform-data)
-  * [6.3 Step 3: Generate Datasets](#63-step-3-generate-datasets)
+* [Features](#features)
+* [Pipeline Architecture](#pipeline-architecture)
+* [Directory Structure](#directory-structure)
+* [Dataset Description](#dataset-description)
+  * [Output Files](#output-files)
+  * [Data Dictionary](#data-dictionary)
+* [Installation and Setup](#installation-and-setup)
+* [Usage](#usage)
+  * [Extract Data](#extract-data)
+  * [ransform Data](#transform-data)
+  * [Generate Datasets](#generate-datasets)
 
 
 
-## 1.0 Features
+## Features
 
 * **Automated Extraction:** Multithreaded scraper with automatic pagination, exponential backoff, and robust state management (resumes interrupted queues safely).
 * **Data Transformation:** Standardizes event names, converts complex time strings (e.g., `1:45.30`) into numeric seconds, calculates athlete ages at the time of the event, and maps ISO country codes.
@@ -26,7 +26,7 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed
 
 
 
-## 2.0 Pipeline Architecture
+## Pipeline Architecture
 
 The system consists of three distinct modules executed sequentially:
 
@@ -35,7 +35,7 @@ The system consists of three distinct modules executed sequentially:
 3. **Loading (`generator.py`):** Merges all cleaned, fragmented files into ready datasets.
 
 
-## 3.0 Directory Structure
+## Directory Structure
 
 
 ```bash
@@ -65,16 +65,16 @@ AthletiStat
 
 
 
-## 4.0 Dataset Description
+## Dataset Description
 
 The pipeline outputs final aggregated datasets into the `seasons/datasets/` and `all-time/datasets/` directories.
 
-### 4.1 Output Files
+### Output Files
 
 * **Seasons Data:** `{year}_track_field_performances.csv` (Contains all top performances across all disciplines for a specific calendar year).
 * **All-Time Data:** `top_track_field_performances_all_time.csv` (Contains the absolute historical top performances across all disciplines).
 
-### 4.2 Data Dictionary
+### Data Dictionary
 
 | Column Name | Data Type | Description | Example |
 | --- | --- | --- | --- |
@@ -102,7 +102,7 @@ The pipeline outputs final aggregated datasets into the `seasons/datasets/` and 
 
 
 
-## 5.0 Installation and Setup
+## Installation and Setup
 
 1. **Fork / Clone Repository**
 
@@ -124,7 +124,7 @@ To use with actual multithreading (GIL removed), run any version of python >= 3.
 
 
 
-## 6.0 Usage
+##  Usage
 
 The pipeline consists of three scripts that must be run sequentially. All scripts support the exact same CLI arguments:
 
@@ -132,7 +132,7 @@ The pipeline consists of three scripts that must be run sequentially. All script
 * `--year`: Target year for seasons mode (Defaults to the current system year).
 * `--workers`: *(Scraper only)* Maximum number of concurrent threads (Defaults to 12).
 
-### 6.1 Step 1: Extract Data
+### Extract Data
 
 Scrape raw data from World Athletics.
 
@@ -145,7 +145,7 @@ python modules/scraper.py --mode all-time
 
 ```
 
-### 6.2 Step 2: Transform Data
+### Transform Data
 
 Clean and normalize the raw CSV files.
 
@@ -158,7 +158,7 @@ python modules/preprocessing.py --mode all-time
 
 ```
 
-### 6.3 Step 3: Generate Datasets
+### Generate Datasets
 
 Concatenate the cleaned fragments into the final machine-learning-ready datasets.
 
