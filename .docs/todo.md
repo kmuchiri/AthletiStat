@@ -15,3 +15,4 @@
 - create cli folder
 - update dataset description
 - turn utils into classees
+- only fetch regular times
