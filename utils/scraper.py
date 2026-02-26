@@ -18,6 +18,11 @@ from urllib3.util.retry import Retry
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
 
+def __init__(self,mode:str="seasons",year:int=None):
+    self.mode = mode
+    self.year = year
+
+
 # Disable insecure request warnings
 urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -56,7 +61,7 @@ BASE_URL_SEASONS = (
 )
 
 # --- CONFIG LOADER ---
-def load_mappings(config_file="modules/00-options.json"):
+def load_mappings(config_file="utils/options.json"):
     with open(config_file, "r") as f:
         options_data = json.load(f)
 

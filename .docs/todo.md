@@ -14,3 +14,4 @@
 - Info.py: generate size of dataset (might be function for generator)
 - create cli folder
 - update dataset description
+- turn utils into classees
