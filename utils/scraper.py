@@ -18,9 +18,6 @@ from urllib3.util.retry import Retry
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
 
-def __init__(self,mode:str="seasons",year:int=None):
-    self.mode = mode
-    self.year = year
 
 
 # Disable insecure request warnings
