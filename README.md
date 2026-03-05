@@ -12,7 +12,7 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed
 * [Installation and Setup](#installation-and-setup)
 * [Usage](#usage)
   * [Extract Data](#extract-data)
-  * [ransform Data](#transform-data)
+  * [Transform Data](#transform-data)
   * [Generate Datasets](#generate-datasets)
 
 
