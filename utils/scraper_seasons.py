@@ -71,12 +71,12 @@ def load_mappings(config_file="utils/options.json"):
     return mappings
 
 # --- HELPER: BUILD JOBS ---
-def build_jobs(mappings, mode, year):
+def build_jobs(mappings, year):
     jobs = []
     for (gender, age_category), discipline_list in mappings.items():
-        output_dir = os.path.join(f"{mode}/processing/output/{year}/", gender)    
+        output_dir = os.path.join(f"seasons/processing/output/{year}/", gender)    
         for discipline_slug, type_slug in discipline_list:
-            jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, mode, year))
+            jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, year))
     return jobs
 
 '''
@@ -87,7 +87,7 @@ def scrape_event(gender, age_category, discipline_slug, type_slug, output_dir, y
     page = 1
     data = []
     
-    log_dir = os.path.join(f"logs/{mode}", today)
+    log_dir = os.path.join(f"logs/seasons", today)
     os.makedirs(log_dir, exist_ok=True)
 
     while True:
@@ -151,8 +151,8 @@ def scrape_event(gender, age_category, discipline_slug, type_slug, output_dir, y
         with lock:
             df.to_csv(filepath, index=False)
             print(f"Saved {filepath}")
-
-    return True # Returns True when complete
+    
+    return True
 
 # --- MULTITHREADING ---
 def run_scraper(mappings, max_workers=10, year=None):
@@ -205,7 +205,7 @@ def run_scraper(mappings, max_workers=10, year=None):
             try:
                 success = future.result()
                 
-                # Queue Management on Success (For historical seasons or all-time)
+                # Queue Management on Success
                 if success:
                     if (year != current_year):
                         jobs.remove(job)
@@ -220,7 +220,7 @@ def run_scraper(mappings, max_workers=10, year=None):
     # Final Cleanup & Logging
     if (year != current_year):
         if not jobs:
-            print(f"All jobs for {mode} completed successfully! Updating logs.")
+            print(f"All jobs for seasons completed successfully! Updating logs.")
             if os.path.exists(queue_file):
                 os.remove(queue_file)
             
