@@ -16,3 +16,5 @@
 - update dataset description
 - turn utils into classees
 - only fetch regular times
+- seperate scraper
+- add option for just regular time vs everything else
