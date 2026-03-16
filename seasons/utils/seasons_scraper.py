@@ -228,7 +228,6 @@ class SeasonsScraper:
         print(f"Seasons scraping finished in {total_time:.1f} seconds ({total_time / 60:.2f} minutes)\n")
 
 if __name__ == "__main__":
-    # Example usage:
     scraper = SeasonsScraper()
     # Runs the scrape for the current year with default max_workers
-    # scraper.run(year=2024, max_workers=10)
+    scraper.run(max_workers=10)

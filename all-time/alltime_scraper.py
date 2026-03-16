@@ -209,7 +209,6 @@ class AllTimeScraper:
         print(f"All-time scraping finished in {total_time:.1f} seconds ({total_time / 60:.2f} minutes)\n")
 
 if __name__ == "__main__":
-    # Example usage:
     scraper = AllTimeScraper()
     # Runs the all-time scrape with default max_workers
-    # scraper.run(max_workers=10)
+    scraper.run(max_workers=10)
