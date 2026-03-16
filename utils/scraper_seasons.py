@@ -18,18 +18,19 @@ from urllib3.util.retry import Retry
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
 
-
+def __init__(self, name, age):
+    pass
 
 # Disable insecure request warnings
 urllib3.disable_warnings(InsecureRequestWarning)
 
 # --- GLOBALS & SETUP ---
-today = datetime.now().strftime("%Y-%m-%d")
-current_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-current_year = int(datetime.now().strftime("%Y"))
+self.today = datetime.now().strftime("%Y-%m-%d")
+self.current_time = datetime.now().strftime("%Y-%m-%d_%H%M%S")
+self.current_year = int(datetime.now().strftime("%Y"))
 
 # Threading lock for safe file writing
-lock = threading.Lock()
+self.lock = threading.Lock()
 
 # Configure requests session with built-in retries
 session = requests.Session()
