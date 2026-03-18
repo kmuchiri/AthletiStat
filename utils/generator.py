@@ -115,6 +115,7 @@ class DatasetGenerator:
 
         if combine or self.mode in ["seasons", "both"]:
             self.combine_seasons()
+
 class DatasetSplitter:
     def __init__(self, mode="both"):
         self.mode = mode
@@ -197,7 +198,7 @@ class DatasetSplitter:
             filepath = os.path.join(datasets_dir, "combined_track_field_performances_*.csv")
             matching_files = glob.glob(filepath)
             
-            # --- CONDITIONAL GENERATOR TRIGGER ---
+            # Generates combined dataset if not found (seasons)
             if not matching_files:
                 print(f"[SEASONS] Combined dataset not found at {filepath}. Running generator automatically...")
                 try:
@@ -225,7 +226,7 @@ class DatasetSplitter:
             
             filepath = os.path.join(datasets_dir, "top_track_field_performances_all_time.csv")
             
-            # --- CONDITIONAL GENERATOR TRIGGER ---
+            # Generates combined dataset if not found (all-time)
             if not os.path.exists(filepath):
                 print(f"[ALL-TIME] Combined dataset not found at {filepath}. Running generator automatically...")
                 try:
@@ -249,7 +250,5 @@ class DatasetSplitter:
         self.execute_splits()
 
 if __name__ == "__main__":
-    generator = DatasetGenerator(mode="both")
-    generator.run()
-    splitter = DatasetSplitter(mode="both")
+    splitter = DatasetSplitter(mode="seasons")
     splitter.run()

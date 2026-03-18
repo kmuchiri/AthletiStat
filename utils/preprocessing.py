@@ -199,5 +199,5 @@ class Preprocessor:
             self.process_data("all-time")
 
 if __name__ == "__main__":
-    preprocessor = Preprocessor(mode="both")
+    preprocessor = Preprocessor(mode="seasons")
     preprocessor.run()

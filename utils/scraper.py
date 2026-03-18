@@ -283,5 +283,5 @@ class Scraper:
             self.run_scraper("all-time", max_workers=max_workers)
 
 if __name__ == "__main__":
-    scraper = Scraper(mode="both")
+    scraper = Scraper(mode="seasons")
     scraper.run(max_workers=12)
