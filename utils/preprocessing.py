@@ -5,7 +5,7 @@ from collections import defaultdict
 import json
 
 class Preprocessor:
-    def __init__(self, mode="both", options_file="utils/options.json"):
+    def __init__(self, mode="both", options_file="utils/athletistat-options.json"):
         self.mode = mode
         
         # Load configs

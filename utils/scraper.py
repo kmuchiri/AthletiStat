@@ -28,7 +28,7 @@ class Scraper:
         "?regionType=world&timing=all&windReading=all&page={page}&bestResultsOnly=false&maxResultsByCountry=all&ageCategory={age_category}"
     )
 
-    def __init__(self, mode="both", options_file="utils/options.json"):
+    def __init__(self, mode="both", options_file="utils/athletistat-options.json"):
         self.mode = mode
         self.options_file = options_file
         self.mappings = self._load_mappings(self.options_file)
