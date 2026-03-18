@@ -18,6 +18,7 @@ from urllib3.exceptions import InsecureRequestWarning
 urllib3.disable_warnings(InsecureRequestWarning)
 
 class Scraper:
+    """Scrapes track and field records from the World Athletics website."""
     BASE_URL_ALL_TIME = (
         "https://worldathletics.org/records/all-time-toplists/{type_slug}/{discipline_slug}/all/{gender}/{age_category}"
         "?regionType=world&page={page}&bestResultsOnly=false&firstDay=1900-01-01&lastDay={today}&maxResultsByCountry=all&ageCategory={age_category}"
@@ -29,6 +30,13 @@ class Scraper:
     )
 
     def __init__(self, mode="both", options_file="utils/athletistat-options.json"):
+        """
+        Initializes the scraper, configures request retry sessions, and loads configurations.
+
+        Args:
+            mode (str): "both", "seasons", or "all-time". Defaults to "both".
+            options_file (str): Path to config file. Defaults to "utils/athletistat-options.json".
+        """
         self.mode = mode
         self.options_file = options_file
         self.mappings = self._load_mappings(self.options_file)
@@ -53,6 +61,15 @@ class Scraper:
         self.session.mount("http://", adapter)
 
     def _load_mappings(self, config_file):
+        """
+        Parses the provided configuration file to extract mappings between discipline code slugs.
+
+        Args:
+            config_file (str): Path to config file.
+
+        Returns:
+            dict: Parsed discipline mappings.
+        """
         with open(config_file, "r") as f:
             options_data = json.load(f)
 
@@ -69,6 +86,16 @@ class Scraper:
         return mappings
 
     def build_jobs(self, mode, year=None):
+        """
+        Constructs a list of scraping jobs containing URL parameters for targeted disciplines.
+
+        Args:
+            mode (str): "seasons" or "all-time".
+            year (int or None): Target year (for "seasons" mode).
+
+        Returns:
+            list: List of scrape jobs.
+        """
         jobs = []
         for (gender, age_category), discipline_list in self.mappings.items():
             if mode == "seasons":
@@ -81,6 +108,21 @@ class Scraper:
         return jobs
 
     def scrape_event(self, gender, age_category, discipline_slug, type_slug, output_dir, mode="seasons", year=None):
+        """
+        Scrapes individual event record tables from World Athletics, parsing rows into tabular data and saving as a CSV.
+
+        Args:
+            gender (str): male or female.
+            age_category (str): senior, u20, u18.
+            discipline_slug (str): WA discipline slug.
+            type_slug (str): WA type slug (e.g., track, jumps).
+            output_dir (str): Save directory for CSVs.
+            mode (str): "seasons" or "all-time". Defaults to "seasons".
+            year (int or None): Target year (for "seasons" mode). Defaults to None.
+
+        Returns:
+            bool: True if completed, False if error.
+        """
         page = 1
         data = []
         
@@ -108,7 +150,8 @@ class Scraper:
                 with self.lock:
                     with open(os.path.join(log_dir, f"scrape_errors_{self.current_time}.log"), "a") as log_file:
                         log_file.write(f"FAILED: {url} | {repr(e)}\n")
-                return False # CRITICAL: Must return False so the queue doesn't remove the job
+                # Must return False so the queue doesn't remove the job
+                return False 
 
             soup = BeautifulSoup(response.text, 'html.parser')
             table = soup.find("table", class_="records-table")
@@ -143,7 +186,8 @@ class Scraper:
                 })
 
             page += 1
-            time.sleep(1.5) # Do not give too low of a value, will overwhelm server.
+            # Do not give too low of a value, will overwhelm server.
+            time.sleep(1.5) 
 
         # Save to CSV
         if data:
@@ -160,12 +204,32 @@ class Scraper:
         return True # Returns True when complete
 
     def _get_queue_info(self, mode, year=None):
+        """
+        Determines the queue file path specific to the scraper mode and target year.
+
+        Args:
+            mode (str): "seasons" or "all-time".
+            year (int or None): Target year.
+
+        Returns:
+            str: Path to the queue JSON file.
+        """
         if mode == "seasons":
             return f"{mode}/queues/queue_seasons_{year}.json"
         else:
             return f"all-time/queues/queue_all_time_{self.today}.json"
 
     def _manage_queues_and_jobs(self, mode, year=None):
+        """
+        Manages saved scrape job queues to enable resuming partial scrapes and caching completed years.
+
+        Args:
+            mode (str): "seasons" or "all-time".
+            year (int or None): Target year.
+        
+        Returns:
+            tuple: (jobs list, queue_file path, completed_years list).
+        """
         queue_file = self._get_queue_info(mode, year)
         jobs = []
 
@@ -221,6 +285,17 @@ class Scraper:
             return jobs, queue_file, []
 
     def run_scraper(self, mode, max_workers=10, year=None):
+        """
+        Executes the scraper for a given mode processing the compiled jobs concurrently utilizing a threadpool.
+
+        Args:
+            mode (str): "seasons" or "all-time".
+            max_workers (int): Number of threads. Defaults to 10.
+            year (int or None): Target year.
+
+        Returns:
+            None
+        """
         print(f"Starting {mode.upper()} scrape using {max_workers} workers...")
         start_time = time.time()
         
@@ -273,6 +348,16 @@ class Scraper:
         print(f"{mode.capitalize()} scraping finished in {total_time:.1f} seconds ({total_time / 60:.2f} minutes)\n")
 
     def run(self, max_workers=10, year=None):
+        """
+        Wrapper that runs the scraper across designated modes utilizing max configured workers.
+
+        Args:
+            max_workers (int): Number of threads. Defaults to 10.
+            year (int or None): Target year.
+
+        Returns:
+            None
+        """
         if year is None:
             year = self.current_year
 

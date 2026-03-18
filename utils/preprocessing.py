@@ -5,7 +5,15 @@ from collections import defaultdict
 import json
 
 class Preprocessor:
+    """Handles data preprocessing, cleaning, and normalization for raw track and field dataset files."""
     def __init__(self, mode="both", options_file="utils/athletistat-options.json"):
+        """
+        Initializes the Preprocessor with running mode and loads regional configuration data.
+
+        Args:
+            mode (str): "both", "seasons", or "all-time". Defaults to "both".
+            options_file (str): Path to the config file. Defaults to "utils/athletistat-options.json".
+        """
         self.mode = mode
         
         # Load configs
@@ -46,6 +54,15 @@ class Preprocessor:
                         self.country_lookup[code] = label
 
     def normalize_discipline(self, discipline_slug):
+        """
+        Normalizes discipline slugs by mapping known aliases and stripping age/weight suffixes.
+
+        Args:
+            discipline_slug (str): The unnormalized discipline slug.
+
+        Returns:
+            str: The normalized discipline string.
+        """
         if discipline_slug in self.manual_aliases:
             return self.manual_aliases[discipline_slug]
         for alias, standard in self.manual_aliases.items():
@@ -55,6 +72,15 @@ class Preprocessor:
         return discipline_slug
 
     def parse_mark_to_number(self, mark):
+        """
+        Converts a mark string (e.g., "M:S" or "H:M:S") into a numeric total seconds or float representation.
+
+        Args:
+            mark (str or int or float): The mark to be parsed.
+
+        Returns:
+            float: Parsed numeric representation in seconds or direct value. Returns float("inf") on failure.
+        """
         mark = str(mark).strip().lower().replace("h", "")
         try:
             if ":" in mark:
@@ -71,10 +97,28 @@ class Preprocessor:
             return float("inf")
 
     def extract_country_code_from_venue(self, venue):
+        """
+        Extracts three-letter country codes from venue strings using regex.
+
+        Args:
+            venue (str): Venue name, optionally containing a country code in parentheses.
+
+        Returns:
+            str or None: The three-letter country code, or None if not found.
+        """
         match = re.search(r"\((\w{3})\)", str(venue))
         return match.group(1) if match else None
 
     def _get_files_by_key(self, current_mode):
+        """
+        Scans the output directory and groups CSV files by year, gender, type, and discipline.
+
+        Args:
+            current_mode (str): Execution mode ("seasons" or "all-time").
+
+        Returns:
+            dict or None: Grouped file paths, or None if directory doesn't exist.
+        """
         files_by_key = defaultdict(list)
         
         input_root = os.path.join(current_mode, "processing", "output")
@@ -124,6 +168,15 @@ class Preprocessor:
         return files_by_key
 
     def process_data(self, current_mode):
+        """
+        Processes and combines scraped CSV files, normalizing disciplines, parsing marks, and augmenting demographics.
+
+        Args:
+            current_mode (str): The mode being processed ("seasons" or "all-time").
+
+        Returns:
+            None: Writes the combined files to disk.
+        """
         files_by_key = self._get_files_by_key(current_mode)
         if files_by_key is None:
             return
@@ -192,6 +245,12 @@ class Preprocessor:
             print(f"[{current_mode.upper()}] Saved: {output_path}")
 
     def run(self):
+        """
+        Executes the full data processing pipeline for 'seasons', 'all-time', or both based on the selected mode.
+
+        Returns:
+            None
+        """
         if self.mode in ["seasons", "both"]:
             self.process_data("seasons")
             

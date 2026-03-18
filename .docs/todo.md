@@ -5,7 +5,7 @@
 - ~~complete generator and preprocessing files~~
 - better formatting for queues
 - Add flags for main program in cli, run from AthletiStat.py
-    - scraper, processing, combine, split_by_type
+    - scraper, processing, generator
 - edit README
 - requirements document
 - all-time: add resume function that only adds records produced after the last time scraped
@@ -15,8 +15,6 @@
 - create cli folder
 - update dataset description
 - turn utils into classees
-- only fetch regular times
-- seperate scraper
 - add option for just regular time vs everything else
 - add base_url for regular times only
 - combine generator and splitter into just generator

@@ -3,10 +3,26 @@ import glob
 import pandas as pd
 
 class DatasetGenerator:
+    """Generates and combines track and field datasets from processed CSV files."""
     def __init__(self, mode="both"):
+        """
+        Initializes the dataset generator with the specific running mode.
+        
+        Args:
+            mode (str): "seasons", "all-time", or "both". Defaults to "both".
+        """
         self.mode = mode
 
     def generate_datasets(self, mode):
+        """
+        Generates and combines track and field datasets from processed CSVs for the given mode.
+        
+        Args:
+            mode (str): "seasons" or "all-time".
+
+        Returns:
+            None
+        """
         combined_dir = f"{mode}/processing/combined"
         output_dataset_dir = f"{mode}/datasets"
         os.makedirs(output_dataset_dir, exist_ok=True)
@@ -70,6 +86,12 @@ class DatasetGenerator:
                 print(f"No CSV files found in {combined_dir}")
 
     def combine_seasons(self):
+        """
+        Combines all available season datasets into a single aggregated CSV file covering all years.
+        
+        Returns:
+            None
+        """
         dataset_dir = "seasons/datasets"
         processed_dir = "seasons/processing/combined"
 
@@ -107,6 +129,15 @@ class DatasetGenerator:
             print(f"No CSV files found in {dataset_dir}")
 
     def run(self, combine=False):
+        """
+        Executes dataset generation for 'seasons', 'all-time', or both, optionally combining seasons.
+        
+        Args:
+            combine (bool): Whether to combine season datasets into one. Defaults to False.
+
+        Returns:
+            None
+        """
         if self.mode in ["seasons", "both"]:
             self.generate_datasets("seasons")
             
@@ -117,11 +148,28 @@ class DatasetGenerator:
             self.combine_seasons()
 
 class DatasetSplitter:
+    """Splits unified track and field datasets into more granular subsets by event type, discipline, and gender."""
     def __init__(self, mode="both"):
+        """
+        Initializes the dataset splitter with the targeted dataset mode.
+        
+        Args:
+            mode (str): "seasons", "all-time", or "both". Defaults to "both".
+        """
         self.mode = mode
 
     def get_filename_with_years(self, base_name, df, is_seasons):
-        """Generates a filename dynamically including the min and max year if applicable."""
+        """
+        Generates a filename dynamically including the min and max year if applicable.
+        
+        Args:
+            base_name (str): Base filename.
+            df (pd.DataFrame): Dataset to process.
+            is_seasons (bool): Whether the dataset is season-based.
+        
+        Returns:
+            str: Filename appended with min-max years if applicable.
+        """
         if is_seasons and "season" in df.columns:
             valid_seasons = df["season"].dropna()
             if not valid_seasons.empty:
@@ -134,7 +182,17 @@ class DatasetSplitter:
         return f"{base_name}.csv"
 
     def split_dataset(self, df, mode_dir, is_seasons=False):
-        """Splits a DataFrame by event type, discipline, and gender."""
+        """
+        Splits a DataFrame by event type, discipline, and gender.
+        
+        Args:
+            df (pd.DataFrame): Dataset to split.
+            mode_dir (str): Output directory mode ("seasons" or "all-time").
+            is_seasons (bool): Whether the dataset is season-based.
+        
+        Returns:
+            None
+        """
         
         individual_df = df[df["type"] != "relays"]
         relay_df = df[df["type"] == "relays"].copy()
@@ -188,7 +246,12 @@ class DatasetSplitter:
         print(f"  └─ Successfully generated aggregated splits for: {mode_dir.upper()}")
 
     def execute_splits(self):
-        """Locates a single combined dataset, runs the generator if missing, and splits it."""
+        """
+        Locates a single combined dataset, runs the generator if missing, and splits it.
+        
+        Returns:
+            None
+        """
         
         if self.mode in ["seasons", "both"]:
             datasets_dir = os.path.join("seasons", "datasets")
@@ -247,6 +310,12 @@ class DatasetSplitter:
                 print("[ALL-TIME] Still no dataset found after running generator. Is there raw data to combine?")
 
     def run(self):
+        """
+        Executes dataset splitting logic based on initialized mode.
+
+        Returns:
+            None
+        """
         self.execute_splits()
 
 if __name__ == "__main__":
