@@ -13,7 +13,7 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed
 * [Usage](#usage)
   * [Extract Data](#extract-data)
   * [Transform Data](#transform-data)
-  * [Generate Datasets](#generate-datasets)
+  * [Generate and Split Datasets](#generate-and-split-datasets)
 
 
 
@@ -42,30 +42,28 @@ The system consists of three distinct modules executed sequentially:
 AthletiStat
 .
 ├── all-time
-│   ├── datasets
-│   ├── processing
-│   ├── queues
-│   └── doc.md
+│   ├── datasets
+│   ├── processing
+│   ├── queues
+│   └── split_by_discipline
 ├── logs
-│   ├── all-time
-│   └── seasons
+│   ├── all-time
+│   └── seasons
 ├── seasons
-│   ├── datasets
-│   ├── processing
-│   ├── queues
-│   └── completed_seasons.json
+│   ├── completed_seasons.json
+│   ├── datasets
+│   ├── processing
+│   ├── queues
+│   └── split_by_discipline
 ├── utils
-│   ├── generator.py
-│   ├── options.json
-│   ├── preprocessing.py
-│   ├── scraper.py
-│   └── split_by_type.py
+│   ├── athletistat-options.json
+│   ├── generator.py
+│   ├── preprocessing.py
+│   └── scraper.py
+├── athletistat.py
 ├── README.md
-├── requirements.txt
-└── run.py
+└── requirements.txt
 ```
-
-
 
 ## Dataset Description
 
@@ -109,67 +107,65 @@ The pipeline outputs final aggregated datasets into the `seasons/datasets/` and 
 1. **Fork / Clone Repository**
 
 2. **Install dependencies:**
+
 It is recommended to use a virtual environment.
+
 ```bash
 pip install -r requirements
 
 ```
 
 3. **Verify Configuration:**
-Ensure `modules/00-options.json` is present in your root directory. This file dictates the disciplines, age categories, and country mappings the scraper relies upon.
+Ensure `utils/athletistat-options.json` is present in your root directory. This file dictates the disciplines, age categories, and country mappings the scraper relies upon.
 
 **Note:**
 To use with actual multithreading (GIL removed), run any version of python >= 3.13.xt
 
+## Usage
 
-
-
-
-
-##  Usage
-
-The pipeline consists of three scripts that must be run sequentially. All scripts support the exact same CLI arguments:
-
-* `--mode`: Target data to process (`seasons`, `all-time`, or `both`). Defaults to `both` (or `seasons` for the scraper).
-* `--year`: Target year for seasons mode (Defaults to the current system year).
-* `--workers`: *(Scraper only)* Maximum number of concurrent threads (Defaults to 12).
+The pipeline consists of three utility modules that should be executed sequentially. Since the CLI parameters have been refactored into classes, you can instantiate them directly in your own Python scripts or run the modules directly.
 
 ### Extract Data
 
-Scrape raw data from World Athletics.
+Scrape raw data from World Athletics using the `Scraper` class.
 
-```bash
-# Scrape the 2024 season
-python modules/scraper.py --mode seasons --year 2024 --workers 15
+```python
+from utils.scraper import Scraper
+
+# Scrape the current season
+scraper = Scraper(mode="seasons")
+scraper.run(max_workers=12)
 
 # Scrape the all-time lists
-python modules/scraper.py --mode all-time
-
+scraper_all_time = Scraper(mode="all-time")
+scraper_all_time.run(max_workers=12)
 ```
 
 ### Transform Data
 
-Clean and normalize the raw CSV files.
+Clean and normalize the raw CSV files using the `Preprocessor` class.
 
-```bash
-# Process the previously scraped 2024 data
-python modules/reprocessing.py --mode seasons
+```python
+from utils.preprocessing import Preprocessor
 
-# Process all-time data
-python modules/preprocessing.py --mode all-time
-
+# Process both seasons and all-time scraped data
+preprocessor = Preprocessor(mode="both")
+preprocessor.run()
 ```
 
-### Generate Datasets
+### Generate and Split Datasets
 
-Concatenate the cleaned fragments into the final machine-learning-ready datasets.
+Concatenate the cleaned fragments into the final machine-learning-ready datasets, and split them logically.
 
-```bash
-# Generate the monolithic 2024 dataset
-python modules/generator.py --mode seasons
+```python
+from utils.generator import DatasetGenerator, DatasetSplitter
 
-# Generate the monolithic all-time dataset
-python modules/generator.py --mode all-time
+# Generate the combined datasets
+generator = DatasetGenerator(mode="both")
+generator.run(combine=True)
 
+# Split datasets by type, discipline, and gender
+splitter = DatasetSplitter(mode="both")
+splitter.run()
 ```
 
