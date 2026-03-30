@@ -3,6 +3,7 @@
 An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed to scrape, clean, and aggregate track and field performance data from World Athletics.
 
 ## Table of Contents
+
 * [Features](#features)
 * [Pipeline Architecture](#pipeline-architecture)
 * [Directory Structure](#directory-structure)
@@ -15,16 +16,11 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed
   * [Transform Data](#transform-data)
   * [Generate and Split Datasets](#generate-and-split-datasets)
 
-
-
 ## Features
 
 * **Automated Extraction:** Multithreaded scraper with automatic pagination, exponential backoff, and robust state management (resumes interrupted queues safely).
 * **Data Transformation:** Standardizes event names, converts complex time strings (e.g., `1:45.30`) into numeric seconds, calculates athlete ages at the time of the event, and maps ISO country codes.
 * **Aggregated Output:** Generates CSV datasets separated by historical all-time lists and specific calendar years.
-
-
-
 
 ## Pipeline Architecture
 
@@ -34,9 +30,7 @@ The system consists of three distinct modules executed sequentially:
 2. **Transformation (`preprocessing.py`):** Reads raw data, normalizes strings, calculates metrics (e.g., age, numeric marks), maps country codes, and saves cleaned individual files.
 3. **Loading (`generator.py`):** Merges all cleaned, fragmented files into ready datasets.
 
-
 ## Directory Structure
-
 
 ```bash
 AthletiStat
@@ -100,8 +94,6 @@ The pipeline outputs final aggregated datasets into the `seasons/datasets/` and 
 | **`age_at_event`** | Integer | *[Generated]* The calculated age of the athlete on the day of the performance. | `22` |
 | **`season`** | Integer | *[Generated]* The calendar year the event took place. | `2009` |
 
-
-
 ## Installation and Setup
 
 1. **Fork / Clone Repository**
@@ -115,7 +107,7 @@ pip install -r requirements
 
 ```
 
-3. **Verify Configuration:**
+3.**Verify Configuration:**
 Ensure `utils/athletistat-options.json` is present in your root directory. This file dictates the disciplines, age categories, and country mappings the scraper relies upon.
 
 **Note:**
@@ -123,9 +115,36 @@ To use with actual multithreading (GIL removed), run any version of python >= 3.
 
 ## Usage
 
-The pipeline consists of three utility modules that should be executed sequentially. Since the CLI parameters have been refactored into classes, you can instantiate them directly in your own Python scripts or run the modules directly.
+### CLI Usage
 
-### Extract Data
+You can use the `AthletiStat` command-line interface directly from your terminal to run the entire pipeline or specific modules.
+
+Ensure the script is executable:
+
+```bash
+chmod +x AthletiStat
+```
+
+You can view all available commands by running:
+
+```bash
+./AthletiStat --help
+```
+
+**Common Commands:**
+
+* **Scrape data for the current season:** `./AthletiStat --scraper seasons`
+* **Scrape all-time data:** `./AthletiStat --scraper all-time`
+* **Run preprocessing for seasons:** `./AthletiStat --preprocessing seasons`
+* **Generate datasets:** `./AthletiStat --create-dataset seasons`
+* **Combine datasets across years (seasons):** `./AthletiStat --combine`
+* **Split datasets by event type:** `./AthletiStat --split-dataset seasons`
+
+* **End-to-End Pipeline:** `./AthletiStat --fetch-data seasons` (Runs scraping, preprocessing, and dataset creation automatically).
+
+### Classes
+
+#### Extract Data
 
 Scrape raw data from World Athletics using the `Scraper` class.
 
@@ -141,7 +160,7 @@ scraper_all_time = Scraper(mode="all-time")
 scraper_all_time.run(max_workers=12)
 ```
 
-### Transform Data
+#### Transform Data
 
 Clean and normalize the raw CSV files using the `Preprocessor` class.
 
@@ -153,7 +172,7 @@ preprocessor = Preprocessor(mode="both")
 preprocessor.run()
 ```
 
-### Generate and Split Datasets
+#### Generate and Split Datasets
 
 Concatenate the cleaned fragments into the final machine-learning-ready datasets, and split them logically.
 
@@ -168,4 +187,3 @@ generator.run(combine=True)
 splitter = DatasetSplitter(mode="both")
 splitter.run()
 ```
-
