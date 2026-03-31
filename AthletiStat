@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import sys
 
-# Ensure the project root is in path if needed
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
