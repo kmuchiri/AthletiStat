@@ -144,7 +144,7 @@ class DatasetGenerator:
         if self.mode in ["all-time", "both"]:
             self.generate_datasets("all-time")
 
-        if combine or self.mode in ["seasons", "both"]:
+        if combine and self.mode in ["seasons", "both"]:
             self.combine_seasons()
 
 class DatasetSplitter:
