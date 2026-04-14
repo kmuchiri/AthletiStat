@@ -19,7 +19,7 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline designed
 ## Features
 
 * **Automated Extraction:** Multithreaded scraper with automatic pagination, exponential backoff, and robust state management (resumes interrupted queues safely).
-* **Data Transformation:** Standardizes event names, converts complex time strings (e.g., `1:45.30`) into numeric seconds, calculates athlete ages at the time of the event, and maps ISO country codes.
+* **Data Transformation:** Standardizes event names, converts complex time strings (e.g., `1:45.30`) into seconds, calculates athlete ages at the time of the event, and maps ISO country codes.
 * **Aggregated Output:** Generates CSV datasets separated by historical all-time lists and specific calendar years.
 
 ## Pipeline Architecture

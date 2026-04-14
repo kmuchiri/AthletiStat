@@ -1,0 +1,31 @@
+.
+├── cli
+│   ├── __pycache__
+│   └── cli.py
+├── datasets
+│   ├── all-time
+│   └── seasons
+├── docs
+│   └── tree.txt
+├── logs
+│   ├── all-time
+│   └── seasons
+├── processing
+│   ├── combined
+│   └── output
+├── queues
+│   ├── all-time
+│   └── seasons
+├── utils
+│   ├── __pycache__
+│   ├── athletistat-options.json
+│   ├── generator.py
+│   ├── get_dataset_info.sh
+│   ├── preprocessing.py
+│   └── scraper.py
+├── AthletiStat
+├── info.txt
+├── README.md
+└── requirements.txt
+
+18 directories, 11 files

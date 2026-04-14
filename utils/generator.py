@@ -23,8 +23,8 @@ class DatasetGenerator:
         Returns:
             None
         """
-        combined_dir = f"processing/combined/{mode}"
-        output_dataset_dir = f"datasets/{mode}"
+        combined_dir = f"data/processing/combined/{mode}"
+        output_dataset_dir = f"data/datasets/{mode}"
         os.makedirs(output_dataset_dir, exist_ok=True)
 
         if mode == "seasons":
@@ -92,8 +92,8 @@ class DatasetGenerator:
         Returns:
             None
         """
-        dataset_dir = "seasons/datasets"
-        processed_dir = "seasons/processing/combined"
+        dataset_dir = "data/datasets/seasons"
+        processed_dir = "data/processing/combined/seasons"
 
         if not os.path.exists(dataset_dir) or not os.path.exists(processed_dir):
             print(f"Directories {dataset_dir} or {processed_dir} do not exist.")
@@ -202,7 +202,7 @@ class DatasetSplitter:
             relay_df = relay_df.drop(columns=cols_to_drop)
 
         # --- 1. Save global-level splits ---
-        global_out = os.path.join(mode_dir,"datasets","split_global")
+        global_out = os.path.join(mode_dir,"split_global")
         os.makedirs(global_out, exist_ok=True)
         
         ind_filename = self.get_filename_with_years("individual_events", individual_df, is_seasons)
@@ -219,9 +219,9 @@ class DatasetSplitter:
             gender_individual = individual_df[individual_df["sex"] == gender]
             gender_relay = relay_df[relay_df["sex"] == gender]
 
-            type_output_dir = os.path.join(mode_dir,"datasets", "split_by_type", gender)
-            discipline_output_dir = os.path.join(mode_dir, "datasets","split_by_discipline", gender)
-            relay_output_dir = os.path.join(mode_dir, "split_by_discipline", gender, "relays")
+            type_output_dir = os.path.join(mode_dir,"split_by_type", gender)
+            discipline_output_dir = os.path.join(mode_dir,"split_by_discipline", gender)
+            relay_output_dir = os.path.join(mode_dir, gender, "relays")
 
             if not gender_individual.empty:
                 os.makedirs(type_output_dir, exist_ok=True)
@@ -277,7 +277,7 @@ class DatasetSplitter:
                 print(f"\n[SEASONS] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
-                    self.split_dataset(df, mode_dir="datasets/seasons", is_seasons=True)
+                    self.split_dataset(df, mode_dir="data/datasets/seasons", is_seasons=True)
                 except Exception as e:
                     print(f"Error reading {filepath}: {e}")
             else:
@@ -303,7 +303,7 @@ class DatasetSplitter:
                 print(f"\n[ALL-TIME] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
-                    self.split_dataset(df, mode_dir="datasets/all-time", is_seasons=False)
+                    self.split_dataset(df, mode_dir="data/datasets/all-time", is_seasons=False)
                 except Exception as e:
                      print(f"Error reading {filepath}: {e}")
             else:
