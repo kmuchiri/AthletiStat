@@ -39,7 +39,7 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 
 The system consists of three core modules that are executed sequentially:
 
-```
+```text
 World Athletics
       │
       ▼
@@ -59,7 +59,7 @@ World Athletics
 
 ## Directory Structure
 
-```
+```text
 AthletiStat/
 ├── athletistat/
 │   ├── cli/
@@ -99,7 +99,7 @@ AthletiStat/
 ### Output Files
 
 | File | Location | Description |
-|---|---|---|
+| --- | --- | --- |
 | `{year}_track_field_performances.csv` | `data/datasets/seasons/` | All top performances across every discipline for a specific calendar year. |
 | `combined_track_field_performances_{min}_{max}.csv` | `data/datasets/seasons/` | All season datasets merged into a single file spanning the full year range. |
 | `top_track_field_performances_all_time.csv` | `data/datasets/all-time/` | The absolute historical top performances across all disciplines. |
@@ -108,7 +108,7 @@ AthletiStat/
 ### Data Dictionary
 
 | Column | Type | Description | Example |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `rank` | String | Global rank of the performance in its list. | `1`, `=2` |
 | `mark` | String | Raw performance mark as scraped (time, distance, or points). | `9.58`, `1:40.91`, `8952` |
 | `wind` | Float | Wind reading in m/s where applicable. | `+0.9`, `-1.2` |
@@ -163,7 +163,7 @@ chmod +x AthletiStat
 
 **5. Verify the configuration file is present:**
 
-```
+```text
 athletistat/options.json
 ```
 
@@ -251,6 +251,7 @@ scraper.run(max_workers=10)
 ```
 
 **Key behaviors:**
+
 - Uses `ThreadPoolExecutor` to scrape multiple events concurrently.
 - Automatically paginates through all available result pages per event.
 - Persists job queues to disk; failed or interrupted jobs remain in the queue and are resumed on the next run.
@@ -276,6 +277,7 @@ preprocessor.run()
 ```
 
 **Key transformations applied:**
+
 - Discipline slug normalization (e.g., `decathlon-u20` → `decathlon`).
 - Performance mark parsing: `MM:SS.ss` / `H:MM:SS.ss` → total seconds as a float.
 - Event classification: `track_field` column set to `track`, `field`, or `mixed`.
@@ -316,6 +318,7 @@ splitter.run()
 ```
 
 **Split outputs produced:**
+
 - `split_global/` — Full individual events and relay events as separate files.
 - `split_by_type/{gender}/` — One CSV per event type (e.g., `sprints`, `jumps`, `hurdles`).
 - `split_by_discipline/{gender}/` — One CSV per normalized discipline (e.g., `100-metres`, `long-jump`).
