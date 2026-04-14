@@ -121,7 +121,7 @@ class Preprocessor:
         """
         files_by_key = defaultdict(list)
         
-        input_root = os.path.join(current_mode, "processing", "output")
+        input_root = os.path.join("processing", "output", current_mode)
         if not os.path.exists(input_root):
             print(f"[{current_mode.upper()}] Input directory not found: {input_root}")
             return None
@@ -181,7 +181,7 @@ class Preprocessor:
         if files_by_key is None:
             return
 
-        output_root = os.path.join(current_mode, "processing", "combined")
+        output_root = os.path.join("processing", "combined", current_mode)
 
         for (out_label, gender, type_slug, discipline_key), file_list in files_by_key.items():
             df = pd.concat([pd.read_csv(f) for f in file_list], ignore_index=True)

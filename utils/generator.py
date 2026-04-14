@@ -23,8 +23,8 @@ class DatasetGenerator:
         Returns:
             None
         """
-        combined_dir = f"{mode}/processing/combined"
-        output_dataset_dir = f"{mode}/datasets"
+        combined_dir = f"processing/combined/{mode}"
+        output_dataset_dir = f"datasets/{mode}"
         os.makedirs(output_dataset_dir, exist_ok=True)
 
         if mode == "seasons":
@@ -277,7 +277,7 @@ class DatasetSplitter:
                 print(f"\n[SEASONS] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
-                    self.split_dataset(df, mode_dir="seasons", is_seasons=True)
+                    self.split_dataset(df, mode_dir="datasets/seasons", is_seasons=True)
                 except Exception as e:
                     print(f"Error reading {filepath}: {e}")
             else:
@@ -303,7 +303,7 @@ class DatasetSplitter:
                 print(f"\n[ALL-TIME] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
-                    self.split_dataset(df, mode_dir="all-time", is_seasons=False)
+                    self.split_dataset(df, mode_dir="datasets/all-time", is_seasons=False)
                 except Exception as e:
                      print(f"Error reading {filepath}: {e}")
             else:
