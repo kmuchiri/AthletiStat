@@ -1,8 +1,8 @@
 import click
 from datetime import datetime
-from utils.scraper import Scraper
-from utils.preprocessing import Preprocessor
-from utils.generator import DatasetGenerator, DatasetSplitter
+from core.scraper import Scraper
+from core.preprocessing import Preprocessor
+from core.generator import DatasetGenerator, DatasetSplitter
 
 @click.command()
 @click.option('--scraper', type=click.Choice(['seasons', 'all-time']), help='Scrape data for seasons or all-time.')

@@ -1,0 +1,37 @@
+.
+├── athletistat
+│   ├── cli
+│   │   └── cli.py
+│   ├── core
+│   │   ├── generator.py
+│   │   ├── preprocessing.py
+│   │   └── scraper.py
+│   ├── __pycache__
+│   │   ├── generator.cpython-314.pyc
+│   │   ├── preprocessing.cpython-314.pyc
+│   │   └── scraper.cpython-314.pyc
+│   ├── scripts
+│   │   └── get_dataset_info.sh
+│   └── options.json
+├── data
+│   ├── datasets
+│   │   ├── all-time
+│   │   └── seasons
+│   └── processing
+│       ├── combined
+│       └── output
+├── docs
+│   └── tree.txt
+├── logs
+│   ├── all-time
+│   └── seasons
+
+├── queues
+│   ├── all-time
+│   └── seasons
+│       └── completed_seasons.json
+├── AthletiStat
+├── README.md
+└── requirements.txt
+
+27 directories, 14 files

@@ -29,13 +29,13 @@ class Scraper:
         "?regionType=world&timing=all&windReading=all&page={page}&bestResultsOnly=false&maxResultsByCountry=all&ageCategory={age_category}"
     )
 
-    def __init__(self, mode="both", options_file="utils/athletistat-options.json"):
+    def __init__(self, mode="both", options_file="athletistat/options.json"):
         """
         Initializes the scraper, configures request retry sessions, and loads configurations.
 
         Args:
             mode (str): "both", "seasons", or "all-time". Defaults to "both".
-            options_file (str): Path to config file. Defaults to "utils/athletistat-options.json".
+            options_file (str): Path to config file. Defaults to "athletistat/options.json".
         """
         self.mode = mode
         self.options_file = options_file
@@ -99,10 +99,12 @@ class Scraper:
         jobs = []
         for (gender, age_category), discipline_list in self.mappings.items():
             if mode == "seasons":
-                output_dir = os.path.join(f"{mode}/processing/output/{year}/", gender)
+                output_dir = os.path.join(f"data/processing/output/{mode}/{year}/", gender)
+            
             else:
-                output_dir = os.path.join(f"{mode}/processing/output/", gender)
-                
+                output_dir = os.path.join(f"data/processing/output/{mode}", gender)
+            
+            os.makedirs(output_dir, exist_ok=True)    
             for discipline_slug, type_slug in discipline_list:
                 jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, mode, year))
         return jobs
@@ -125,6 +127,7 @@ class Scraper:
         """
         page = 1
         data = []
+
         
         log_dir = os.path.join(f"logs/{mode}", self.today)
         os.makedirs(log_dir, exist_ok=True)
@@ -214,10 +217,12 @@ class Scraper:
         Returns:
             str: Path to the queue JSON file.
         """
+        queue_dir = f"queues/{mode}"
+        os.makedirs(queue_dir, exist_ok=True)
         if mode == "seasons":
-            return f"{mode}/queues/queue_seasons_{year}.json"
+            return f"{queue_dir}/queue_seasons_{year}.json"
         else:
-            return f"all-time/queues/queue_all_time_{self.today}.json"
+            return f"{queue_dir}/queue_all_time_{self.today}.json"
 
     def _manage_queues_and_jobs(self, mode, year=None):
         """
@@ -230,11 +235,14 @@ class Scraper:
         Returns:
             tuple: (jobs list, queue_file path, completed_years list).
         """
+
+        queue_dir = f"queues/{mode}"
+        os.makedirs(queue_dir, exist_ok=True)
         queue_file = self._get_queue_info(mode, year)
         jobs = []
 
         if mode == "seasons":
-            completed_file = f"{mode}/completed_seasons.json"
+            completed_file = f"{queue_dir}/completed_seasons.json"
             completed_years = []
             
             if year != self.current_year:
@@ -264,7 +272,7 @@ class Scraper:
 
         elif mode == "all-time":
             os.makedirs(os.path.dirname(queue_file), exist_ok=True)
-            for old_queue in glob.glob("all-time/queues/queue_all_time_*.json"):
+            for old_queue in glob.glob(f"{queue_dir}/queue_all_time_*.json"):
                 if old_queue != queue_file:
                     try:
                         os.remove(old_queue)
@@ -335,7 +343,7 @@ class Scraper:
                 
                 if mode == "seasons" and year not in completed_years:
                     completed_years.append(year)
-                    completed_file = f"{mode}/completed_seasons.json"
+                    completed_file = f"queues/seasons/completed_seasons.json"
                     os.makedirs(os.path.dirname(completed_file), exist_ok=True)
                     with open(completed_file, "w") as f:
                         json.dump(completed_years, f)
