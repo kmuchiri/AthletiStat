@@ -63,28 +63,34 @@ World Athletics
 AthletiStat/
 ├── athletistat/
 │   ├── cli/
-│   │   └── cli.py                  # Click-based CLI entry point
+│   │   └── cli.py                      # Click-based CLI entry point
 │   ├── core/
-│   │   ├── scraper.py              # Scraping logic (Scraper class)
-│   │   ├── preprocessing.py        # Data cleaning logic (Preprocessor class)
-│   │   └── generator.py            # Dataset generation and splitting (DatasetGenerator, DatasetSplitter)
+│   │   ├── scraper.py                  # Scraping logic (Scraper class)
+│   │   ├── preprocessing.py            # Data cleaning logic (Preprocessor class)
+│   │   └── generator.py                # Dataset generation and splitting (DatasetGenerator, DatasetSplitter)
 │   ├── scripts/
-│   │   └── get_dataset_info.sh     # Utility script for dataset inspection
-│   └── options.json                # Discipline/country/age-category configuration
+│   │   └── get_dataset_info.sh         # Utility script for dataset inspection
+│   └── options.json                    # Discipline/country/age-category configuration
 ├── data/
 │   ├── datasets/
-│   │   ├── all-time/               # Final all-time aggregated datasets
-│   │   └── seasons/                # Final per-year and combined season datasets
+│   │   ├── all-time/                   # Final all-time aggregated datasets
+│   │   ├── seasons/                    # Final per-year and combined season datasets
+│   │   └── info.txt                    # Notes on dataset contents and structure
 │   └── processing/
-│       ├── combined/               # Merged, per-discipline cleaned files
-│       └── output/                 # Raw scraped CSVs (organized by mode/year/gender)
+│       ├── combined/                   # Merged, per-discipline cleaned files
+│       └── output/                     # Raw scraped CSVs (organized by mode/year/gender)
 ├── docs/
-│   └── tree.txt                    # Reference directory tree
+│   ├── data_pipeline_file_flow.md      # End-to-end file flow through the pipeline
+│   ├── options_config_reference.md     # options.json schema and field reference
+│   ├── preprocessing_normalization.md  # Normalization rules and transformation logic
+│   ├── scraper_queue_system.md         # Queue system design and resumption behavior
+│   ├── scripts_reference.md            # Shell utility script usage reference
+│   └── tree.txt                        # Reference directory tree
 ├── logs/
-│   ├── all-time/                   # Scrape error logs for all-time mode
-│   └── seasons/                    # Scrape error logs for seasons mode
+│   ├── all-time/                       # Scrape error logs for all-time mode
+│   └── seasons/                        # Scrape error logs for seasons mode
 ├── queues/
-│   ├── all-time/                   # All-time scrape job queues
+│   ├── all-time/                       # All-time scrape job queues
 │   └── seasons/
 │       └── completed_seasons.json  # Registry of fully-scraped historical seasons
 ├── AthletiStat                     # Executable CLI entry point script
