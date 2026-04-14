@@ -6,13 +6,13 @@ import json
 
 class Preprocessor:
     """Handles data preprocessing, cleaning, and normalization for raw track and field dataset files."""
-    def __init__(self, mode="both", options_file="utils/athletistat-options.json"):
+    def __init__(self, mode="both", options_file="athletistat/options.json"):
         """
         Initializes the Preprocessor with running mode and loads regional configuration data.
 
         Args:
             mode (str): "both", "seasons", or "all-time". Defaults to "both".
-            options_file (str): Path to the config file. Defaults to "utils/athletistat-options.json".
+            options_file (str): Path to the config file. Defaults to "athletistat/athletistat-options.json".
         """
         self.mode = mode
         

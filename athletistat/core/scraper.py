@@ -29,13 +29,13 @@ class Scraper:
         "?regionType=world&timing=all&windReading=all&page={page}&bestResultsOnly=false&maxResultsByCountry=all&ageCategory={age_category}"
     )
 
-    def __init__(self, mode="both", options_file="utils/athletistat-options.json"):
+    def __init__(self, mode="both", options_file="athletistat/options.json"):
         """
         Initializes the scraper, configures request retry sessions, and loads configurations.
 
         Args:
             mode (str): "both", "seasons", or "all-time". Defaults to "both".
-            options_file (str): Path to config file. Defaults to "utils/athletistat-options.json".
+            options_file (str): Path to config file. Defaults to "athletistat/options.json".
         """
         self.mode = mode
         self.options_file = options_file
