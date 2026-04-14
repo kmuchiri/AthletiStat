@@ -102,7 +102,7 @@ AthletiStat/
 | --- | --- | ----- |
 | `{year}_track_field_performances.csv` | `data/datasets/seasons/` | All top performances across every discipline for a specific calendar year. |
 | `combined_track_field_performances _{min}_{max}.csv` | `data/datasets/seasons/` | All season datasets merged into a single file spanning the full year range. |
-| `top_track_field_performances_all_time.csv` | `data/datasets/all-time/` | The absolute historical top performances across all disciplines. |
+| `top_track_field_performances _all_time.csv` | `data/datasets/all-time/` | The absolute historical top performances across all disciplines. |
 | Split subsets | `data/datasets/{mode}/split_by_type/`, `split_by_discipline/`, `split_global/` | Granular splits by gender, event type, and discipline. |
 
 ### Data Dictionary
