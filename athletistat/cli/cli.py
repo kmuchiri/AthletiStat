@@ -2,7 +2,7 @@ import click
 from datetime import datetime
 from athletistat.core.scraper import Scraper
 from athletistat.core.preprocessing import Preprocessor
-from athletistatcore.generator import DatasetGenerator, DatasetSplitter
+from athletistat.core.generator import DatasetGenerator, DatasetSplitter
 from athletistat.scripts.fetch_info import fetch_info
 
 
