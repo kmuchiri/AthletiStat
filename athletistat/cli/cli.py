@@ -3,6 +3,8 @@ from datetime import datetime
 from core.scraper import Scraper
 from core.preprocessing import Preprocessor
 from core.generator import DatasetGenerator, DatasetSplitter
+from scripts.fetch_info import fetch_info
+
 
 @click.command()
 @click.option('--scraper', type=click.Choice(['seasons', 'all-time']), help='Scrape data for seasons or all-time.')
@@ -12,8 +14,10 @@ from core.generator import DatasetGenerator, DatasetSplitter
 @click.option('--split-dataset', type=click.Choice(['seasons', 'all-time']), help='Splits datasets according to gender, discipline, and event type.')
 @click.option('--fetch-data', type=click.Choice(['seasons', 'all-time']), help='Performs --scraper, --preprocessing and --create-dataset for given mode.')
 @click.option('--year', type=int, help='Year to use for seasons mode. If blank, behavior depends on the command.')
-def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_data, year):
+@click.option('--get-dataset-info', is_flag=True, help='Generates a txt file of dataset information; file name, file size, and row number')
+def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_data, year, fetch_info):
     """AthletiStat CLI"""
+    
     current_year = datetime.now().year
 
     if fetch_data:
@@ -45,3 +49,7 @@ def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_da
     if split_dataset:
         click.echo(f"Splitting dataset for {split_dataset}...")
         DatasetSplitter(mode=split_dataset).run()
+
+    if fetch_info:
+        click.echo("Fetching dataset information...")
+        fetch_info().run()

@@ -1,0 +1,8 @@
++-------------------------------------------+-----------+-----------+
+|                 File Name                 | File Size | Row Count |
++-------------------------------------------+-----------+-----------+
+| top_track_field_performances_all_time.csv | 111.59 MB |   652350  |
+|     2026_track_field_performances.csv     |  97.03 MB |   542416  |
+|     2002_track_field_performances.csv     |  13.69 MB |   85850   |
+|     2025_track_field_performances.csv     | 281.04 MB |  1571793  |
++-------------------------------------------+-----------+-----------+
