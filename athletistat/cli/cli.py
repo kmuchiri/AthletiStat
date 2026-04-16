@@ -1,9 +1,9 @@
 import click
 from datetime import datetime
-from core.scraper import Scraper
-from core.preprocessing import Preprocessor
-from core.generator import DatasetGenerator, DatasetSplitter
-from scripts.fetch_info import fetch_info
+from athletistat.core.scraper import Scraper
+from athletistat.core.preprocessing import Preprocessor
+from athletistatcore.generator import DatasetGenerator, DatasetSplitter
+from athletistat.scripts.fetch_info import fetch_info
 
 
 @click.command()
