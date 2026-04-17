@@ -1,8 +1,32 @@
-+-------------------------------------------+-----------+-----------+
-|                 File Name                 | File Size | Row Count |
-+-------------------------------------------+-----------+-----------+
-| top_track_field_performances_all_time.csv | 111.59 MB |   652350  |
-|     2026_track_field_performances.csv     |  97.03 MB |   542416  |
-|     2002_track_field_performances.csv     |  13.69 MB |   85850   |
-|     2025_track_field_performances.csv     | 281.04 MB |  1571793  |
-+-------------------------------------------+-----------+-----------+
++-------------------------------------------------+-----------+-----------+
+|                    File Name                    | File Size | Row Count |
++-------------------------------------------------+-----------+-----------+
+| combined_track_field_performances_2002_2026.csv |  2.21 GB  |  13335668 |
+|        2025_track_field_performances.csv        | 287.67 MB |   1610461 |
+|        2024_track_field_performances.csv        | 254.69 MB |   1426531 |
+|        2023_track_field_performances.csv        | 205.66 MB |   1148983 |
+|        2022_track_field_performances.csv        | 134.84 MB |    753955 |
+|        2019_track_field_performances.csv        | 117.80 MB |    730315 |
+|        2018_track_field_performances.csv        | 104.78 MB |    656557 |
+|    top_track_field_performances_all_time.csv    | 111.59 MB |    652350 |
+|        2021_track_field_performances.csv        | 115.23 MB |    644467 |
+|        2017_track_field_performances.csv        | 100.36 MB |    626861 |
+|        2014_track_field_performances.csv        |  96.60 MB |    602079 |
+|        2015_track_field_performances.csv        |  96.56 MB |    602002 |
+|        2016_track_field_performances.csv        |  95.05 MB |    592121 |
+|        2013_track_field_performances.csv        |  90.75 MB |    565634 |
+|        2012_track_field_performances.csv        |  88.79 MB |    551713 |
+|        2026_track_field_performances.csv        |  97.03 MB |    542416 |
+|        2011_track_field_performances.csv        |  79.93 MB |    495810 |
+|        2010_track_field_performances.csv        |  69.55 MB |    431907 |
+|        2020_track_field_performances.csv        |  69.59 MB |    393811 |
+|        2009_track_field_performances.csv        |  43.09 MB |    269089 |
+|        2007_track_field_performances.csv        |  16.00 MB |     99067 |
+|        2004_track_field_performances.csv        |  15.62 MB |     97248 |
+|        2006_track_field_performances.csv        |  15.31 MB |     94922 |
+|        2005_track_field_performances.csv        |  15.13 MB |     94037 |
+|        2003_track_field_performances.csv        |  14.80 MB |     92169 |
+|        2008_track_field_performances.csv        |  14.18 MB |     87195 |
+|        2002_track_field_performances.csv        |  13.69 MB |     85850 |
+|        2001_track_field_performances.csv        |  12.67 MB |     79175 |
++-------------------------------------------------+-----------+-----------+

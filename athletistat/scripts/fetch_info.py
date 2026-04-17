@@ -8,10 +8,11 @@ seasons_dir = os.path.join(dataset_dir, "seasons")
 info_file = os.path.join(dataset_dir, "dataset_info.txt")
 
 
-class fetch_info:
+class FetchInfo:
     def __init__(self):
         self.table = PrettyTable()
         self.table.field_names = ["File Name", "File Size", "Row Count"]
+        self.table.align["Row Count"] = "r"
 
     
     def count_rows(self,filename):
@@ -52,6 +53,8 @@ class fetch_info:
         if os.path.exists(seasons_dir):
             for file in pathlib.Path(seasons_dir).glob('**/*.csv'):
                 self.table.add_row([file.name, self.get_file_size(file), self.count_rows(file)])
+        self.table.sortby = "Row Count"
+        self.table.reversesort = True
 
         # Save to txt file
         with open(info_file, "w") as f:

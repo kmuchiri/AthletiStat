@@ -1,6 +1,0 @@
-Dataset Information
- 
-top_track_field_performances_all_time.csv has 652350 records and is 117 MB in size 
-2026_track_field_performances.csv has 542416 records and is 101 MB in size 
-2002_track_field_performances.csv has 85850 records and is 14 MB in size 
-2025_track_field_performances.csv has 1571793 records and is 294 MB in size 
