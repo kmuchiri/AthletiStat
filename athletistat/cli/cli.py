@@ -3,7 +3,7 @@ from datetime import datetime
 from athletistat.core.scraper import Scraper
 from athletistat.core.preprocessing import Preprocessor
 from athletistat.core.generator import DatasetGenerator, DatasetSplitter
-from athletistat.scripts.fetch_info import FetchInfo
+from athletistat.scripts.fetch_info import DatasetInfo
 
 
 @click.command()
@@ -16,7 +16,7 @@ from athletistat.scripts.fetch_info import FetchInfo
 @click.option('--year', type=int, help='Year to use for seasons mode. If blank, behavior depends on the command.')
 @click.option('--fetch-info', is_flag=True, help='Generates a txt file of dataset information; file name, file size, and row number')
 
-def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_data, fetch_info, year):
+def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_data, dataset_info, year):
     """AthletiStat CLI"""
     
     current_year = datetime.now().year
@@ -51,6 +51,6 @@ def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_da
         click.echo(f"Splitting dataset for {split_dataset}...")
         DatasetSplitter(mode=split_dataset).run()
 
-    if fetch_info:
+    if dataset_info:
         click.echo("Fetching dataset information...")
         FetchInfo().run()

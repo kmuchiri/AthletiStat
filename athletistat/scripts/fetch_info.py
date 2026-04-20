@@ -8,7 +8,7 @@ seasons_dir = os.path.join(dataset_dir, "seasons")
 info_file = os.path.join(dataset_dir, "dataset_info.txt")
 
 
-class FetchInfo:
+class DatasetInfo:
     def __init__(self):
         self.table = PrettyTable()
         self.table.field_names = ["File Name", "File Size", "Row Count"]
@@ -42,7 +42,6 @@ class FetchInfo:
             return f"{size_in_mb:.2f} MB"
 
     def run(self):
-        print("Fetching dataset information...")
         
         # Process all-time datasets
         if os.path.exists(all_time_dir):
