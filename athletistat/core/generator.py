@@ -93,22 +93,26 @@ class DatasetGenerator:
             None
         """
         dataset_dir = "data/datasets/seasons"
-        processed_dir = "data/processing/combined/seasons"
+        #processed_dir = "data/processing/combined/seasons"
 
-        if not os.path.exists(dataset_dir) or not os.path.exists(processed_dir):
-            print(f"Directories {dataset_dir} or {processed_dir} do not exist.")
+
+        if not os.path.exists(dataset_dir):
+            print(f"Directories {dataset_dir} do not exist.")
             return
 
         # List CSV files directly inside the Year folder
-        csv_files = [f for f in os.listdir(dataset_dir) if f.endswith(".csv")]
+        csv_files = [f for f in os.listdir(dataset_dir) if f.endswith("_track_field_performances.csv")]
         all_dataframes = []
 
-        try:
-            min_year = min(os.listdir(processed_dir))
-            max_year = max(os.listdir(processed_dir))
-        except ValueError:
-            print(f"No directories found in {processed_dir}")
-            return
+        min_year = 9999
+        max_year = 0
+
+        # Get earliest year and latest year from season daatasets
+        for files in csv_files:
+            year_label = files.split("_")[0]
+            min_year = min(min_year, int(year_label))
+            max_year = max(max_year, int(year_label))
+
 
         # Loop through files and read them
         for file in csv_files:

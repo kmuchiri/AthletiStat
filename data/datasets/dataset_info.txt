@@ -1,10 +1,10 @@
 +-------------------------------------------------+-----------+-----------+
 |                    File Name                    | File Size | Row Count |
 +-------------------------------------------------+-----------+-----------+
-| combined_track_field_performances_2002_2026.csv |  2.21 GB  |  13335668 |
+| combined_track_field_performances_2001_2026.csv |  2.21 GB  |  13328122 |
 |        2025_track_field_performances.csv        | 287.67 MB |   1610461 |
-|        2024_track_field_performances.csv        | 254.69 MB |   1426531 |
-|        2023_track_field_performances.csv        | 205.66 MB |   1148983 |
+|        2024_track_field_performances.csv        | 254.89 MB |   1427049 |
+|        2023_track_field_performances.csv        | 197.54 MB |   1102212 |
 |        2022_track_field_performances.csv        | 134.84 MB |    753955 |
 |        2019_track_field_performances.csv        | 117.80 MB |    730315 |
 |        2018_track_field_performances.csv        | 104.78 MB |    656557 |
