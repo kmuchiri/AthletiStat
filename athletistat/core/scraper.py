@@ -13,6 +13,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
+from athletistat.console import cprint, divider, success, warn, info, Colors, Symbols
 
 # Disable insecure request warnings
 urllib3.disable_warnings(InsecureRequestWarning)
@@ -202,9 +203,9 @@ class Scraper:
             df = pd.DataFrame(data)
             with self.lock:
                 df.to_csv(filepath, index=False)
-                print(f"Saved {filepath}")
+                cprint(f"Saved {filepath}", Colors.BRIGHT_GREEN, prefix=Symbols.SAVE)
 
-        return True # Returns True when complete
+        return True  # Returns True when complete
 
     def _get_queue_info(self, mode, year=None):
         """
@@ -251,22 +252,22 @@ class Scraper:
                         completed_years = json.load(f)
                 
                 if year in completed_years:
-                    print(f"Data for the year {year} is already completely retrieved. Skipping scrape.")
+                    warn(f"Data for {year} is already completely retrieved — skipping scrape.")
                     return None, queue_file, completed_years
 
                 os.makedirs(os.path.dirname(queue_file), exist_ok=True)
                 if os.path.exists(queue_file) and os.path.getsize(queue_file) > 0:
                     with open(queue_file, "r") as f:
-                        jobs = [tuple(job) for job in json.load(f)] 
-                    print(f"Resuming {len(jobs)} incomplete jobs from {queue_file}...")
+                        jobs = [tuple(job) for job in json.load(f)]
+                    info(f"Resuming {len(jobs)} incomplete jobs from {queue_file}...")
                 else:
                     jobs = self.build_jobs(mode, year)
                     with open(queue_file, "w") as f:
                         json.dump(jobs, f)
-                    print(f"Created new queue with {len(jobs)} jobs for historical year {year}.")
+                    info(f"Created new queue with {len(jobs)} jobs for historical year {year}.")
             else:
                 jobs = self.build_jobs(mode, year)
-                print(f"Current year ({year}) detected. Running {len(jobs)} jobs from scratch (no queue).")
+                info(f"Current year ({year}) detected — running {len(jobs)} jobs from scratch (no queue).")
             
             return jobs, queue_file, completed_years
 
@@ -276,19 +277,19 @@ class Scraper:
                 if old_queue != queue_file:
                     try:
                         os.remove(old_queue)
-                        print(f"Removed outdated queue file: {old_queue}")
+                        cprint(f"Removed outdated queue: {old_queue}", Colors.YELLOW, prefix=Symbols.WARN)
                     except OSError:
                         pass
-                    
+
             if os.path.exists(queue_file) and os.path.getsize(queue_file) > 0:
                 with open(queue_file, "r") as f:
-                    jobs = [tuple(job) for job in json.load(f)] 
-                print(f"Resuming {len(jobs)} incomplete jobs from {queue_file}...")
+                    jobs = [tuple(job) for job in json.load(f)]
+                info(f"Resuming {len(jobs)} incomplete jobs from {queue_file}...")
             else:
                 jobs = self.build_jobs(mode)
                 with open(queue_file, "w") as f:
                     json.dump(jobs, f)
-                print(f"Created new queue with {len(jobs)} jobs for all-time ({self.today}).")
+                info(f"Created new queue with {len(jobs)} jobs for all-time ({self.today}).")
                 
             return jobs, queue_file, []
 
@@ -304,31 +305,31 @@ class Scraper:
         Returns:
             None
         """
-        print(f"Starting {mode.upper()} scrape using {max_workers} workers...")
+        cprint(f"{Symbols.ROCKET} Starting {mode.upper()} scrape — {max_workers} workers", Colors.BRIGHT_CYAN, bold=True)
         start_time = time.time()
-        
+
         log_dir = os.path.join(f"logs/{mode}", self.today)
         os.makedirs(log_dir, exist_ok=True)
 
-        info = self._manage_queues_and_jobs(mode, year)
-        if info is None or info[0] is None:
+        queue_info = self._manage_queues_and_jobs(mode, year)
+        if queue_info is None or queue_info[0] is None:
             return  # Skipped
-        jobs, queue_file, completed_years = info
+        jobs, queue_file, completed_years = queue_info
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_job = {executor.submit(self.scrape_event, *job): job for job in jobs}
-            
+
             for future in as_completed(future_to_job):
                 job = future_to_job[future]
                 try:
-                    success = future.result()
-                    
-                    if success:
+                    job_success = future.result()
+
+                    if job_success:
                         if (mode == "seasons" and year != self.current_year) or (mode == "all-time"):
                             jobs.remove(job)
                             with open(queue_file, "w") as f:
                                 json.dump(jobs, f)
-                            
+
                 except Exception as e:
                     with self.lock:
                         with open(os.path.join(log_dir, f"scrape_errors_{self.current_time}.log"), "a") as log_file:
@@ -337,23 +338,26 @@ class Scraper:
         # Final Cleanup & Logging
         if (mode == "seasons" and year != self.current_year) or (mode == "all-time"):
             if not jobs:
-                print(f"All jobs for {mode} completed successfully! Updating logs.")
+                success(f"All {mode.upper()} jobs completed successfully!")
                 if os.path.exists(queue_file):
                     os.remove(queue_file)
-                
+
                 if mode == "seasons" and year not in completed_years:
                     completed_years.append(year)
-                    completed_file = f"queues/seasons/completed_seasons.json"
+                    completed_file = "queues/seasons/completed_seasons.json"
                     os.makedirs(os.path.dirname(completed_file), exist_ok=True)
                     with open(completed_file, "w") as f:
                         json.dump(completed_years, f)
             else:
-                print(f"Scrape paused or encountered errors. {len(jobs)} jobs remaining in queue.")
+                warn(f"Scrape paused or encountered errors — {len(jobs)} jobs remaining in queue.")
 
         end_time = time.time()
         total_time = end_time - start_time
-        print("-" * 38)
-        print(f"{mode.capitalize()} scraping finished in {total_time:.1f} seconds ({total_time / 60:.2f} minutes)\n")
+        divider()
+        cprint(
+            f"{Symbols.CLOCK}  {mode.capitalize()} scraping done in {total_time:.1f}s ({total_time / 60:.2f} min)",
+            Colors.BRIGHT_MAGENTA, bold=True
+        )
 
     def run(self, max_workers=10, year=None):
         """

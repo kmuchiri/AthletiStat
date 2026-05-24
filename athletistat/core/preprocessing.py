@@ -3,6 +3,7 @@ import re
 import pandas as pd
 from collections import defaultdict
 import json
+from athletistat.console import cprint, success, warn, error, info, Colors, Symbols
 
 class Preprocessor:
     """Handles data preprocessing, cleaning, and normalization for raw track and field dataset files."""
@@ -21,7 +22,7 @@ class Preprocessor:
             with open(options_file, "r") as f:
                 options_data = json.load(f)
         except FileNotFoundError:
-            print(f"Error: '{options_file}' not found. Ensure it is in the root directory.")
+            error(f"Config file '{options_file}' not found. Ensure it is in the root directory.")
             options_data = []
 
         self.ascending_types = {"sprints", "middlelong", "hurdles", "relays", "road-running", "race-walks"}
@@ -123,10 +124,10 @@ class Preprocessor:
         
         input_root = os.path.join("data","processing", "output", current_mode)
         if not os.path.exists(input_root):
-            print(f"[{current_mode.upper()}] Input directory not found: {input_root}")
+            error(f"[{current_mode.upper()}] Input directory not found: {input_root}")
             return None
 
-        print(f"[{current_mode.upper()}] Scanning files in: {input_root}")
+        info(f"[{current_mode.upper()}] Scanning files in: {input_root}")
 
         if current_mode == "seasons":
             years = [d for d in os.listdir(input_root) if os.path.isdir(os.path.join(input_root, d)) and d.isdigit()]
@@ -198,7 +199,7 @@ class Preprocessor:
                 df["track_field"] = "unknown"
 
             if "mark" not in df.columns:
-                print(f"[Skipping] {discipline_key} — missing 'Mark'")
+                warn(f"[Skipping] {discipline_key} — missing 'mark' column")
                 continue
 
             sort_ascending = type_slug in self.ascending_types
@@ -242,7 +243,7 @@ class Preprocessor:
             output_path = os.path.join(target_dir, output_filename)
             
             df.to_csv(output_path, index=False)
-            print(f"[{current_mode.upper()}] Saved: {output_path}")
+            cprint(f"[{current_mode.upper()}] Saved: {output_path}", Colors.BRIGHT_GREEN, prefix=Symbols.SAVE)
 
     def run(self):
         """

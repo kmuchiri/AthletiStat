@@ -1,6 +1,7 @@
 import pathlib
 import os
 from prettytable import PrettyTable
+from athletistat.console import success
 
 dataset_dir = "./data/datasets"
 all_time_dir = os.path.join(dataset_dir,"all-time")
@@ -59,7 +60,7 @@ class DatasetInfo:
         with open(info_file, "w") as f:
             f.write(str(self.table))
         
-        print("Dataset information saved to dataset_info.txt")
+        success("Dataset information saved to dataset_info.txt")
 
 
 

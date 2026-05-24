@@ -1,6 +1,7 @@
 import os
 import glob
 import pandas as pd
+from athletistat.console import cprint, success, warn, error, info, Colors, Symbols
 
 class DatasetGenerator:
     """Generates and combines track and field datasets from processed CSV files."""
@@ -29,7 +30,7 @@ class DatasetGenerator:
 
         if mode == "seasons":
             if not os.path.exists(combined_dir):
-                print(f"Directory {combined_dir} does not exist.")
+                error(f"Directory not found: {combined_dir}")
                 return
 
             year_dirs = [d for d in os.listdir(combined_dir) if os.path.isdir(os.path.join(combined_dir, d))]
@@ -37,7 +38,7 @@ class DatasetGenerator:
                 year_path = os.path.join(combined_dir, year)
                 csv_files = [f for f in os.listdir(year_path) if f.endswith(".csv")]
                 all_dataframes = []
-                
+
                 # Read files in folder
                 for file in csv_files:
                     file_path = os.path.join(year_path, file)
@@ -45,21 +46,20 @@ class DatasetGenerator:
                         df = pd.read_csv(file_path)
                         all_dataframes.append(df)
                     except Exception as e:
-                        print(f"Error reading {file}: {e}")
-                        
+                        error(f"Error reading {file}: {e}")
+
                 # Combine and save
                 if all_dataframes:
                     combined_df = pd.concat(all_dataframes, ignore_index=True)
                     output_filename = os.path.join(output_dataset_dir, f"{year}_track_field_performances.csv")
-                    
                     combined_df.to_csv(output_filename, index=False)
-                    print(f"Success: Saved {year} data to {output_filename}")
+                    success(f"Saved {year} data to {output_filename}")
                 else:
-                    print(f"No CSV files found in {year_path}")
-        
+                    warn(f"No CSV files found in {year_path}")
+
         else:
             if not os.path.exists(combined_dir):
-                print(f"Directory {combined_dir} does not exist.")
+                error(f"Directory not found: {combined_dir}")
                 return
 
             # List all CSV files
@@ -72,18 +72,15 @@ class DatasetGenerator:
                     df = pd.read_csv(os.path.join(combined_dir, file))
                     all_dataframes.append(df)
                 except Exception as e:
-                    print(f"Error reading {file}: {e}")
+                    error(f"Error reading {file}: {e}")
             if all_dataframes:
-                # Combine into a single DataFrame
                 combined_df = pd.concat(all_dataframes, ignore_index=True)
                 combined_df.drop_duplicates(inplace=True)
-
-                # Save to a new CSV
                 output_filename = os.path.join(output_dataset_dir, "top_track_field_performances_all_time.csv")
                 combined_df.to_csv(output_filename, index=False)
-                print(f"Combined CSV saved as {output_filename}" )
+                success(f"All-time CSV saved: {output_filename}")
             else:
-                print(f"No CSV files found in {combined_dir}")
+                warn(f"No CSV files found in {combined_dir}")
 
     def combine_seasons(self):
         """
@@ -97,7 +94,7 @@ class DatasetGenerator:
 
 
         if not os.path.exists(dataset_dir):
-            print(f"Directories {dataset_dir} do not exist.")
+            error(f"Directory not found: {dataset_dir}")
             return
 
         # List CSV files directly inside the Year folder
@@ -107,12 +104,11 @@ class DatasetGenerator:
         min_year = 9999
         max_year = 0
 
-        # Get earliest year and latest year from season daatasets
-        for files in csv_files:
-            year_label = files.split("_")[0]
+        # Get earliest year and latest year from season datasets
+        for file in csv_files:
+            year_label = file.split("_")[0]
             min_year = min(min_year, int(year_label))
             max_year = max(max_year, int(year_label))
-
 
         # Loop through files and read them
         for file in csv_files:
@@ -121,16 +117,16 @@ class DatasetGenerator:
                 df = pd.read_csv(file_path)
                 all_dataframes.append(df)
             except Exception as e:
-                print(f"Error reading {file}: {e}")
+                error(f"Error reading {file}: {e}")
 
         # Combine and Save
         if all_dataframes:
             combined_df = pd.concat(all_dataframes, ignore_index=True)
             output_filename = os.path.join(dataset_dir, f"combined_track_field_performances_{min_year}_{max_year}.csv")
             combined_df.to_csv(output_filename, index=False)
-            print(f"Success: Saved data to {output_filename}")
+            success(f"Combined seasons ({min_year}–{max_year}) saved to {output_filename}")
         else:
-            print(f"No CSV files found in {dataset_dir}")
+            warn(f"No season CSV files found in {dataset_dir}")
 
     def run(self, combine=False):
         """
@@ -247,7 +243,7 @@ class DatasetSplitter:
                     filepath_relay = os.path.join(relay_output_dir, filename)
                     df_group.to_csv(filepath_relay, index=False)
 
-        print(f"  └─ Successfully generated aggregated splits for: {mode_dir.upper()}")
+        cprint(f"  └─ Splits generated for: {mode_dir.upper()}", Colors.BRIGHT_GREEN, bold=True, prefix=Symbols.OK)
 
     def execute_splits(self):
         """
@@ -258,7 +254,7 @@ class DatasetSplitter:
         """
         
         if self.mode in ["seasons", "both"]:
-            datasets_dir = os.path.join("seasons", "datasets")
+            datasets_dir = os.path.join("data/datasets","seasons")
             os.makedirs(datasets_dir, exist_ok=True)
 
             # Look for a single combined seasons file
@@ -267,51 +263,51 @@ class DatasetSplitter:
             
             # Generates combined dataset if not found (seasons)
             if not matching_files:
-                print(f"[SEASONS] Combined dataset not found at {filepath}. Running generator automatically...")
+                warn(f"[SEASONS] Combined dataset not found at {filepath} — running generator...")
                 try:
                     generator = DatasetGenerator(mode="seasons")
                     generator.run(combine=True)
-                    matching_files = glob.glob(filepath) # Check again after running generator
+                    matching_files = glob.glob(filepath)
                 except Exception as e:
-                    print(f"[ERROR] Generator failed to run: {e}")
+                    error(f"[SEASONS] Generator failed: {e}")
                     return
-            
+
             if matching_files:
                 filepath = matching_files[0]
-                print(f"\n[SEASONS] Loading {filepath} for splitting...")
+                info(f"[SEASONS] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
                     self.split_dataset(df, mode_dir="data/datasets/seasons", is_seasons=True)
                 except Exception as e:
-                    print(f"Error reading {filepath}: {e}")
+                    error(f"Error reading {filepath}: {e}")
             else:
-                print("[SEASONS] Still no dataset found after running generator. Is there raw data to combine?")
+                warn("[SEASONS] Still no dataset found after running generator. Is there raw data to combine?")
 
         if self.mode in ["all-time", "both"]:
-            datasets_dir = os.path.join("all-time", "datasets")
+            datasets_dir = os.path.join("data/datasets", "all-time")
             os.makedirs(datasets_dir, exist_ok=True)
             
             filepath = os.path.join(datasets_dir, "top_track_field_performances_all_time.csv")
             
             # Generates combined dataset if not found (all-time)
             if not os.path.exists(filepath):
-                print(f"[ALL-TIME] Combined dataset not found at {filepath}. Running generator automatically...")
+                warn(f"[ALL-TIME] Combined dataset not found at {filepath} — running generator...")
                 try:
                     generator = DatasetGenerator(mode="all-time")
                     generator.run()
                 except Exception as e:
-                    print(f"[ERROR] Generator failed to run: {e}")
+                    error(f"[ALL-TIME] Generator failed: {e}")
                     return
 
             if os.path.exists(filepath):
-                print(f"\n[ALL-TIME] Loading {filepath} for splitting...")
+                info(f"[ALL-TIME] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
                     self.split_dataset(df, mode_dir="data/datasets/all-time", is_seasons=False)
                 except Exception as e:
-                     print(f"Error reading {filepath}: {e}")
+                    error(f"Error reading {filepath}: {e}")
             else:
-                print("[ALL-TIME] Still no dataset found after running generator. Is there raw data to combine?")
+                warn("[ALL-TIME] Still no dataset found after running generator. Is there raw data to combine?")
 
     def run(self):
         """
