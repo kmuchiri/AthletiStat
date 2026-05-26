@@ -214,7 +214,7 @@ View all available commands:
 ./AthletiStat --fetch-data seasons
 
 # Scrape a specific historical year
-./AthletiStat --scraper seasons --year 2022
+./AthletiStat --scraper seasons --year 2024
 
 # Scrape all-time records
 ./AthletiStat --scraper all-time
@@ -262,7 +262,6 @@ scraper.run(max_workers=10)
 - Automatically paginates through all available result pages per event.
 - Persists job queues to disk; failed or interrupted jobs remain in the queue and are resumed on the next run.
 - Historical years (not the current year) are cached in `completed_seasons.json` and skipped if already fully scraped.
-- A `1.5s` delay is enforced between paginated requests to avoid overwhelming the server.
 
 #### Preprocessor
 
