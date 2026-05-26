@@ -19,7 +19,8 @@ class DatasetInfo:
     def count_rows(self,filename):
         def _make_gen(reader):
             while True:
-                b = reader(1024 * 1024) # Read in 1MB chunks
+                # Read in 1MB chunks
+                b = reader(1024 * 1024)
                 if not b: break
                 yield b
 
@@ -32,7 +33,7 @@ class DatasetInfo:
     def get_file_size(self,filepath):
         size_in_bytes = os.path.getsize(filepath)
         
-        # Convert to Megabytes (1 MB = 1024 * 1024 bytes)
+        # Convert to Megabytes
         size_in_mb = size_in_bytes / (1024 * 1024)
         
         if size_in_mb > 1024:
