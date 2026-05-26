@@ -35,16 +35,16 @@ class Symbols:
     OK      = "✔"
     FAIL    = "✖"
     WARN    = "⚠"
-    INFO    = "ℹ"
+    INFO    = "i"
     ARROW   = "→"
     BULLET  = "•"
-    ROCKET  = "🚀"
+    ROCKET  = ">>"
     CLOCK   = "⏱"
     SKIP    = "⏭"
-    SAVE    = "💾"
-    SEARCH  = "🔍"
+    SAVE    = "▼"
+    SEARCH  = "⌕"
     GEAR    = "⚙"
-    MERGE   = "🔗"
+    MERGE   = "⋈"
 
 
 def cprint(message: str, color: str = "", bold: bool = False, prefix: str = "", dim: bool = False) -> None:
