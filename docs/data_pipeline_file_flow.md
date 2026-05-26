@@ -75,7 +75,7 @@ data/processing/output/all-time/male/sprints_100-metres_senior.csv
 
 The preprocessor **groups** raw files by `(year, gender, type_slug, normalized_discipline)` key, concatenates all files sharing the same key, applies transformations, and saves one combined file per key.
 
-### Seasons mode
+### Seasons
 
 ```text
 data/processing/combined/seasons/
@@ -89,7 +89,7 @@ data/processing/combined/seasons/
 data/processing/combined/seasons/2025/2025_male_sprints_100-metres.csv
 ```
 
-### All-time mode
+### All-time
 
 ```text
 data/processing/combined/all-time/
@@ -142,7 +142,7 @@ data/datasets/all-time/
 └── top_track_field_performances_all_time.csv
 ```
 
-### `DatasetGenerator.combine_seasons()` — multi-year merge
+### `DatasetGenerator.combine_seasons()` - multi-year merge
 
 Reads all per-year files in `data/datasets/seasons/` and concatenates them. The year range is inferred from the subdirectory names in `data/processing/combined/seasons/`.
 
@@ -151,7 +151,7 @@ data/datasets/seasons/
 └── combined_track_field_performances_{min_year}_{max_year}.csv
 ```
 
-### `DatasetSplitter` — granular splits
+### `DatasetSplitter` - granular splits
 
 Operates on the final aggregated files. Splits are produced at three levels of granularity, under the same base directory:
 
