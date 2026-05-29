@@ -1,5 +1,9 @@
 # AthletiStat
 
+<p align="center">
+  <img src="docs/logo/athletistat.png" alt="AthletiStat Logo" width="150" />
+</p>
+
 An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scraping, cleaning, and aggregating track and field performance data.
 
 ---
@@ -101,12 +105,41 @@ AthletiStat/
 
 ### Output Files
 
-| File | Location | Description |
-| --- | --- | ----- |
-| `{year}_track_field_performances.csv` | `data/datasets/seasons/` | All top performances across every discipline for a specific calendar year. |
-| `combined_track_field_performances _{min}_{max}.csv` | `data/datasets/seasons/` | All season datasets merged into a single file spanning the full year range. |
-| `top_track_field_performances _all_time.csv` | `data/datasets/all-time/` | The absolute historical top performances across all disciplines. |
-| Split subsets | `data/datasets/{mode}/split_by_type/`, `split_by_discipline/`, `split_global/` | Granular splits by gender, event type, and discipline. |
+<table>
+  <thead>
+    <tr>
+      <th style="width: 30%">File</th>
+      <th style="width: 30%">Location</th>
+      <th style="width: 40%">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code style="word-break: break-all; white-space: normal;">{year}_track_field_performances.csv</code></td>
+      <td><code style="word-break: break-all; white-space: normal;">data/datasets/seasons/</code></td>
+      <td>All top performances across every discipline for a specific calendar year.</td>
+    </tr>
+    <tr>
+      <td><code style="word-break: break-all; white-space: normal;">combined_track_field_performances_{min}_{max}.csv</code></td>
+      <td><code style="word-break: break-all; white-space: normal;">data/datasets/seasons/</code></td>
+      <td>All season datasets merged into a single file spanning the full year range.</td>
+    </tr>
+    <tr>
+      <td><code style="word-break: break-all; white-space: normal;">top_track_field_performances_all_time.csv</code></td>
+      <td><code style="word-break: break-all; white-space: normal;">data/datasets/all-time/</code></td>
+      <td>The absolute historical top performances across all disciplines.</td>
+    </tr>
+    <tr>
+      <td>Split subsets</td>
+      <td>
+        <code style="word-break: break-all; white-space: normal;">data/datasets/{mode}/split_by_type/</code><br>
+        <code style="word-break: break-all; white-space: normal;">split_by_discipline/</code><br>
+        <code style="word-break: break-all; white-space: normal;">split_global/</code>
+      </td>
+      <td>Granular splits by gender, event type, and discipline.</td>
+    </tr>
+  </tbody>
+</table>
 
 > [!NOTE]
 > Detailed metrics (including exact file sizes and row counts) for all generated datasets are saved in [dataset_info.txt](data/datasets/dataset_info.txt). You can generate or update this file by running `./AthletiStat --dataset-info` or the `get_dataset_info.sh` utility script.

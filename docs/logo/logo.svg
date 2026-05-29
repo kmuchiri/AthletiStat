@@ -25,15 +25,15 @@
      inkscape:document-units="mm"
      showborder="true"
      borderlayer="false"
-     inkscape:zoom="2.0876835"
-     inkscape:cx="508.2188"
-     inkscape:cy="262.9709"
-     inkscape:window-width="1908"
+     inkscape:zoom="0.80734635"
+     inkscape:cx="411.84307"
+     inkscape:cy="770.42523"
+     inkscape:window-width="1021"
      inkscape:window-height="1014"
      inkscape:window-x="23"
      inkscape:window-y="15"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg1"
+     inkscape:current-layer="g25"
      showgrid="true">
     <inkscape:grid
        id="grid4"
@@ -54,7 +54,7 @@
   <defs
      id="defs1" />
   <rect
-     style="fill:#8311a4;fill-opacity:1;stroke:none;stroke-width:1.8318;stroke-linecap:round;stroke-linejoin:bevel"
+     style="fill:#6d082b;fill-opacity:1;stroke:none;stroke-width:1.8318;stroke-linecap:round;stroke-linejoin:bevel"
      id="rect25"
      width="142.875"
      height="80.367188"
@@ -70,62 +70,195 @@
      id="layer1">
     <g
        id="g25"
-       style="fill:#ffffff;fill-opacity:1">
+       style="fill:#ffffff;fill-opacity:1"
+       inkscape:export-filename="/home/km/Documents/projects/github/simple-portfolio/public/images/projects/athletistat.png"
+       inkscape:export-xdpi="142.22"
+       inkscape:export-ydpi="142.22">
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 168.8185,69.180316 v -1.652407 h -6.77979 v 1.652407 h 3.32361 v 4.97198 l 1.72809,2.022832 v -6.994812 z"
          id="path13"
          sodipodi:nodetypes="ccccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 157.10957,69.180316 v -1.652407 h -7.67283 v 1.652407 h 4.21666 v 7.669187 h 1.72809 v -7.669187 z"
          id="path11"
          sodipodi:nodetypes="ccccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 152.01301,73.860034 c 0,-1.26138 -0.51717,-2.081276 -2.40924,-2.787649 -0.88296,-0.327958 -0.90819,-0.340572 -1.03433,-0.416255 -0.34057,-0.214434 -0.51717,-0.504552 -0.51717,-0.845124 0,-0.555007 0.39103,-0.632684 0.95865,-0.632684 l 0.0126,-1.64723 c -1.50104,0 -2.71197,0.841941 -2.71197,2.317755 0,1.173083 0.69376,2.068663 1.94253,2.535373 1.23615,0.46671 1.33706,0.504552 1.61456,0.718986 0.2775,0.214435 0.42887,0.567621 0.42887,0.946035 0,0.668531 -0.51717,1.135241 -1.26138,1.135241 -0.76944,0 -1.1857,-0.378414 -1.26138,-1.160469 H 145.971 c 0.15136,1.765931 1.42536,2.82549 3.06515,2.82549 1.67764,0 2.97686,-1.299221 2.97686,-2.989469 z"
          id="path10"
          sodipodi:nodetypes="sccsccscsssccss" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 145.33833,76.849503 v -7.218976 h -1.72809 v 7.218976 z"
          id="path9"
          sodipodi:nodetypes="ccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 145.31615,69.180316 v -1.652407 h -7.8737 v 1.652407 h 1.72809 v 7.669187 h 1.72809 v -7.669187 z"
          id="path8"
          sodipodi:nodetypes="ccccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 133.37519,74.678457 v -1.687635 h 3.14084 v -1.652407 h -3.14084 v -2.1948 h 3.44718 v -1.652407 h -5.17527 v 7.187249 z"
          id="path7"
          sodipodi:nodetypes="ccccccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 136.83487,76.849503 v -1.652407 h -8.75656 v -7.669187 h -1.72809 v 9.321594 z"
          id="path6"
          sodipodi:nodetypes="ccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 125.75221,76.903191 v -9.321594 h -1.72809 v 3.758911 h -3.33004 v -1.53958 h -1.72809 v 7.102263 h 1.72809 v -3.910276 h 3.33004 v 3.910276 z"
          id="path5"
          sodipodi:nodetypes="ccccccccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 120.68142,69.195949 v -1.652407 h -8.00032 v 1.652407 h 1.72809 v 7.669187 h 1.72809 v -7.669187 z"
          id="path4"
          sodipodi:nodetypes="ccccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 112.10964,76.849503 v -9.321594 h -1.74176 l -7.69521,9.321594 h 1.90468 l 2.01909,-2.409235 h 4.0203 v 2.409235 z m -1.4929,-4.061642 h -2.71419 l 2.72982,-3.497722 z"
          id="text4"
          inkscape:label="text4"
          sodipodi:nodetypes="ccccccccccccc" />
       <path
-         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel;fill-opacity:1"
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
          d="m 157.65621,76.849503 v -9.321594 h 1.74176 l 7.6952,9.321594 h -1.90468 l -2.01909,-2.409235 h -4.02029 v 2.409235 z m 1.4929,-4.061642 h 2.71419 l -2.72983,-3.497722 z"
          id="path25"
+         inkscape:label="text4"
+         sodipodi:nodetypes="ccccccccccccc" />
+      <rect
+         style="fill:#6d082b;fill-opacity:1;stroke:none;stroke-width:0.563185;stroke-linecap:round;stroke-linejoin:bevel"
+         id="rect25-0"
+         width="70.121216"
+         height="15.47868"
+         x="72.423363"
+         y="-224.60147"
+         transform="scale(1,-1)"
+         inkscape:export-filename="athletistat.png"
+         inkscape:export-xdpi="142.22"
+         inkscape:export-ydpi="142.22" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 140.22917,214.17297 v -1.65241 h -6.77979 v 1.65241 h 3.32361 v 4.97198 l 1.72809,2.02283 v -6.99481 z"
+         id="path13-63"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 128.52024,214.17297 v -1.65241 h -7.67283 v 1.65241 h 4.21666 v 7.66918 h 1.72809 v -7.66918 z"
+         id="path11-8"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 123.42368,218.85268 c 0,-1.26138 -0.51717,-2.08127 -2.40924,-2.78765 -0.88296,-0.32795 -0.90819,-0.34057 -1.03433,-0.41625 -0.34057,-0.21443 -0.51717,-0.50455 -0.51717,-0.84512 0,-0.55501 0.39103,-0.63269 0.95865,-0.63269 l 0.0126,-1.64723 c -1.50104,0 -2.71197,0.84194 -2.71197,2.31776 0,1.17308 0.69376,2.06866 1.94253,2.53537 1.23615,0.46671 1.33706,0.50455 1.61456,0.71899 0.2775,0.21443 0.42887,0.56762 0.42887,0.94603 0,0.66853 -0.51717,1.13524 -1.26138,1.13524 -0.76944,0 -1.1857,-0.37841 -1.26138,-1.16047 h -1.80375 c 0.15136,1.76593 1.42536,2.82549 3.06515,2.82549 1.67764,0 2.97686,-1.29922 2.97686,-2.98947 z"
+         id="path10-5"
+         sodipodi:nodetypes="sccsccscsssccss" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 116.749,221.84215 v -7.21897 h -1.72809 v 7.21897 z"
+         id="path9-6"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 116.72682,214.17297 v -1.65241 h -7.8737 v 1.65241 h 1.72809 v 7.66918 h 1.72809 v -7.66918 z"
+         id="path8-1"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 104.78586,219.67111 v -1.68764 h 3.14084 v -1.65241 h -3.14084 v -2.1948 h 3.44718 v -1.6524 h -5.17527 v 7.18725 z"
+         id="path7-15"
+         sodipodi:nodetypes="ccccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 108.24554,221.84215 v -1.6524 h -8.756562 v -7.66919 h -1.72809 v 9.32159 z"
+         id="path6-9"
+         sodipodi:nodetypes="ccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 97.162878,221.89584 v -9.32159 h -1.72809 v 3.75891 h -3.33004 v -1.53958 h -1.72809 v 7.10226 h 1.72809 v -3.91028 h 3.33004 v 3.91028 z"
+         id="path5-8"
+         sodipodi:nodetypes="ccccccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 92.092088,214.1886 v -1.65241 h -8.00032 v 1.65241 h 1.72809 v 7.66919 h 1.72809 v -7.66919 z"
+         id="path4-4"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 83.520308,221.84215 v -9.32159 h -1.74176 l -7.69521,9.32159 h 1.90468 l 2.01909,-2.40923 h 4.0203 v 2.40923 z m -1.4929,-4.06164 h -2.71419 l 2.72982,-3.49772 z"
+         id="text4-8"
+         inkscape:label="text4"
+         sodipodi:nodetypes="ccccccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ffffff;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 129.06688,221.84215 v -9.32159 h 1.74176 l 7.6952,9.32159 h -1.90468 l -2.01909,-2.40923 h -4.02029 v 2.40923 z m 1.4929,-4.06164 h 2.71419 l -2.72983,-3.49772 z"
+         id="path25-1"
+         inkscape:label="text4"
+         sodipodi:nodetypes="ccccccccccccc" />
+    </g>
+    <g
+       id="g25-5"
+       style="fill:#ff2a2a;fill-opacity:1"
+       transform="translate(-34.698582,57.170049)">
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 168.8185,69.180316 v -1.652407 h -6.77979 v 1.652407 h 3.32361 v 4.97198 l 1.72809,2.022832 v -6.994812 z"
+         id="path13-6"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 157.10957,69.180316 v -1.652407 h -7.67283 v 1.652407 h 4.21666 v 7.669187 h 1.72809 v -7.669187 z"
+         id="path11-3"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 152.01301,73.860034 c 0,-1.26138 -0.51717,-2.081276 -2.40924,-2.787649 -0.88296,-0.327958 -0.90819,-0.340572 -1.03433,-0.416255 -0.34057,-0.214434 -0.51717,-0.504552 -0.51717,-0.845124 0,-0.555007 0.39103,-0.632684 0.95865,-0.632684 l 0.0126,-1.64723 c -1.50104,0 -2.71197,0.841941 -2.71197,2.317755 0,1.173083 0.69376,2.068663 1.94253,2.535373 1.23615,0.46671 1.33706,0.504552 1.61456,0.718986 0.2775,0.214435 0.42887,0.567621 0.42887,0.946035 0,0.668531 -0.51717,1.135241 -1.26138,1.135241 -0.76944,0 -1.1857,-0.378414 -1.26138,-1.160469 H 145.971 c 0.15136,1.765931 1.42536,2.82549 3.06515,2.82549 1.67764,0 2.97686,-1.299221 2.97686,-2.989469 z"
+         id="path10-9"
+         sodipodi:nodetypes="sccsccscsssccss" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 145.33833,76.849503 v -7.218976 h -1.72809 v 7.218976 z"
+         id="path9-4"
+         sodipodi:nodetypes="ccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 145.31615,69.180316 v -1.652407 h -7.8737 v 1.652407 h 1.72809 v 7.669187 h 1.72809 v -7.669187 z"
+         id="path8-8"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 133.37519,74.678457 v -1.687635 h 3.14084 v -1.652407 h -3.14084 v -2.1948 h 3.44718 v -1.652407 h -5.17527 v 7.187249 z"
+         id="path7-1"
+         sodipodi:nodetypes="ccccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 136.83487,76.849503 v -1.652407 h -8.75656 v -7.669187 h -1.72809 v 9.321594 z"
+         id="path6-2"
+         sodipodi:nodetypes="ccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 125.75221,76.903191 v -9.321594 h -1.72809 v 3.758911 h -3.33004 v -1.53958 h -1.72809 v 7.102263 h 1.72809 v -3.910276 h 3.33004 v 3.910276 z"
+         id="path5-9"
+         sodipodi:nodetypes="ccccccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 120.68142,69.195949 v -1.652407 h -8.00032 v 1.652407 h 1.72809 v 7.669187 h 1.72809 v -7.669187 z"
+         id="path4-3"
+         sodipodi:nodetypes="ccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 112.10964,76.849503 v -9.321594 h -1.74176 l -7.69521,9.321594 h 1.90468 l 2.01909,-2.409235 h 4.0203 v 2.409235 z m -1.4929,-4.061642 h -2.71419 l 2.72982,-3.497722 z"
+         id="text4-9"
+         inkscape:label="text4"
+         sodipodi:nodetypes="ccccccccccccc" />
+      <path
+         style="font-weight:bold;font-size:12.7px;font-family:'TeX Gyre Adventor';-inkscape-font-specification:'TeX Gyre Adventor Bold';fill:#ff2a2a;fill-opacity:1;stroke-width:1.31394;stroke-linecap:round;stroke-linejoin:bevel"
+         d="m 157.65621,76.849503 v -9.321594 h 1.74176 l 7.6952,9.321594 h -1.90468 l -2.01909,-2.409235 h -4.02029 v 2.409235 z m 1.4929,-4.061642 h 2.71419 l -2.72983,-3.497722 z"
+         id="path25-0"
          inkscape:label="text4"
          sodipodi:nodetypes="ccccccccccccc" />
     </g>
