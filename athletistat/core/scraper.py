@@ -317,6 +317,9 @@ class Scraper:
             return  # Skipped
         jobs, queue_file, completed_years = queue_info
 
+        total = len(jobs)
+        completed_count = 0
+
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_job = {executor.submit(self.scrape_event, *job): job for job in jobs}
 
@@ -326,13 +329,22 @@ class Scraper:
                     job_success = future.result()
 
                     if job_success:
-                        if (mode == "seasons" and year != self.current_year) or (mode == "all-time"):
-                            jobs.remove(job)
-                            with open(queue_file, "w") as f:
-                                json.dump(jobs, f)
+                        with self.lock:
+                            completed_count += 1
+                            progress = f"[{completed_count} / {total}]"
+                            cprint(f"{progress}", Colors.BRIGHT_GREEN, bold=True)
+                            
+                            if (mode == "seasons" and year != self.current_year) or (mode == "all-time"):
+                                jobs.remove(job)
+                                with open(queue_file, "w") as f:
+                                    json.dump(jobs, f)
+                    else:
+                        with self.lock:
+                            cprint(f"Job failed, remains in queue", Colors.BRIGHT_RED, bold=True)
 
                 except Exception as e:
                     with self.lock:
+                        cprint(f"Uncaught error, job remains in queue", Colors.BRIGHT_RED, bold=True)
                         with open(os.path.join(log_dir, f"scrape_errors_{self.current_time}.log"), "a") as log_file:
                             log_file.write(f"UNCAUGHT ERROR in job {job}: {repr(e)}\n")
 
