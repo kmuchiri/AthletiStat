@@ -104,24 +104,24 @@ AthletiStat/
   </thead>
   <tbody>
     <tr>
-      <td><code style="word-break: break-all; white-space: normal;">{year}_track_field_performances.csv</code></td>
-      <td><code style="word-break: break-all; white-space: normal;">data/datasets/seasons/</code></td>
+      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">{year}<wbr>_track<wbr>_field<wbr>_performances.csv</code></td>
+      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>seasons/</code></td>
       <td>All top performances across every discipline for a specific calendar year.</td>
     </tr>
     <tr>
-      <td><code style="word-break: break-all; white-space: normal;">combined_track_field_performances_{min}_{max}.csv</code></td>
-      <td><code style="word-break: break-all; white-space: normal;">data/datasets/seasons/</code></td>
+      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">combined<wbr>_track<wbr>_field<wbr>_performances<wbr>_{min}<wbr>_{max}.csv</code></td>
+      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>seasons/</code></td>
       <td>All season datasets merged into a single file spanning the full year range.</td>
     </tr>
     <tr>
-      <td><code style="word-break: break-all; white-space: normal;">top_track_field_performances_all_time.csv</code></td>
-      <td><code style="word-break: break-all; white-space: normal;">data/datasets/all-time/</code></td>
+      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">top<wbr>_track<wbr>_field<wbr>_performances<wbr>_all<wbr>_time.csv</code></td>
+      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>all-time/</code></td>
       <td>The absolute historical top performances across all disciplines.</td>
     </tr>
     <tr>
       <td>Split subsets</td>
-      <td>
-        <code style="word-break: break-all; white-space: normal;">data/datasets/{mode}/split_by_type/</code><br>
+      <td style="word-break: break-all; white-space: normal;">
+        <code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>{mode}/<wbr>split_by_type/</code><br>
         <code style="word-break: break-all; white-space: normal;">split_by_discipline/</code><br>
         <code style="word-break: break-all; white-space: normal;">split_global/</code>
       </td>
@@ -136,9 +136,9 @@ AthletiStat/
 <!-- START_DATASET_INFO -->
 ```text
 Dataset Information
-
-top_track_field_performances_all_time.csv has 658208 records and is 118 MB in size
-combined_track_field_performances_2001_2026.csv has 13328122 records and is 2369 MB in size
+ 
+top_track_field_performances_all_time.csv has 658208 records and is 118 MB in size 
+combined_track_field_performances_2001_2026.csv has 13328122 records and is 2369 MB in size 
 ```
 <!-- END_DATASET_INFO -->
 
