@@ -39,17 +39,6 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 
 The system consists of three core modules that are executed sequentially:
 
-```text
-World Athletics
-      │
-      ▼
-┌─────────────┐      Raw CSVs       ┌───────────────────┐     Cleaned CSVs    ┌──────────────────┐
-│  scraper.py │ ─────────────────►  │ preprocessing.py  │ ──────────────────► │  generator.py    │
-│  (Extract)  │                     │    (Transform)    │                     │    (Load)        │
-└─────────────┘                     └───────────────────┘                     └──────────────────┘
-      │                                     │                                         │
-  data/processing/output/             data/processing/combined/                data/datasets/
-```
 
 1. **`scraper.py` (Extract)** - Paginates through World Athletics record tables for every configured discipline, gender, and age category. Saves raw tabular data as CSVs.
 2. **`preprocessing.py` (Transform)** - Reads raw CSVs, normalizes discipline slugs, parses performance marks to numeric values, maps country codes, computes athlete ages, and saves cleaned files.
