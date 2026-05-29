@@ -23,10 +23,10 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 ## Features
 
 - **Multithreaded Scraping** - Concurrent scraping via `ThreadPoolExecutor` with configurable worker counts.
-- **Resilient Queue System** - Tracks completed and in-progress scrape jobs in persistent JSON queue files, enabling safe resumption of interrupted runs.
-- **Smart Caching** - Completed historical seasons are marked in `completed_seasons.json` and skipped on future runs.
+- **Queue System** - Tracks completed and in-progress scrape jobs in JSON files, enabling safe resumption of interrupted runs.
+- **Caching** - Completed historical seasons are marked in `completed_seasons.json` and skipped on future runs.
 - **Automatic Retries** - Requests are configured with exponential backoff and automatic retries on server-side errors (429, 500, 502, 503, 504).
-- **Rich Data Transformation** - Standardizes event names, converts time strings (e.g., `1:45.30`) to numeric seconds, calculates athlete age at time of event, and resolves ISO country codes to full names.
+- **Data Transformation** - Standardizes event names, converts time strings (e.g., `1:45.30`) to numeric seconds, calculates athlete age at time of event, and resolves ISO country codes to full names.
 - **Flexible Output** - Produces aggregated CSVs per year (seasons), an all-time combined dataset, and granular sub-datasets split by gender, event type, and discipline.
 
 ---
