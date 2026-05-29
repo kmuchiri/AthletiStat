@@ -71,7 +71,7 @@ AthletiStat/
 │   ├── datasets/
 │   │   ├── all-time/                   # Final all-time aggregated datasets
 │   │   ├── seasons/                    # Final per-year and combined season datasets
-│   │   └── info.txt                    # Notes on dataset contents and structure
+│   │   └── dataset_info.txt            # Generated dataset size and row count statistics
 │   └── processing/
 │       ├── combined/                   # Merged, per-discipline cleaned files
 │       └── output/                     # Raw scraped CSVs (organized by mode/year/gender)
@@ -107,6 +107,18 @@ AthletiStat/
 | `combined_track_field_performances _{min}_{max}.csv` | `data/datasets/seasons/` | All season datasets merged into a single file spanning the full year range. |
 | `top_track_field_performances _all_time.csv` | `data/datasets/all-time/` | The absolute historical top performances across all disciplines. |
 | Split subsets | `data/datasets/{mode}/split_by_type/`, `split_by_discipline/`, `split_global/` | Granular splits by gender, event type, and discipline. |
+
+> [!NOTE]
+> Detailed metrics (including exact file sizes and row counts) for all generated datasets are saved in [dataset_info.txt](data/datasets/dataset_info.txt). You can generate or update this file by running `./AthletiStat --dataset-info` or the `get_dataset_info.sh` utility script.
+
+<!-- START_DATASET_INFO -->
+```text
+Dataset Information
+
+top_track_field_performances_all_time.csv has 658208 records and is 118 MB in size
+combined_track_field_performances_2001_2026.csv has 13328122 records and is 2369 MB in size
+```
+<!-- END_DATASET_INFO -->
 
 ### Data Dictionary
 
@@ -203,6 +215,7 @@ View all available commands:
 | `--combine` | *(flag)* | Combine all per-year season datasets into a single multi-year CSV. |
 | `--split-dataset` | `seasons`, `all-time` | Split datasets into sub-files by gender, event type, and discipline. |
 | `--year` | `<int>` | Target year for `seasons` mode. Defaults to the current year if omitted. |
+| `--dataset-info` | *(flag)* | Generate or update the `dataset_info.txt` file containing name, size, and row count statistics. |
 
 #### Common Examples
 
@@ -227,6 +240,9 @@ View all available commands:
 
 # Split the all-time dataset by gender, type, and discipline
 ./AthletiStat --split-dataset all-time
+
+# Generate/update dataset information
+./AthletiStat --dataset-info
 ```
 
 ---

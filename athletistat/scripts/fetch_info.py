@@ -47,12 +47,12 @@ class DatasetInfo:
         
         # Process all-time datasets
         if os.path.exists(all_time_dir):
-            for file in pathlib.Path(all_time_dir).glob('*.csv'):
+            for file in pathlib.Path(all_time_dir).glob('top_track_field_performances_all_time.csv'):
                 self.table.add_row([file.name, self.get_file_size(file), self.count_rows(file)])
 
         # Process seasons datasets
         if os.path.exists(seasons_dir):
-            for file in pathlib.Path(seasons_dir).glob('**/*.csv'):
+            for file in pathlib.Path(seasons_dir).glob('combined_track_field_performances_*.csv'):
                 self.table.add_row([file.name, self.get_file_size(file), self.count_rows(file)])
         self.table.sortby = "Row Count"
         self.table.reversesort = True
@@ -62,6 +62,27 @@ class DatasetInfo:
             f.write(str(self.table))
         
         success("Dataset information saved to dataset_info.txt")
+
+        # Update README.md with the generated info inside a markdown code block
+        readme_path = "README.md"
+        if os.path.exists(readme_path):
+            with open(readme_path, "r", encoding="utf-8") as f:
+                readme_content = f.read()
+
+            start_anchor = "<!-- START_DATASET_INFO -->"
+            end_anchor = "<!-- END_DATASET_INFO -->"
+            
+            import re
+            pattern = re.compile(
+                rf"{re.escape(start_anchor)}.*?{re.escape(end_anchor)}", re.DOTALL
+            )
+            replacement = f"{start_anchor}\n```text\n{str(self.table)}\n```\n{end_anchor}"
+            new_readme_content = pattern.sub(replacement, readme_content)
+            
+            with open(readme_path, "w", encoding="utf-8") as f:
+                f.write(new_readme_content)
+            success("README.md dataset info updated successfully!")
+
 
 
 

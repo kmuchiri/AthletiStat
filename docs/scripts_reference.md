@@ -6,7 +6,7 @@ This document covers the utility scripts in `athletistat/scripts/`.
 
 ## `get_dataset_info.sh`
 
-A lightweight Bash script that scans the `data/datasets/` directory and reports the **row count** and **file size** of every CSV dataset found. Results are written to `data/datasets/info.txt`.
+A lightweight Bash script that scans the `data/datasets/` directory and reports the **row count** and **file size** of every CSV dataset found. Results are written to `data/datasets/dataset_info.txt`.
 
 ### Usage
 
@@ -18,7 +18,7 @@ bash athletistat/scripts/get_dataset_info.sh
 
 ### Output
 
-The script writes to `data/datasets/info.txt`, overwriting any previous contents.
+The script writes to `data/datasets/dataset_info.txt`, overwriting any previous contents.
 
 **Example output:**
 
@@ -51,8 +51,8 @@ This captures top-level datasets (per-year season files, the all-time file, comb
 
 # A script to print row count and file size of generated datasets
 
-echo 'Dataset Information' > ./data/datasets/info.txt
-echo " " >> ./data/datasets/info.txt
+echo 'Dataset Information' > ./data/datasets/dataset_info.txt
+echo " " >> ./data/datasets/dataset_info.txt
 
 for csv_file in $(find . -wholename "./data/datasets/*.csv");
 do
@@ -61,7 +61,7 @@ do
     file_size=$(($(wc -c $csv_file | cut -d ' ' -f 1)/1000000))
     row_count=$(sed 1d $csv_file | wc -l)
 
-    echo "$name has $row_count records and is $file_size MB in size " >> ./data/datasets/info.txt
+    echo "$name has $row_count records and is $file_size MB in size " >> ./data/datasets/dataset_info.txt
 
 done
 ```
