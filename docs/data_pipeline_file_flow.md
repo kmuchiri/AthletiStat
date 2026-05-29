@@ -4,7 +4,7 @@ This document traces exactly how data moves through the pipeline from raw scrape
 
 ---
 
-## Stage 1 — Extraction (`scraper.py`)
+## Stage 1 - Extraction (`scraper.py`)
 
 **Input:** `athletistat/options.json` (discipline/gender/age-category config)
 
@@ -67,7 +67,7 @@ data/processing/output/all-time/male/sprints_100-metres_senior.csv
 
 ---
 
-## Stage 2 — Transformation (`preprocessing.py`)
+## Stage 2 - Transformation (`preprocessing.py`)
 
 **Input:** `data/processing/output/{mode}/`
 
@@ -116,17 +116,17 @@ data/processing/combined/all-time/female_jumps_long-jump.csv
 | `age_at_event` | `(date - dob).days // 365` |
 | `season` | `date.year` |
 
-The combined file is also **sorted by `mark_numeric`** — ascending for timed events (track), descending for measured events (field/combined).
+The combined file is also **sorted by `mark_numeric`** - ascending for timed events (track), descending for measured events (field/combined).
 
 ---
 
-## Stage 3 — Loading (`generator.py`)
+## Stage 3 - Loading (`generator.py`)
 
 **Input:** `data/processing/combined/{mode}/`
 
 **Output directory:** `data/datasets/{mode}/`
 
-### `DatasetGenerator` — per-year aggregation
+### `DatasetGenerator` - per-year aggregation
 
 Seasons: reads all combined CSVs in each year subdirectory and merges them into one file per year.
 

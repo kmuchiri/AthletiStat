@@ -1,4 +1,4 @@
-"""Tests for athletistat/core/generator.py — DatasetGenerator and DatasetSplitter."""
+"""Tests for athletistat/core/generator.py - DatasetGenerator and DatasetSplitter."""
 
 import os
 import json
@@ -41,14 +41,14 @@ def _make_df(**extra_cols):
 
 
 # ---------------------------------------------------------------------------
-# DatasetGenerator.generate_datasets — seasons
+# DatasetGenerator.generate_datasets - seasons
 # ---------------------------------------------------------------------------
 
 class TestDatasetGeneratorSeasons:
     def test_seasons_dir_not_found_returns_early(self, tmp_path, monkeypatch):
         monkeypatch.chdir(tmp_path)
         gen = DatasetGenerator(mode="seasons")
-        # combined dir doesn't exist — should not raise
+        # combined dir doesn't exist - should not raise
         gen.generate_datasets("seasons")
 
     def test_seasons_csv_created(self, tmp_path, monkeypatch):
@@ -84,7 +84,7 @@ class TestDatasetGeneratorSeasons:
 
 
 # ---------------------------------------------------------------------------
-# DatasetGenerator.generate_datasets — all-time
+# DatasetGenerator.generate_datasets - all-time
 # ---------------------------------------------------------------------------
 
 class TestDatasetGeneratorAllTime:

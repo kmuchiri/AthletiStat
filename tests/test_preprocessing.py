@@ -1,4 +1,4 @@
-"""Tests for athletistat/core/preprocessing.py — Preprocessor."""
+"""Tests for athletistat/core/preprocessing.py - Preprocessor."""
 
 import json
 import os
@@ -126,7 +126,7 @@ class TestParseMarkToNumber:
         assert preprocessor.parse_mark_to_number("  9.58  ") == pytest.approx(9.58)
 
     def test_mark_with_single_colon_segment(self, preprocessor):
-        # 3 parts — edge case (should be treated as single-segment, returning inf)
+        # 3 parts - edge case (should be treated as single-segment, returning inf)
         result = preprocessor.parse_mark_to_number("1:2:3:4")
         assert result == float("inf")
 
@@ -155,7 +155,7 @@ class TestExtractCountryCodeFromVenue:
         assert preprocessor.extract_country_code_from_venue("") is None
 
     def test_parentheses_with_non_three_letter(self, preprocessor):
-        # Two letters — should not match (regex is \w{3})
+        # Two letters - should not match (regex is \w{3})
         result = preprocessor.extract_country_code_from_venue("City (US)")
         assert result is None
 

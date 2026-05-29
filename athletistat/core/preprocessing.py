@@ -199,7 +199,7 @@ class Preprocessor:
                 df["track_field"] = "unknown"
 
             if "mark" not in df.columns:
-                warn(f"[Skipping] {discipline_key} — missing 'mark' column")
+                warn(f"[Skipping] {discipline_key} - missing 'mark' column")
                 continue
 
             sort_ascending = type_slug in self.ascending_types

@@ -252,7 +252,7 @@ class Scraper:
                         completed_years = json.load(f)
                 
                 if year in completed_years:
-                    warn(f"Data for {year} is already completely retrieved — skipping scrape.")
+                    warn(f"Data for {year} is already completely retrieved - skipping scrape.")
                     return None, queue_file, completed_years
 
                 os.makedirs(os.path.dirname(queue_file), exist_ok=True)
@@ -267,7 +267,7 @@ class Scraper:
                     info(f"Created new queue with {len(jobs)} jobs for historical year {year}.")
             else:
                 jobs = self.build_jobs(mode, year)
-                info(f"Current year ({year}) detected — running {len(jobs)} jobs from scratch (no queue).")
+                info(f"Current year ({year}) detected - running {len(jobs)} jobs from scratch (no queue).")
             
             return jobs, queue_file, completed_years
 
@@ -305,7 +305,7 @@ class Scraper:
         Returns:
             None
         """
-        cprint(f"{Symbols.ROCKET} Starting {mode.upper()} scrape — {max_workers} workers", Colors.BRIGHT_CYAN, bold=True)
+        cprint(f"{Symbols.ROCKET} Starting {mode.upper()} scrape - {max_workers} workers", Colors.BRIGHT_CYAN, bold=True)
         start_time = time.time()
 
         log_dir = os.path.join(f"logs/{mode}", self.today)
@@ -349,7 +349,7 @@ class Scraper:
                     with open(completed_file, "w") as f:
                         json.dump(completed_years, f)
             else:
-                warn(f"Scrape paused or encountered errors — {len(jobs)} jobs remaining in queue.")
+                warn(f"Scrape paused or encountered errors - {len(jobs)} jobs remaining in queue.")
 
         end_time = time.time()
         total_time = end_time - start_time

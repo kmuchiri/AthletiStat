@@ -1,4 +1,4 @@
-"""Tests for athletistat/console.py — terminal styling utilities."""
+"""Tests for athletistat/console.py - terminal styling utilities."""
 
 import pytest
 from unittest.mock import patch

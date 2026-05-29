@@ -263,7 +263,7 @@ class DatasetSplitter:
             
             # Generates combined dataset if not found (seasons)
             if not matching_files:
-                warn(f"[SEASONS] Combined dataset not found at {filepath} — running generator...")
+                warn(f"[SEASONS] Combined dataset not found at {filepath} - running generator...")
                 try:
                     generator = DatasetGenerator(mode="seasons")
                     generator.run(combine=True)
@@ -291,7 +291,7 @@ class DatasetSplitter:
             
             # Generates combined dataset if not found (all-time)
             if not os.path.exists(filepath):
-                warn(f"[ALL-TIME] Combined dataset not found at {filepath} — running generator...")
+                warn(f"[ALL-TIME] Combined dataset not found at {filepath} - running generator...")
                 try:
                     generator = DatasetGenerator(mode="all-time")
                     generator.run()

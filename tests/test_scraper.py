@@ -1,4 +1,4 @@
-"""Tests for athletistat/core/scraper.py — Scraper."""
+"""Tests for athletistat/core/scraper.py - Scraper."""
 
 import json
 import os
@@ -279,7 +279,7 @@ class TestScrapeEvent:
         out_dir = tmp_path / "out"
         out_dir.mkdir()
 
-        short_row = ["1", "9.58"]  # only 2 cols — must be skipped
+        short_row = ["1", "9.58"]  # only 2 cols - must be skipped
         response1 = _make_response(_make_html_table([short_row, _row()]))
         response2 = _make_response("<html></html>")
         s.session.get = MagicMock(side_effect=[response1, response2])

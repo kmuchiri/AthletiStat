@@ -20,7 +20,7 @@ from athletistat.console import cprint, header, divider, success, info, step, wa
 def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_data, dataset_info, year):
     """AthletiStat CLI"""
 
-    header("AthletiStat  —  Track & Field Data Pipeline")
+    header("AthletiStat  -  Track & Field Data Pipeline")
     current_year = datetime.now().year
 
     if fetch_data:
@@ -47,7 +47,7 @@ def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_da
         Preprocessor(mode=preprocessing).run()
 
     if create_dataset:
-        info(f"Generating dataset — mode: {create_dataset.upper()}")
+        info(f"Generating dataset - mode: {create_dataset.upper()}")
         # Note: DatasetGenerator currently processes all years as implemented
         DatasetGenerator(mode=create_dataset).run()
 
@@ -56,7 +56,7 @@ def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_da
         DatasetGenerator(mode="seasons").run(combine=True)
 
     if split_dataset:
-        info(f"Splitting dataset — mode: {split_dataset.upper()}")
+        info(f"Splitting dataset - mode: {split_dataset.upper()}")
         DatasetSplitter(mode=split_dataset).run()
 
     if dataset_info:

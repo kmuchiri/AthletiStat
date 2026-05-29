@@ -38,7 +38,7 @@ Defines the valid age categories. The scraper iterates over these when building 
 }
 ```
 
-**Used by:** `Scraper._load_mappings()` — age categories are embedded in the discipline mapping keys.
+**Used by:** `Scraper._load_mappings()` - age categories are embedded in the discipline mapping keys.
 
 ---
 
@@ -62,7 +62,7 @@ The `region` entry contains a `cases` array. The case where `"regionType": "coun
 }
 ```
 
-**Used by:** `Preprocessor.__init__()` — builds `self.country_lookup` (a `{code: label}` dict) for resolving `nationality` → `nat_full` and `venue_country`.
+**Used by:** `Preprocessor.__init__()` - builds `self.country_lookup` (a `{code: label}` dict) for resolving `nationality` → `nat_full` and `venue_country`.
 
 > **Note:** Country codes in this file are lowercase 3-letter WA codes (e.g., `jam`), not standard ISO 3166-1 alpha-3 (e.g., `JAM`). The preprocessor normalizes incoming nationality strings to lowercase before lookup.
 
@@ -100,7 +100,7 @@ This is the most critical entry. It has a `cases` array keyed by `(gender, ageCa
 }
 ```
 
-**Used by:** `Scraper._load_mappings()` — produces `self.mappings`, a dict of the form:
+**Used by:** `Scraper._load_mappings()` - produces `self.mappings`, a dict of the form:
 
 ```python
 {

@@ -26,12 +26,12 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 
 ## Features
 
-- **Multithreaded Scraping** — Concurrent scraping via `ThreadPoolExecutor` with configurable worker counts.
-- **Resilient Queue System** — Tracks completed and in-progress scrape jobs in persistent JSON queue files, enabling safe resumption of interrupted runs.
-- **Smart Caching** — Completed historical seasons are marked in `completed_seasons.json` and skipped on future runs.
-- **Automatic Retries** — Requests are configured with exponential backoff and automatic retries on server-side errors (429, 500, 502, 503, 504).
-- **Rich Data Transformation** — Standardizes event names, converts time strings (e.g., `1:45.30`) to numeric seconds, calculates athlete age at time of event, and resolves ISO country codes to full names.
-- **Flexible Output** — Produces aggregated CSVs per year (seasons), an all-time combined dataset, and granular sub-datasets split by gender, event type, and discipline.
+- **Multithreaded Scraping** - Concurrent scraping via `ThreadPoolExecutor` with configurable worker counts.
+- **Resilient Queue System** - Tracks completed and in-progress scrape jobs in persistent JSON queue files, enabling safe resumption of interrupted runs.
+- **Smart Caching** - Completed historical seasons are marked in `completed_seasons.json` and skipped on future runs.
+- **Automatic Retries** - Requests are configured with exponential backoff and automatic retries on server-side errors (429, 500, 502, 503, 504).
+- **Rich Data Transformation** - Standardizes event names, converts time strings (e.g., `1:45.30`) to numeric seconds, calculates athlete age at time of event, and resolves ISO country codes to full names.
+- **Flexible Output** - Produces aggregated CSVs per year (seasons), an all-time combined dataset, and granular sub-datasets split by gender, event type, and discipline.
 
 ---
 
@@ -51,9 +51,9 @@ World Athletics
   data/processing/output/             data/processing/combined/                data/datasets/
 ```
 
-1. **`scraper.py` (Extract)** — Paginates through World Athletics record tables for every configured discipline, gender, and age category. Saves raw tabular data as CSVs.
-2. **`preprocessing.py` (Transform)** — Reads raw CSVs, normalizes discipline slugs, parses performance marks to numeric values, maps country codes, computes athlete ages, and saves cleaned files.
-3. **`generator.py` (Load)** — Merges all cleaned, fragmented files into final ready-to-use datasets. Supports combining multi-year season data and splitting datasets by gender, event type, and discipline.
+1. **`scraper.py` (Extract)** - Paginates through World Athletics record tables for every configured discipline, gender, and age category. Saves raw tabular data as CSVs.
+2. **`preprocessing.py` (Transform)** - Reads raw CSVs, normalizes discipline slugs, parses performance marks to numeric values, maps country codes, computes athlete ages, and saves cleaned files.
+3. **`generator.py` (Load)** - Merges all cleaned, fragmented files into final ready-to-use datasets. Supports combining multi-year season data and splitting datasets by gender, event type, and discipline.
 
 ---
 
@@ -129,7 +129,7 @@ AthletiStat/
 | `type` | String | Category slug of the event group. | `sprints`, `jumps` |
 | `sex` | String | Gender category of the event. | `female`, `male` |
 | `age_cat` | String | Age category of the list. | `senior`, `u20`, `u18` |
-| **`normalized_discipline`** | String | *[Generated]* Cleaned discipline name — age/weight suffixes removed, known aliases resolved. | `100-metres`, `decathlon` |
+| **`normalized_discipline`** | String | *[Generated]* Cleaned discipline name - age/weight suffixes removed, known aliases resolved. | `100-metres`, `decathlon` |
 | **`track_field`** | String | *[Generated]* Categorization of the event. | `track`, `field`, `mixed` |
 | **`mark_numeric`** | Float | *[Generated]* Performance mark converted to a float. Times (e.g., `MM:SS`) are converted to total seconds. | `9.58`, `100.91` |
 | **`nat_full`** | String | *[Generated]* Full country name of the athlete. | `Jamaica` |
@@ -324,10 +324,10 @@ splitter.run()
 
 **Split outputs produced:**
 
-- `split_global/` — Full individual events and relay events as separate files.
-- `split_by_type/{gender}/` — One CSV per event type (e.g., `sprints`, `jumps`, `hurdles`).
-- `split_by_discipline/{gender}/` — One CSV per normalized discipline (e.g., `100-metres`, `long-jump`).
-- `{gender}/relays/` — Relay events by discipline (excludes `dob` and `age_at_event`).
+- `split_global/` - Full individual events and relay events as separate files.
+- `split_by_type/{gender}/` - One CSV per event type (e.g., `sprints`, `jumps`, `hurdles`).
+- `split_by_discipline/{gender}/` - One CSV per normalized discipline (e.g., `100-metres`, `long-jump`).
+- `{gender}/relays/` - Relay events by discipline (excludes `dob` and `age_at_event`).
 
 ---
 

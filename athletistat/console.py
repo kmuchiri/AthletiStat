@@ -1,5 +1,5 @@
 """
-console.py — Shared terminal styling utilities for AthletiStat CLI output.
+console.py - Shared terminal styling utilities for AthletiStat CLI output.
 
 Usage:
     from athletistat.console import cprint, Colors, Symbols
