@@ -94,41 +94,12 @@ AthletiStat/
 
 ### Output Files
 
-<table>
-  <thead>
-    <tr>
-      <th style="width: 30%">File</th>
-      <th style="width: 30%">Location</th>
-      <th style="width: 40%">Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">{year}<wbr>_track<wbr>_field<wbr>_performances.csv</span></td>
-      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>seasons/</span></td>
-      <td>All top performances across every discipline for a specific calendar year.</td>
-    </tr>
-    <tr>
-      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">combined<wbr>_track<wbr>_field<wbr>_performances<wbr>_{min}<wbr>_{max}.csv</span></td>
-      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>seasons/</span></td>
-      <td>All season datasets merged into a single file spanning the full year range.</td>
-    </tr>
-    <tr>
-      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">top<wbr>_track<wbr>_field<wbr>_performances<wbr>_all<wbr>_time.csv</span></td>
-      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>all-time/</span></td>
-      <td>The absolute historical top performances across all disciplines.</td>
-    </tr>
-    <tr>
-      <td>Split subsets</td>
-      <td style="word-break: break-all; white-space: normal;">
-        <span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>{mode}/<wbr>split_by_type/</span><br>
-        <span style="font-family: monospace; word-break: break-all;">split_by_discipline/</span><br>
-        <span style="font-family: monospace; word-break: break-all;">split_global/</span>
-      </td>
-      <td>Granular splits by gender, event type, and discipline.</td>
-    </tr>
-  </tbody>
-</table>
+| File | Location | Description |
+| --- | --- | ----- |
+| `{year}_track_`<br>`field_`<br>`performances.csv` | `data/datasets/`<br>`seasons/` | All top performances across every discipline for a specific calendar year. |
+| `combined_track_`<br>`field_`<br>`performances_`<br>`{min}_{max}.csv` | `data/datasets/`<br>`seasons/` | All season datasets merged into a single file spanning the full year range. |
+| `top_track_`<br>`field_`<br>`performances_`<br>`all_time.csv` | `data/datasets/`<br>`all-time/` | The absolute historical top performances across all disciplines. |
+| Split subsets | `data/datasets/{mode}/`<br>`split_by_type/`,<br>`split_by_discipline/`,<br>`split_global/` | Granular splits by gender, event type, and discipline. |
 
 > [!NOTE]
 > Detailed metrics (including exact file sizes and row counts) for all generated datasets are saved in [dataset_info.txt](data/datasets/dataset_info.txt). You can generate or update this file by running `./AthletiStat --dataset-info` or the `get_dataset_info.sh` utility script.
