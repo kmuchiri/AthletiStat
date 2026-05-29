@@ -221,7 +221,7 @@ class DatasetSplitter:
 
             type_output_dir = os.path.join(mode_dir,"split_by_type", gender)
             discipline_output_dir = os.path.join(mode_dir,"split_by_discipline", gender)
-            relay_output_dir = os.path.join(mode_dir, gender, "relays")
+            relay_output_dir = os.path.join(mode_dir, "relays",gender)
 
             if not gender_individual.empty:
                 os.makedirs(type_output_dir, exist_ok=True)
