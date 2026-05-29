@@ -1,0 +1,5 @@
+# pyrefly configuration
+# Tells pyrefly to use the project's virtual environment so it can resolve
+# all installed packages (pytest, pandas, requests, etc.) correctly.
+
+python_interpreter = ".venv/bin/python"
