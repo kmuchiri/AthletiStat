@@ -1,9 +1,5 @@
 # AthletiStat
 
-<p align="center">
-  <img src="docs/logo/athletistat.png" alt="AthletiStat Logo" width="150" />
-</p>
-
 An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scraping, cleaning, and aggregating track and field performance data.
 
 ---
