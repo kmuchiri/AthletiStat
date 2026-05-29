@@ -163,7 +163,8 @@ class Scraper:
             if not table:
                 break
                 
-            rows = table.find("tbody").find_all("tr") if table.find("tbody") else []
+            tbody = table.find("tbody")
+            rows = tbody.find_all("tr") if tbody else table.find_all("tr")
             if not rows:
                 break
 
