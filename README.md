@@ -104,26 +104,26 @@ AthletiStat/
   </thead>
   <tbody>
     <tr>
-      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">{year}<wbr>_track<wbr>_field<wbr>_performances.csv</code></td>
-      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>seasons/</code></td>
+      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">{year}<wbr>_track<wbr>_field<wbr>_performances.csv</span></td>
+      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>seasons/</span></td>
       <td>All top performances across every discipline for a specific calendar year.</td>
     </tr>
     <tr>
-      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">combined<wbr>_track<wbr>_field<wbr>_performances<wbr>_{min}<wbr>_{max}.csv</code></td>
-      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>seasons/</code></td>
+      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">combined<wbr>_track<wbr>_field<wbr>_performances<wbr>_{min}<wbr>_{max}.csv</span></td>
+      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>seasons/</span></td>
       <td>All season datasets merged into a single file spanning the full year range.</td>
     </tr>
     <tr>
-      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">top<wbr>_track<wbr>_field<wbr>_performances<wbr>_all<wbr>_time.csv</code></td>
-      <td style="word-break: break-all; white-space: normal;"><code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>all-time/</code></td>
+      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">top<wbr>_track<wbr>_field<wbr>_performances<wbr>_all<wbr>_time.csv</span></td>
+      <td style="word-break: break-all; white-space: normal;"><span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>all-time/</span></td>
       <td>The absolute historical top performances across all disciplines.</td>
     </tr>
     <tr>
       <td>Split subsets</td>
       <td style="word-break: break-all; white-space: normal;">
-        <code style="word-break: break-all; white-space: normal;">data/<wbr>datasets/<wbr>{mode}/<wbr>split_by_type/</code><br>
-        <code style="word-break: break-all; white-space: normal;">split_by_discipline/</code><br>
-        <code style="word-break: break-all; white-space: normal;">split_global/</code>
+        <span style="font-family: monospace; word-break: break-all;">data/<wbr>datasets/<wbr>{mode}/<wbr>split_by_type/</span><br>
+        <span style="font-family: monospace; word-break: break-all;">split_by_discipline/</span><br>
+        <span style="font-family: monospace; word-break: break-all;">split_global/</span>
       </td>
       <td>Granular splits by gender, event type, and discipline.</td>
     </tr>
