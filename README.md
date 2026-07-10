@@ -33,7 +33,7 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 
 ## Pipeline Architecture
 
-The system consists of three core modules that are executed sequentially:
+The system consists of three modules that are executed sequentially:
 
 
 1. **`scraper.py` (Extract)** - Paginates through World Athletics record tables for every configured discipline, gender, and age category. Saves raw tabular data as CSVs.
@@ -248,4 +248,4 @@ For details on importing and using the core Python classes (such as `Scraper`, `
 - Final datasets land in `data/datasets/` and are also not tracked by git.
 - Scrape error logs are written to `logs/{mode}/{date}/scrape_errors_{timestamp}.log`.
 - The `options.json` configuration file drives which disciplines and age categories are scraped. Modifying it allows targeting a subset of events.
-- The pipeline is designed to be run from the **project root directory**.
+- The code is designed to be run from the **project root directory**.

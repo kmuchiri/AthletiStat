@@ -2,11 +2,14 @@ import pathlib
 import os
 from prettytable import PrettyTable
 from athletistat.console import success
+import re
 
 dataset_dir = "./data/datasets"
 all_time_dir = os.path.join(dataset_dir,"all-time")
 seasons_dir = os.path.join(dataset_dir, "seasons")
 info_file = os.path.join(dataset_dir, "dataset_info.txt")
+summary_file = os.path.join(dataset_dir, "dataset_summary.txt")
+
 
 
 class DatasetInfo:
@@ -43,9 +46,27 @@ class DatasetInfo:
         else:
             return f"{size_in_mb:.2f} MB"
 
-    def run(self):
+    def generate_info(self):
+          # Process all-time datasets
+        if os.path.exists(all_time_dir):
+            for file in pathlib.Path(all_time_dir).glob('*.csv'):
+                self.table.add_row([file.name, self.get_file_size(file), self.count_rows(file)])
+
+        # Process seasons datasets
+        if os.path.exists(seasons_dir):
+            for file in pathlib.Path(seasons_dir).glob('**/*.csv'):
+                self.table.add_row([file.name, self.get_file_size(file), self.count_rows(file)])
+        self.table.sortby = "Row Count"
+        self.table.reversesort = True
+
+        # Save to txt file
+        with open(info_file, "w") as f:
+            f.write(str(self.table))
         
-        # Process all-time datasets
+        success("Dataset information saved to" + info_file)
+
+    def generate_summary(self):
+         # Process all-time datasets
         if os.path.exists(all_time_dir):
             for file in pathlib.Path(all_time_dir).glob('top_track_field_performances_all_time.csv'):
                 self.table.add_row([file.name, self.get_file_size(file), self.count_rows(file)])
@@ -58,10 +79,10 @@ class DatasetInfo:
         self.table.reversesort = True
 
         # Save to txt file
-        with open(info_file, "w") as f:
+        with open(summary_file, "w") as f:
             f.write(str(self.table))
         
-        success("Dataset information saved to dataset_info.txt")
+        success("Dataset information saved to" + summary_file)
 
         # Update README.md with the generated info inside a markdown code block
         readme_path = "README.md"
@@ -72,7 +93,7 @@ class DatasetInfo:
             start_anchor = "<!-- START_DATASET_INFO -->"
             end_anchor = "<!-- END_DATASET_INFO -->"
             
-            import re
+            
             pattern = re.compile(
                 rf"{re.escape(start_anchor)}.*?{re.escape(end_anchor)}", re.DOTALL
             )
@@ -82,6 +103,9 @@ class DatasetInfo:
             with open(readme_path, "w", encoding="utf-8") as f:
                 f.write(new_readme_content)
             success("README.md dataset info updated successfully!")
+
+        
+       
 
 
 
