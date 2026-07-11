@@ -78,12 +78,6 @@ class DatasetInfo:
         self.table.sortby = "Row Count"
         self.table.reversesort = True
 
-        # Save to txt file
-        with open(summary_file, "w") as f:
-            f.write(str(self.table))
-        
-        success("Dataset information saved to" + summary_file)
-
         # Update README.md with the generated info inside a markdown code block
         readme_path = "README.md"
         if os.path.exists(readme_path):
@@ -104,7 +98,6 @@ class DatasetInfo:
                 f.write(new_readme_content)
             success("README.md dataset info updated successfully!")
 
-        
        
 
 

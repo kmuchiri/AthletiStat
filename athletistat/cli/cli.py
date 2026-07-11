@@ -61,4 +61,5 @@ def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_da
 
     if dataset_info:
         info("Fetching dataset information...")
-        DatasetInfo().run()
+        DatasetInfo().generate_info()
+        DatasetInfo().generate_summary()

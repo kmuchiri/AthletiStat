@@ -102,10 +102,12 @@ AthletiStat/
 
 <!-- START_DATASET_INFO -->
 ```text
-Dataset Information
- 
-top_track_field_performances_all_time.csv has 658208 records and is 118 MB in size 
-combined_track_field_performances_2001_2026.csv has 13328122 records and is 2369 MB in size 
++-------------------------------------------------+-----------+-----------+
+|                    File Name                    | File Size | Row Count |
++-------------------------------------------------+-----------+-----------+
+| combined_track_field_performances_2001_2026.csv |  2.21 GB  |  13328122 |
+|    top_track_field_performances_all_time.csv    | 112.69 MB |    658208 |
++-------------------------------------------------+-----------+-----------+
 ```
 <!-- END_DATASET_INFO -->
 
