@@ -3,6 +3,7 @@ from datetime import datetime
 from athletistat.core.scraper import Scraper
 from athletistat.core.preprocessing import Preprocessor
 from athletistat.core.generator import DatasetGenerator, DatasetSplitter
+from athletistat.core.seasons_update import SeasonsUpdate
 from athletistat.scripts.fetch_info import DatasetInfo
 from athletistat.console import cprint, header, divider, success, info, step, warn, Colors, Symbols
 
@@ -16,8 +17,10 @@ from athletistat.console import cprint, header, divider, success, info, step, wa
 @click.option('--fetch-data', type=click.Choice(['seasons', 'all-time']), help='Performs --scraper, --preprocessing and --create-dataset for given mode.')
 @click.option('--year', type=int, help='Year to use for seasons mode. If blank, behavior depends on the command.')
 @click.option('--dataset-info', is_flag=True, help='Generates a txt file of dataset information; file name, file size, and row number')
+@click.option('--update-season', is_flag=True, help='Update the combined seasons dataset for a given year (default: current year). Uses --year to specify which year.')
+@click.option('--no-generate', is_flag=True, help='Skip scrape/preprocess/generate; assume the per-year dataset already exists on disk.')
 
-def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_data, dataset_info, year):
+def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_data, dataset_info, year, update_season, no_generate):
     """AthletiStat CLI"""
 
     header("AthletiStat  -  Track & Field Data Pipeline")
@@ -58,6 +61,12 @@ def cli(scraper, preprocessing, create_dataset, combine, split_dataset, fetch_da
     if split_dataset:
         info(f"Splitting dataset - mode: {split_dataset.upper()}")
         DatasetSplitter(mode=split_dataset).run()
+
+    if update_season:
+        u_year = year if year else current_year
+        generate = not no_generate
+        info(f"Updating season: {u_year}  |  generate: {generate}")
+        SeasonsUpdate(year=u_year, generate=generate).run()
 
     if dataset_info:
         info("Fetching dataset information...")
