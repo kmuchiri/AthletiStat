@@ -13,7 +13,7 @@ from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
-from athletistat.console import cprint, divider, success, warn, info, Colors, Symbols
+from athletistat.console import cprint, divider, success, warn, info, Colors, Symbols, ProgressBar
 
 # Disable insecure request warnings
 urllib3.disable_warnings(InsecureRequestWarning)
@@ -320,6 +320,9 @@ class Scraper:
         total = len(jobs)
         completed_count = 0
 
+        mode_label = f"{mode.upper()} {year}" if mode == "seasons" and year else mode.upper()
+        progress_bar = ProgressBar(total=total, label=mode_label)
+
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_job = {executor.submit(self.scrape_event, *job): job for job in jobs}
 
@@ -331,8 +334,7 @@ class Scraper:
                     if job_success:
                         with self.lock:
                             completed_count += 1
-                            progress = f"[{completed_count} / {total}]"
-                            cprint(f"{progress}", Colors.BRIGHT_GREEN, bold=True)
+                            progress_bar.update()
                             
                             if (mode == "seasons" and year != self.current_year) or (mode == "all-time"):
                                 jobs.remove(job)
@@ -340,13 +342,14 @@ class Scraper:
                                     json.dump(jobs, f)
                     else:
                         with self.lock:
-                            cprint(f"Job failed, remains in queue", Colors.BRIGHT_RED, bold=True)
+                            pass  # Job stays in queue; summary printed after bar finishes
 
                 except Exception as e:
                     with self.lock:
-                        cprint(f"Uncaught error, job remains in queue", Colors.BRIGHT_RED, bold=True)
                         with open(os.path.join(log_dir, f"scrape_errors_{self.current_time}.log"), "a") as log_file:
                             log_file.write(f"UNCAUGHT ERROR in job {job}: {repr(e)}\n")
+
+        progress_bar.finish()
 
         # Final Cleanup & Logging
         if (mode == "seasons" and year != self.current_year) or (mode == "all-time"):

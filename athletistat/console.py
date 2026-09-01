@@ -107,3 +107,76 @@ def info(message: str) -> None:
 def step(message: str) -> None:
     """Print a blue step/action message."""
     cprint(message, Colors.BRIGHT_BLUE, prefix=Symbols.ARROW)
+
+
+import sys
+import threading
+
+
+class ProgressBar:
+    """
+    A thread-safe, static terminal progress bar that updates in-place.
+
+    Usage:
+        bar = ProgressBar(total=100, label="Scraping")
+        bar.update()        # increments by 1
+        bar.update(5)       # increments by 5
+        bar.finish()        # finalizes and moves to the next line
+    """
+
+    FILL = "█"
+    EMPTY = "░"
+
+    def __init__(self, total: int, label: str = "", width: int = 30):
+        """
+        Initialize the progress bar.
+
+        Args:
+            total (int): Total number of items.
+            label (str): Optional label displayed before the bar.
+            width (int): Character width of the bar itself. Defaults to 30.
+        """
+        self.total = total
+        self.label = label
+        self.width = width
+        self.completed = 0
+        self._lock = threading.Lock()
+
+    def update(self, n: int = 1) -> None:
+        """
+        Increment progress and redraw the bar.
+
+        Args:
+            n (int): Number of items completed. Defaults to 1.
+        """
+        with self._lock:
+            self.completed = min(self.completed + n, self.total)
+            self._draw()
+
+    def _draw(self) -> None:
+        """Render the progress bar in-place on the current terminal line."""
+        fraction = self.completed / self.total if self.total else 1
+        filled = int(self.width * fraction)
+        bar = self.FILL * filled + self.EMPTY * (self.width - filled)
+        pct = fraction * 100
+
+        label_part = f"{self.label} " if self.label else ""
+        line = (
+            f"\r\033[K"
+            f"{Colors.BOLD}{Colors.BRIGHT_CYAN}{label_part}{Colors.RESET}"
+            f"{Colors.DIM}{Colors.WHITE}[{Colors.RESET}"
+            f"{Colors.BRIGHT_GREEN}{bar}{Colors.RESET}"
+            f"{Colors.DIM}{Colors.WHITE}]{Colors.RESET}"
+            f" {Colors.BOLD}{Colors.BRIGHT_WHITE}{pct:5.1f}%{Colors.RESET}"
+            f"  {Colors.DIM}{Colors.WHITE}{self.completed}/{self.total}{Colors.RESET}"
+        )
+        sys.stdout.write(line)
+        sys.stdout.flush()
+
+    def finish(self) -> None:
+        """Finalize the bar at 100% and move to the next line."""
+        with self._lock:
+            self.completed = self.total
+            self._draw()
+            sys.stdout.write("\n")
+            sys.stdout.flush()
