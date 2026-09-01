@@ -3,4 +3,5 @@
 __pycache__/
 .venv/
 docs/ml.md
-ML/*
+ML/
+queues/seasons/*.json
