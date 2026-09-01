@@ -1,0 +1,27 @@
+# AthletiStat Configuration
+# Edit values below to customize behavior. Delete any key to use its default.
+
+[scraper]
+max_workers = 10              # Number of concurrent threads for scraping
+connect_timeout = 5           # Seconds to wait for initial connection
+read_timeout = 30             # Seconds to wait for server response
+retry_total = 5               # Max retry attempts on failed requests
+retry_backoff_factor = 1      # Exponential backoff multiplier between retries
+retry_status_codes = [429, 500, 502, 503, 504]  # HTTP codes that trigger a retry
+page_delay = 1.5              # Seconds to wait between page requests (be respectful)
+user_agent = "Mozilla/5.0"    # User-Agent header sent with requests
+verify_ssl = true             # Whether to verify SSL certificates
+
+[paths]
+options_file = "athletistat/options.json"              # Discipline mappings config
+scraper_output = "data/processing/output"              # Raw scraped CSV output
+queue_dir = "queues"                                   # Scrape job queue storage
+log_dir = "logs"                                       # Scrape error logs
+combined_dir = "data/processing/combined"              # Preprocessed combined CSVs
+dataset_dir = "data/datasets"                          # Final dataset output
+dataset_info_file = "data/datasets/dataset_info.txt"   # Dataset info report
+dataset_summary_file = "data/datasets/dataset_summary.txt"  # Dataset summary report
+
+[display]
+progress_bar_width = 30       # Character width of the terminal progress bar
+row_count_chunk_size = 1048576  # Chunk size in bytes for counting CSV rows (1 MB)

@@ -2,6 +2,7 @@ import os
 import glob
 import pandas as pd
 from athletistat.console import cprint, success, warn, error, info, Colors, Symbols
+from athletistat.config import cfg
 
 class DatasetGenerator:
     """Generates and combines track and field datasets from processed CSV files."""
@@ -24,8 +25,8 @@ class DatasetGenerator:
         Returns:
             None
         """
-        combined_dir = f"data/processing/combined/{mode}"
-        output_dataset_dir = f"data/datasets/{mode}"
+        combined_dir = os.path.join(cfg.paths.combined_dir, mode)
+        output_dataset_dir = os.path.join(cfg.paths.dataset_dir, mode)
         os.makedirs(output_dataset_dir, exist_ok=True)
 
         if mode == "seasons":
@@ -89,7 +90,7 @@ class DatasetGenerator:
         Returns:
             None
         """
-        dataset_dir = "data/datasets/seasons"
+        dataset_dir = os.path.join(cfg.paths.dataset_dir, "seasons")
         #processed_dir = "data/processing/combined/seasons"
 
 
@@ -254,7 +255,7 @@ class DatasetSplitter:
         """
         
         if self.mode in ["seasons", "both"]:
-            datasets_dir = os.path.join("data/datasets","seasons")
+            datasets_dir = os.path.join(cfg.paths.dataset_dir, "seasons")
             os.makedirs(datasets_dir, exist_ok=True)
 
             # Look for a single combined seasons file
@@ -277,14 +278,14 @@ class DatasetSplitter:
                 info(f"[SEASONS] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
-                    self.split_dataset(df, mode_dir="data/datasets/seasons", is_seasons=True)
+                    self.split_dataset(df, mode_dir=os.path.join(cfg.paths.dataset_dir, "seasons"), is_seasons=True)
                 except Exception as e:
                     error(f"Error reading {filepath}: {e}")
             else:
                 warn("[SEASONS] Still no dataset found after running generator. Is there raw data to combine?")
 
         if self.mode in ["all-time", "both"]:
-            datasets_dir = os.path.join("data/datasets", "all-time")
+            datasets_dir = os.path.join(cfg.paths.dataset_dir, "all-time")
             os.makedirs(datasets_dir, exist_ok=True)
             
             filepath = os.path.join(datasets_dir, "top_track_field_performances_all_time.csv")
@@ -303,7 +304,7 @@ class DatasetSplitter:
                 info(f"[ALL-TIME] Loading {filepath} for splitting...")
                 try:
                     df = pd.read_csv(filepath)
-                    self.split_dataset(df, mode_dir="data/datasets/all-time", is_seasons=False)
+                    self.split_dataset(df, mode_dir=os.path.join(cfg.paths.dataset_dir, "all-time"), is_seasons=False)
                 except Exception as e:
                     error(f"Error reading {filepath}: {e}")
             else:

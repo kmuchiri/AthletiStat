@@ -3,6 +3,7 @@ import glob
 import pandas as pd
 from datetime import datetime
 from athletistat.console import cprint, header, divider, success, warn, error, info, step, Colors, Symbols
+from athletistat.config import cfg
 
 
 class SeasonsUpdate:
@@ -17,7 +18,7 @@ class SeasonsUpdate:
         5. Save the updated combined CSV.
     """
 
-    DATASET_DIR = "data/datasets/seasons"
+    DATASET_DIR = os.path.join(cfg.paths.dataset_dir, "seasons")
 
     def __init__(self, year: int | None = None, generate: bool = True):
         """

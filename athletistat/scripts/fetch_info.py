@@ -3,12 +3,13 @@ import os
 from prettytable import PrettyTable
 from athletistat.console import success
 import re
+from athletistat.config import cfg
 
-dataset_dir = "./data/datasets"
-all_time_dir = os.path.join(dataset_dir,"all-time")
-seasons_dir = os.path.join(dataset_dir, "seasons")
-info_file = os.path.join(dataset_dir, "dataset_info.txt")
-summary_file = os.path.join(dataset_dir, "dataset_summary.txt")
+dataset_dir = cfg.paths.dataset_dir
+all_time_dir = os.path.join(cfg.paths.dataset_dir, "all-time")
+seasons_dir = os.path.join(cfg.paths.dataset_dir, "seasons")
+info_file = cfg.paths.dataset_info_file
+summary_file = cfg.paths.dataset_summary_file
 
 
 
@@ -23,7 +24,7 @@ class DatasetInfo:
         def _make_gen(reader):
             while True:
                 # Read in 1MB chunks
-                b = reader(1024 * 1024)
+                b = reader(cfg.display.row_count_chunk_size)
                 if not b: break
                 yield b
 

@@ -6,6 +6,7 @@ from athletistat.core.generator import DatasetGenerator, DatasetSplitter
 from athletistat.core.seasons_update import SeasonsUpdate
 from athletistat.scripts.fetch_info import DatasetInfo
 from athletistat.console import cprint, header, divider, success, info, step, warn, Colors, Symbols
+from athletistat.config import cfg
 
 
 @click.command()

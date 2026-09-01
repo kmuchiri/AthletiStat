@@ -14,6 +14,7 @@ from urllib3.util.retry import Retry
 import urllib3
 from urllib3.exceptions import InsecureRequestWarning
 from athletistat.console import cprint, divider, success, warn, info, Colors, Symbols, ProgressBar
+from athletistat.config import cfg
 
 # Disable insecure request warnings
 urllib3.disable_warnings(InsecureRequestWarning)
@@ -30,7 +31,7 @@ class Scraper:
         "?regionType=world&timing=all&windReading=all&page={page}&bestResultsOnly=false&maxResultsByCountry=all&ageCategory={age_category}"
     )
 
-    def __init__(self, mode="both", options_file="athletistat/options.json"):
+    def __init__(self, mode="both", options_file=None):
         """
         Initializes the scraper, configures request retry sessions, and loads configurations.
 
@@ -38,6 +39,7 @@ class Scraper:
             mode (str): "both", "seasons", or "all-time". Defaults to "both".
             options_file (str): Path to config file. Defaults to "athletistat/options.json".
         """
+        options_file = options_file or cfg.paths.options_file
         self.mode = mode
         self.options_file = options_file
         self.mappings = self._load_mappings(self.options_file)
@@ -52,9 +54,9 @@ class Scraper:
         # Configure requests session with built-in retries
         self.session = requests.Session()
         retries = Retry(
-            total=5,
-            backoff_factor=1,
-            status_forcelist=(429, 500, 502, 503, 504),
+            total=cfg.scraper.retry_total,
+            backoff_factor=cfg.scraper.retry_backoff_factor,
+            status_forcelist=cfg.scraper.retry_status_codes,
             allowed_methods=("GET", "HEAD", "OPTIONS"),
         )
         adapter = HTTPAdapter(max_retries=retries)
@@ -100,10 +102,10 @@ class Scraper:
         jobs = []
         for (gender, age_category), discipline_list in self.mappings.items():
             if mode == "seasons":
-                output_dir = os.path.join(f"data/processing/output/{mode}/{year}/", gender)
+                output_dir = os.path.join(f"{cfg.paths.scraper_output}/{mode}/{year}/", gender)
             
             else:
-                output_dir = os.path.join(f"data/processing/output/{mode}", gender)
+                output_dir = os.path.join(f"{cfg.paths.scraper_output}/{mode}", gender)
             
             os.makedirs(output_dir, exist_ok=True)    
             for discipline_slug, type_slug in discipline_list:
@@ -130,7 +132,7 @@ class Scraper:
         data = []
 
         
-        log_dir = os.path.join(f"logs/{mode}", self.today)
+        log_dir = os.path.join(f"{cfg.paths.log_dir}/{mode}", self.today)
         os.makedirs(log_dir, exist_ok=True)
 
         while True:
@@ -145,10 +147,10 @@ class Scraper:
                     gender=gender, age_category=age_category, page=page, today=self.today
                 )
             
-            headers = {"User-Agent": "Mozilla/5.0"}
+            headers = {"User-Agent": cfg.scraper.user_agent}
             
             try:
-                response = self.session.get(url, headers=headers, timeout=(5, 30), verify=True)
+                response = self.session.get(url, headers=headers, timeout=(cfg.scraper.connect_timeout, cfg.scraper.read_timeout), verify=cfg.scraper.verify_ssl)
                 response.raise_for_status()
             except Exception as e:
                 with self.lock:
@@ -192,7 +194,7 @@ class Scraper:
 
             page += 1
             # Do not give too low of a value, will overwhelm server.
-            time.sleep(1.5) 
+            time.sleep(cfg.scraper.page_delay) 
 
         # Save to CSV
         if data:
@@ -219,7 +221,7 @@ class Scraper:
         Returns:
             str: Path to the queue JSON file.
         """
-        queue_dir = f"queues/{mode}"
+        queue_dir = f"{cfg.paths.queue_dir}/{mode}"
         os.makedirs(queue_dir, exist_ok=True)
         if mode == "seasons":
             return f"{queue_dir}/queue_seasons_{year}.json"
@@ -238,7 +240,7 @@ class Scraper:
             tuple: (jobs list, queue_file path, completed_years list).
         """
 
-        queue_dir = f"queues/{mode}"
+        queue_dir = f"{cfg.paths.queue_dir}/{mode}"
         os.makedirs(queue_dir, exist_ok=True)
         queue_file = self._get_queue_info(mode, year)
         jobs = []
@@ -294,7 +296,7 @@ class Scraper:
                 
             return jobs, queue_file, []
 
-    def run_scraper(self, mode, max_workers=10, year=None):
+    def run_scraper(self, mode, max_workers=None, year=None):
         """
         Executes the scraper for a given mode processing the compiled jobs concurrently utilizing a threadpool.
 
@@ -306,10 +308,11 @@ class Scraper:
         Returns:
             None
         """
+        max_workers = max_workers or cfg.scraper.max_workers
         cprint(f"{Symbols.ROCKET} Starting {mode.upper()} scrape - {max_workers} workers", Colors.BRIGHT_CYAN, bold=True)
         start_time = time.time()
 
-        log_dir = os.path.join(f"logs/{mode}", self.today)
+        log_dir = os.path.join(f"{cfg.paths.log_dir}/{mode}", self.today)
         os.makedirs(log_dir, exist_ok=True)
 
         queue_info = self._manage_queues_and_jobs(mode, year)
@@ -321,7 +324,7 @@ class Scraper:
         completed_count = 0
 
         mode_label = f"{mode.upper()} {year}" if mode == "seasons" and year else mode.upper()
-        progress_bar = ProgressBar(total=total, label=mode_label)
+        progress_bar = ProgressBar(total=total, label=mode_label, width=cfg.display.progress_bar_width)
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_job = {executor.submit(self.scrape_event, *job): job for job in jobs}
@@ -360,7 +363,7 @@ class Scraper:
 
                 if mode == "seasons" and year not in completed_years:
                     completed_years.append(year)
-                    completed_file = "queues/seasons/completed_seasons.json"
+                    completed_file = f"{cfg.paths.queue_dir}/seasons/completed_seasons.json"
                     os.makedirs(os.path.dirname(completed_file), exist_ok=True)
                     with open(completed_file, "w") as f:
                         json.dump(completed_years, f)
@@ -375,7 +378,7 @@ class Scraper:
             Colors.BRIGHT_MAGENTA, bold=True
         )
 
-    def run(self, max_workers=10, year=None):
+    def run(self, max_workers=None, year=None):
         """
         Wrapper that runs the scraper across designated modes utilizing max configured workers.
 
@@ -386,6 +389,7 @@ class Scraper:
         Returns:
             None
         """
+        max_workers = max_workers or cfg.scraper.max_workers
         if year is None:
             year = self.current_year
 
@@ -397,4 +401,4 @@ class Scraper:
 
 if __name__ == "__main__":
     scraper = Scraper(mode="seasons")
-    scraper.run(max_workers=12)
+    scraper.run()
