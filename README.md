@@ -9,6 +9,7 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 - [Features](#features)
 - [Pipeline Architecture](#pipeline-architecture)
 - [Directory Structure](#directory-structure)
+- [Configuration](#configuration)
 - [Dataset Description](#dataset-description)
   - [Output Files](#output-files)
   - [Data Dictionary](#data-dictionary)
@@ -22,9 +23,10 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 
 ## Features
 
-- **Multithreaded Scraping** - Concurrent scraping via `ThreadPoolExecutor` with configurable worker counts.
+- **Multithreaded Scraping** - Concurrent scraping via `ThreadPoolExecutor` with configurable worker counts and in-place static progress bars.
+- **Centralized Configuration** - Easily tune workers, request timeouts, retries, rate limits, and output paths via `athletistat/config.toml`.
 - **Queue System** - Tracks completed and in-progress scrape jobs in JSON files, enabling safe resumption of interrupted runs.
-- **Caching** - Completed historical seasons are marked in `completed_seasons.json` and skipped on future runs.
+- **Caching & Incremental Updates** - Completed historical seasons are marked in `completed_seasons.json` and skipped on future runs. Update current season datasets in-place with `--update-season`.
 - **Automatic Retries** - Requests are configured with exponential backoff and automatic retries on server-side errors (429, 500, 502, 503, 504).
 - **Data Transformation** - Standardizes event names, converts time strings (e.g., `1:45.30`) to numeric seconds, calculates athlete age at time of event, and resolves ISO country codes to full names.
 - **Flexible Output** - Produces aggregated CSVs per year (seasons), an all-time combined dataset, and granular sub-datasets split by gender, event type, and discipline.
@@ -33,12 +35,13 @@ An automated, end-to-end Python ETL (Extract, Transform, Load) pipeline for scra
 
 ## Pipeline Architecture
 
-The system consists of three modules that are executed sequentially:
-
+The system consists of modular components that can be executed end-to-end or independently:
 
 1. **`scraper.py` (Extract)** - Paginates through World Athletics record tables for every configured discipline, gender, and age category. Saves raw tabular data as CSVs.
 2. **`preprocessing.py` (Transform)** - Reads raw CSVs, normalizes discipline slugs, parses performance marks to numeric values, maps country codes, computes athlete ages, and saves cleaned files.
 3. **`generator.py` (Load)** - Merges all cleaned, fragmented files into final ready-to-use datasets. Supports combining multi-year season data and splitting datasets by gender, event type, and discipline.
+4. **`seasons_update.py` (Update)** - Replaces data for a specific year in the combined dataset in-place without recompiling the entire historical archive.
+5. **`fetch_info.py` (Inspect)** - Generates dataset statistics and automatically updates markdown documentation tables.
 
 ---
 
@@ -50,11 +53,16 @@ AthletiStat/
 │   ├── cli/
 │   │   └── cli.py                      # Click-based CLI entry point
 │   ├── core/
-│   │   ├── scraper.py                  # Scraping logic (Scraper class)
+│   │   ├── generator.py                # Dataset generation and splitting (DatasetGenerator, DatasetSplitter)
 │   │   ├── preprocessing.py            # Data cleaning logic (Preprocessor class)
-│   │   └── generator.py                # Dataset generation and splitting (DatasetGenerator, DatasetSplitter)
+│   │   ├── scraper.py                  # Scraping logic (Scraper class)
+│   │   └── seasons_update.py           # In-place dataset update logic (SeasonsUpdate class)
 │   ├── scripts/
-│   │   └── get_dataset_info.sh         # Utility script for dataset inspection
+│   │   ├── fetch_info.py               # Dataset size/row count inspection (DatasetInfo class)
+│   │   └── get_dataset_info.sh         # Shell utility script for dataset inspection
+│   ├── config.py                       # Centralized configuration loader (cfg)
+│   ├── config.toml                     # User-editable configuration tunables
+│   ├── console.py                      # Terminal styling and static ProgressBar
 │   └── options.json                    # Discipline/country/age-category configuration
 ├── data/
 │   ├── datasets/
@@ -70,7 +78,8 @@ AthletiStat/
 │   ├── preprocessing_normalization.md  # Normalization rules and transformation logic
 │   ├── python_api.md                   # Python API class and usage reference
 │   ├── scraper_queue_system.md         # Queue system design and resumption behavior
-│   ├── scripts_reference.md            # Shell utility script usage reference
+│   ├── scripts_reference.md            # Utility script usage reference
+│   ├── todo.md                         # Project development task tracker
 │   └── tree.txt                        # Reference directory tree
 ├── logs/
 │   ├── all-time/                       # Scrape error logs for all-time mode
@@ -78,10 +87,44 @@ AthletiStat/
 ├── queues/
 │   ├── all-time/                       # All-time scrape job queues
 │   └── seasons/
-│       └── completed_seasons.json  # Registry of fully-scraped historical seasons
-├── AthletiStat                     # Executable CLI entry point script
+│       └── completed_seasons.json      # Registry of fully-scraped historical seasons
+├── tests/                              # Pytest test suite
+├── AthletiStat                         # Executable CLI entry point script
 ├── requirements.txt
 └── README.md
+```
+
+---
+
+## Configuration
+
+AthletiStat provides a user-editable configuration file at [`athletistat/config.toml`](athletistat/config.toml) with sensible defaults:
+
+```toml
+[scraper]
+max_workers = 10              # Number of concurrent threads for scraping
+connect_timeout = 5           # Seconds to wait for initial connection
+read_timeout = 30             # Seconds to wait for server response
+retry_total = 5               # Max retry attempts on failed requests
+retry_backoff_factor = 1      # Exponential backoff multiplier between retries
+retry_status_codes = [429, 500, 502, 503, 504]
+page_delay = 1.5              # Seconds to wait between paginated page requests
+user_agent = "Mozilla/5.0"    # Custom User-Agent header
+verify_ssl = true             # SSL certificate verification
+
+[paths]
+options_file = "athletistat/options.json"
+scraper_output = "data/processing/output"
+queue_dir = "queues"
+log_dir = "logs"
+combined_dir = "data/processing/combined"
+dataset_dir = "data/datasets"
+dataset_info_file = "data/datasets/dataset_info.txt"
+dataset_summary_file = "data/datasets/dataset_summary.txt"
+
+[display]
+progress_bar_width = 30       # Character width of the terminal progress bar
+row_count_chunk_size = 1048576  # Stream chunk size for counting CSV rows (1 MB)
 ```
 
 ---
@@ -205,7 +248,9 @@ View all available commands:
 | `--create-dataset` | `seasons`, `all-time` | Merge cleaned files into a final aggregated dataset. |
 | `--combine` | *(flag)* | Combine all per-year season datasets into a single multi-year CSV. |
 | `--split-dataset` | `seasons`, `all-time` | Split datasets into sub-files by gender, event type, and discipline. |
-| `--year` | `<int>` | Target year for `seasons` mode. Defaults to the current year if omitted. |
+| `--update-season` | *(flag)* | In-place update of the combined season dataset for a specific year (default: current year). |
+| `--no-generate` | *(flag)* | Used with `--update-season` to skip the scrape/preprocess/generate pipeline and use existing on-disk CSV. |
+| `--year` | `<int>` | Target year for `seasons` mode or `--update-season`. Defaults to current year if omitted. |
 | `--dataset-info` | *(flag)* | Generate or update the `dataset_info.txt` file containing name, size, and row count statistics. |
 
 #### Common Examples
@@ -229,10 +274,16 @@ View all available commands:
 # Combine all available season datasets into one file
 ./AthletiStat --combine
 
+# Update the combined seasons dataset for 2026 (scrapes and updates in-place)
+./AthletiStat --update-season --year 2026
+
+# Update the combined seasons dataset using existing 2026 data on disk (skips scraping)
+./AthletiStat --update-season --year 2026 --no-generate
+
 # Split the all-time dataset by gender, type, and discipline
 ./AthletiStat --split-dataset all-time
 
-# Generate/update dataset information
+# Generate/update dataset information and README summary
 ./AthletiStat --dataset-info
 ```
 
@@ -240,7 +291,7 @@ View all available commands:
 
 ### Python API
 
-For details on importing and using the core Python classes (such as `Scraper`, `Preprocessor`, `DatasetGenerator`, and `DatasetSplitter`) directly in your own scripts, see the [Python API Reference](docs/python_api.md).
+For details on importing and using the core Python classes (such as `Scraper`, `Preprocessor`, `DatasetGenerator`, `DatasetSplitter`, `SeasonsUpdate`, and `DatasetInfo`) directly in your own scripts, see the [Python API Reference](docs/python_api.md).
 
 ---
 

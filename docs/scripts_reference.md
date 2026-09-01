@@ -71,3 +71,30 @@ done
 - File size uses integer division so small files may report `0 MB`. Use `du -sh` for human-readable sizes if needed.
 - Order of results is determined by `find`, which does not guarantee alphabetical order.
 - Does not recurse into split subdirectories.
+
+---
+
+## `fetch_info.py` (`DatasetInfo` Class)
+
+A Python module using `prettytable` to generate formatted ASCII tables summarizing dataset files, sizes (in MB/GB), and row counts.
+
+### Usage
+
+Via CLI:
+```bash
+./AthletiStat --dataset-info
+```
+
+Via Python:
+```python
+from athletistat.scripts.fetch_info import DatasetInfo
+
+info = DatasetInfo()
+info.generate_info()     # Scans datasets and writes data/datasets/dataset_info.txt
+info.generate_summary()  # Updates README.md between <!-- START_DATASET_INFO --> anchors
+```
+
+### Key Behaviors:
+- Streams CSV lines in 1 MB chunks (configurable via `cfg.display.row_count_chunk_size`) for fast row counting without loading full datasets into RAM.
+- Automatically handles both top-level and recursive split dataset paths.
+- Automatically updates `README.md` markdown table summary in-place.

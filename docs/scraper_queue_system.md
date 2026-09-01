@@ -69,16 +69,19 @@ All file writes (queue updates, CSV saves, log writes) are protected by a `threa
 
 ## Request Retry Configuration
 
-The `requests.Session` is pre-configured with `urllib3.util.retry.Retry`:
+The `requests.Session` is pre-configured with `urllib3.util.retry.Retry` (defaults loaded from `athletistat/config.toml`):
 
-| Setting | Value |
-| --- | --- |
-| Total retries | 5 |
-| Backoff factor | 1 (exponential: 1s, 2s, 4s, 8s, 16s) |
-| Retry on status codes | 429, 500, 502, 503, 504 |
-| Retry methods | GET, HEAD, OPTIONS |
+| Setting | Default Value | Config Key |
+| --- | --- | --- |
+| Total retries | 5 | `scraper.retry_total` |
+| Backoff factor | 1 (exponential: 1s, 2s, 4s, 8s, 16s) | `scraper.retry_backoff_factor` |
+| Retry on status codes | 429, 500, 502, 503, 504 | `scraper.retry_status_codes` |
+| Retry methods | GET, HEAD, OPTIONS | Built-in |
+| Connect timeout | 5s | `scraper.connect_timeout` |
+| Read timeout | 30s | `scraper.read_timeout` |
+| Page delay | 1.5s | `scraper.page_delay` |
 
-Additionally, a `1.5s` sleep is enforced between paginated page requests within a single job to avoid overwhelming the server.
+Additionally, a `1.5s` sleep (`page_delay`) is enforced between paginated page requests within a single job to avoid overwhelming the server.
 
 ---
 
