@@ -2,6 +2,6 @@
 *.log
 __pycache__/
 .venv/
-queues/season/*.json
-queues/qll-time/*.json
+queues/seasons/*.json
+queues/all-time/*.json
 
