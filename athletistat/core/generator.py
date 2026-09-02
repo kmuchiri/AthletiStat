@@ -15,12 +15,14 @@ class DatasetGenerator:
         """
         self.mode = mode
 
-    def generate_datasets(self, mode):
+    def generate_datasets(self, mode, year=None):
         """
         Generates and combines track and field datasets from processed CSVs for the given mode.
         
         Args:
             mode (str): "seasons" or "all-time".
+            year (int | str | None): When provided (seasons mode only), only generate
+                the dataset for this year directory. Ignored for "all-time" mode.
 
         Returns:
             None
@@ -34,9 +36,14 @@ class DatasetGenerator:
                 error(f"Directory not found: {combined_dir}")
                 return
 
-            year_dirs = [d for d in os.listdir(combined_dir) if os.path.isdir(os.path.join(combined_dir, d))]
-            for year in year_dirs:
-                year_path = os.path.join(combined_dir, year)
+            all_year_dirs = [d for d in os.listdir(combined_dir) if os.path.isdir(os.path.join(combined_dir, d))]
+            # Filter to a single year when one is specified
+            year_dirs = [str(year)] if year is not None else all_year_dirs
+            for yr in year_dirs:
+                if yr not in all_year_dirs:
+                    warn(f"[SEASONS] Year directory not found in combined: {os.path.join(combined_dir, yr)}")
+                    continue
+                year_path = os.path.join(combined_dir, yr)
                 csv_files = [f for f in os.listdir(year_path) if f.endswith(".csv")]
                 all_dataframes = []
 
@@ -52,9 +59,9 @@ class DatasetGenerator:
                 # Combine and save
                 if all_dataframes:
                     combined_df = pd.concat(all_dataframes, ignore_index=True)
-                    output_filename = os.path.join(output_dataset_dir, f"{year}_track_field_performances.csv")
+                    output_filename = os.path.join(output_dataset_dir, f"{yr}_track_field_performances.csv")
                     combined_df.to_csv(output_filename, index=False)
-                    success(f"Saved {year} data to {output_filename}")
+                    success(f"Saved {yr} data to {output_filename}")
                 else:
                     warn(f"No CSV files found in {year_path}")
 
@@ -129,18 +136,20 @@ class DatasetGenerator:
         else:
             warn(f"No season CSV files found in {dataset_dir}")
 
-    def run(self, combine=False):
+    def run(self, combine=False, year=None):
         """
         Executes dataset generation for 'seasons', 'all-time', or both, optionally combining seasons.
         
         Args:
             combine (bool): Whether to combine season datasets into one. Defaults to False.
+            year (int | str | None): When provided (seasons mode only), restrict generation
+                to this single year. Has no effect in "all-time" mode.
 
         Returns:
             None
         """
         if self.mode in ["seasons", "both"]:
-            self.generate_datasets("seasons")
+            self.generate_datasets("seasons", year=year)
             
         if self.mode in ["all-time", "both"]:
             self.generate_datasets("all-time")

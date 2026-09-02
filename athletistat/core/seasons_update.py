@@ -68,11 +68,11 @@ class SeasonsUpdate:
         step(f"[1/3] Scraping data for {self.year}...")
         Scraper(mode="seasons").run(year=self.year)
 
-        step(f"[2/3] Preprocessing data...")
-        Preprocessor(mode="seasons").run()
+        step(f"[2/3] Preprocessing data for {self.year}...")
+        Preprocessor(mode="seasons").run(year=self.year)
 
-        step(f"[3/3] Generating per-year dataset...")
-        DatasetGenerator(mode="seasons").run()
+        step(f"[3/3] Generating per-year dataset for {self.year}...")
+        DatasetGenerator(mode="seasons").run(year=self.year)
 
         return True
 

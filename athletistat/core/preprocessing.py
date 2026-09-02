@@ -112,12 +112,14 @@ class Preprocessor:
         match = re.search(r"\((\w{3})\)", str(venue))
         return match.group(1) if match else None
 
-    def _get_files_by_key(self, current_mode):
+    def _get_files_by_key(self, current_mode, year=None):
         """
         Scans the output directory and groups CSV files by year, gender, type, and discipline.
 
         Args:
             current_mode (str): Execution mode ("seasons" or "all-time").
+            year (int | str | None): When provided (seasons mode only), restrict scanning
+                to this single year's directory instead of all years.
 
         Returns:
             dict or None: Grouped file paths, or None if directory doesn't exist.
@@ -132,10 +134,15 @@ class Preprocessor:
         info(f"[{current_mode.upper()}] Scanning files in: {input_root}")
 
         if current_mode == "seasons":
-            years = [d for d in os.listdir(input_root) if os.path.isdir(os.path.join(input_root, d)) and d.isdigit()]
-            for year in years:
+            all_years = [d for d in os.listdir(input_root) if os.path.isdir(os.path.join(input_root, d)) and d.isdigit()]
+            # Filter to a single year when one is specified
+            years = [str(year)] if year is not None else all_years
+            for yr in years:
+                if yr not in all_years:
+                    warn(f"[SEASONS] Year directory not found: {os.path.join(input_root, yr)}")
+                    continue
                 for gender in ["male", "female"]:
-                    gender_path = os.path.join(input_root, year, gender)
+                    gender_path = os.path.join(input_root, yr, gender)
                     if not os.path.exists(gender_path):
                         continue
                         
@@ -147,7 +154,7 @@ class Preprocessor:
                                 discipline_slug = "_".join(parts[2:-1]) 
                                 base_discipline = self.normalize_discipline(discipline_slug)
                                 
-                                key = (year, gender, type_slug, base_discipline)
+                                key = (yr, gender, type_slug, base_discipline)
                                 files_by_key[key].append(os.path.join(gender_path, file))
 
         elif current_mode == "all-time":
@@ -170,17 +177,19 @@ class Preprocessor:
 
         return files_by_key
 
-    def process_data(self, current_mode):
+    def process_data(self, current_mode, year=None):
         """
         Processes and combines scraped CSV files, normalizing disciplines, parsing marks, and augmenting demographics.
 
         Args:
             current_mode (str): The mode being processed ("seasons" or "all-time").
+            year (int | str | None): When provided (seasons mode only), only process
+                files for this year. Ignored for "all-time" mode.
 
         Returns:
             None: Writes the combined files to disk.
         """
-        files_by_key = self._get_files_by_key(current_mode)
+        files_by_key = self._get_files_by_key(current_mode, year=year)
         if files_by_key is None:
             return
 
@@ -247,15 +256,19 @@ class Preprocessor:
             df.to_csv(output_path, index=False)
             cprint(f"[{current_mode.upper()}] Saved: {output_path}", Colors.BRIGHT_GREEN, prefix=Symbols.SAVE)
 
-    def run(self):
+    def run(self, year=None):
         """
         Executes the full data processing pipeline for 'seasons', 'all-time', or both based on the selected mode.
+
+        Args:
+            year (int | str | None): When provided (seasons mode only), restrict processing
+                to this single year. Has no effect in "all-time" mode.
 
         Returns:
             None
         """
         if self.mode in ["seasons", "both"]:
-            self.process_data("seasons")
+            self.process_data("seasons", year=year)
             
         if self.mode in ["all-time", "both"]:
             self.process_data("all-time")
