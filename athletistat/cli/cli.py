@@ -9,7 +9,9 @@ from athletistat.console import cprint, header, divider, success, info, step, wa
 from athletistat.config import cfg
 
 
-@click.command()
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+@click.command(context_settings=CONTEXT_SETTINGS)
 @click.option('--scraper', type=click.Choice(['seasons', 'all-time']), help='Scrape data for seasons or all-time.')
 @click.option('--preprocessing', type=click.Choice(['seasons', 'all-time']), help='Preprocess scraped data.')
 @click.option('--create-dataset', type=click.Choice(['seasons', 'all-time']), help='Generate datasets from preprocessed data.')
