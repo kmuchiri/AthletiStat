@@ -4,4 +4,5 @@ __pycache__/
 .venv/
 queues/seasons/*.json
 queues/all-time/*.json
+.pytest_cache
 
