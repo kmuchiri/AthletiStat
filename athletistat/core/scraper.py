@@ -212,7 +212,7 @@ class Scraper:
                     msg = (
                         f"\033[92m{Symbols.SAVE}\033[0m"
                         f" \033[2mSaved\033[0m"
-                        f" \033[97m{filepath}\033[0m"
+                        f" {filepath}"
                     )
                     if progress_bar is not None:
                         progress_bar.write(msg)

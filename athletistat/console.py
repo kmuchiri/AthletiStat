@@ -19,7 +19,7 @@ class Colors:
     BLUE    = "\033[34m"
     MAGENTA = "\033[35m"
     CYAN    = "\033[36m"
-    WHITE   = "\033[37m"
+    WHITE   = ""           # Use terminal default foreground (avoids white-on-white)
 
     # Bright variants
     BRIGHT_RED     = "\033[91m"
@@ -28,7 +28,7 @@ class Colors:
     BRIGHT_BLUE    = "\033[94m"
     BRIGHT_MAGENTA = "\033[95m"
     BRIGHT_CYAN    = "\033[96m"
-    BRIGHT_WHITE   = "\033[97m"
+    BRIGHT_WHITE   = ""    # Use terminal default foreground (avoids white-on-white)
 
 
 class Symbols:
@@ -150,7 +150,7 @@ class ProgressBar:
                 "{desc} \033[2m[\033[0m"
                 "\033[92m{bar}\033[0m"
                 "\033[2m]\033[0m"
-                " \033[1m\033[97m{percentage:5.1f}%\033[0m"
+                " \033[1m{percentage:5.1f}%\033[0m"
                 "  \033[2m{n}/{total}  elapsed {elapsed}\033[0m"
             ),
             ncols=None,        # auto-detect terminal width
