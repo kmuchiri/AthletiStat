@@ -50,6 +50,7 @@ class DisplayConfig:
     """Display and UI tunables."""
     progress_bar_width: int = 30
     row_count_chunk_size: int = 1048576  # 1 MB
+    show_save_log: bool = True
 
 
 @dataclass(frozen=True)

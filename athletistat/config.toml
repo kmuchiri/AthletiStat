@@ -25,3 +25,4 @@ dataset_summary_file = "data/datasets/dataset_summary.txt"  # Dataset summary re
 [display]
 progress_bar_width = 30       # Character width of the terminal progress bar
 row_count_chunk_size = 1048576  # Chunk size in bytes for counting CSV rows (1 MB)
+show_save_log = true          # Print "Saved <file>" messages above the progress bar

@@ -109,23 +109,28 @@ def step(message: str) -> None:
     cprint(message, Colors.BRIGHT_BLUE, prefix=Symbols.ARROW)
 
 
-import sys
 import threading
+from tqdm import tqdm
 
 
 class ProgressBar:
     """
     A thread-safe, static terminal progress bar that updates in-place.
 
-    Usage:
-        bar = ProgressBar(total=100, label="Scraping")
+    Backed by ``tqdm`` so that:
+    - The bar occupies exactly one line and rewrites it in place.
+    - Elapsed time and estimated time-to-completion are shown automatically.
+    - Messages printed via :meth:`write` appear *above* the bar without
+      disrupting it (uses ``tqdm.write`` internally).
+
+    Usage::
+
+        bar = ProgressBar(total=100, label="SEASONS 2026")
+        bar.write("Saved data/processing/output/...")   # printed above bar
         bar.update()        # increments by 1
         bar.update(5)       # increments by 5
         bar.finish()        # finalizes and moves to the next line
     """
-
-    FILL = "█"
-    EMPTY = "░"
 
     def __init__(self, total: int, label: str = "", width: int = 30):
         """
@@ -134,49 +139,54 @@ class ProgressBar:
         Args:
             total (int): Total number of items.
             label (str): Optional label displayed before the bar.
-            width (int): Character width of the bar itself. Defaults to 30.
+            width (int): Character width of the bar fill. Defaults to 30.
         """
         self.total = total
-        self.label = label
-        self.width = width
-        self.completed = 0
         self._lock = threading.Lock()
+        self._bar = tqdm(
+            total=total,
+            desc=f"\033[1m\033[96m{label}\033[0m" if label else "",
+            bar_format=(
+                "{desc} \033[2m[\033[0m"
+                "\033[92m{bar}\033[0m"
+                "\033[2m]\033[0m"
+                " \033[1m\033[97m{percentage:5.1f}%\033[0m"
+                "  \033[2m{n}/{total}  elapsed {elapsed}\033[0m"
+            ),
+            ncols=None,        # auto-detect terminal width
+            ascii=False,
+            leave=True,
+            miniters=1,
+            dynamic_ncols=True,
+        )
+        # Override the bar fill/empty characters to match original style
+        self._bar.bar_format = self._bar.bar_format  # keep reference
+
+    def write(self, message: str) -> None:
+        """
+        Print *message* above the progress bar without disrupting it.
+
+        This is thread-safe and can be called from worker threads.
+
+        Args:
+            message (str): The text to print above the bar.
+        """
+        tqdm.write(message)
 
     def update(self, n: int = 1) -> None:
         """
-        Increment progress and redraw the bar.
+        Increment progress by *n* and redraw the bar.
 
         Args:
             n (int): Number of items completed. Defaults to 1.
         """
         with self._lock:
-            self.completed = min(self.completed + n, self.total)
-            self._draw()
-
-    def _draw(self) -> None:
-        """Render the progress bar in-place on the current terminal line."""
-        fraction = self.completed / self.total if self.total else 1
-        filled = int(self.width * fraction)
-        bar = self.FILL * filled + self.EMPTY * (self.width - filled)
-        pct = fraction * 100
-
-        label_part = f"{self.label} " if self.label else ""
-        line = (
-            f"\r\033[K"
-            f"{Colors.BOLD}{Colors.BRIGHT_CYAN}{label_part}{Colors.RESET}"
-            f"{Colors.DIM}{Colors.WHITE}[{Colors.RESET}"
-            f"{Colors.BRIGHT_GREEN}{bar}{Colors.RESET}"
-            f"{Colors.DIM}{Colors.WHITE}]{Colors.RESET}"
-            f" {Colors.BOLD}{Colors.BRIGHT_WHITE}{pct:5.1f}%{Colors.RESET}"
-            f"  {Colors.DIM}{Colors.WHITE}{self.completed}/{self.total}{Colors.RESET}"
-        )
-        sys.stdout.write(line)
-        sys.stdout.flush()
+            self._bar.update(n)
 
     def finish(self) -> None:
         """Finalize the bar at 100% and move to the next line."""
         with self._lock:
-            self.completed = self.total
-            self._draw()
-            sys.stdout.write("\n")
-            sys.stdout.flush()
+            remaining = self.total - self._bar.n
+            if remaining > 0:
+                self._bar.update(remaining)
+            self._bar.close()

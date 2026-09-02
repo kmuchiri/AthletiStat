@@ -112,7 +112,7 @@ class Scraper:
                 jobs.append((gender, age_category, discipline_slug, type_slug, output_dir, mode, year))
         return jobs
 
-    def scrape_event(self, gender, age_category, discipline_slug, type_slug, output_dir, mode="seasons", year=None):
+    def scrape_event(self, gender, age_category, discipline_slug, type_slug, output_dir, mode="seasons", year=None, progress_bar=None):
         """
         Scrapes individual event record tables from World Athletics, parsing rows into tabular data and saving as a CSV.
 
@@ -124,6 +124,8 @@ class Scraper:
             output_dir (str): Save directory for CSVs.
             mode (str): "seasons" or "all-time". Defaults to "seasons".
             year (int or None): Target year (for "seasons" mode). Defaults to None.
+            progress_bar (ProgressBar or None): Progress bar instance used to print
+                save messages above the bar. If None, messages are printed normally.
 
         Returns:
             bool: True if completed, False if error.
@@ -206,7 +208,16 @@ class Scraper:
             df = pd.DataFrame(data)
             with self.lock:
                 df.to_csv(filepath, index=False)
-                cprint(f"Saved {filepath}", Colors.BRIGHT_GREEN, prefix=Symbols.SAVE)
+                if cfg.display.show_save_log:
+                    msg = (
+                        f"\033[92m{Symbols.SAVE}\033[0m"
+                        f" \033[2mSaved\033[0m"
+                        f" \033[97m{filepath}\033[0m"
+                    )
+                    if progress_bar is not None:
+                        progress_bar.write(msg)
+                    else:
+                        cprint(f"Saved {filepath}", Colors.BRIGHT_GREEN, prefix=Symbols.SAVE)
 
         return True  # Returns True when complete
 
@@ -327,7 +338,10 @@ class Scraper:
         progress_bar = ProgressBar(total=total, label=mode_label, width=cfg.display.progress_bar_width)
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            future_to_job = {executor.submit(self.scrape_event, *job): job for job in jobs}
+            future_to_job = {
+                executor.submit(self.scrape_event, *job, progress_bar=progress_bar): job
+                for job in jobs
+            }
 
             for future in as_completed(future_to_job):
                 job = future_to_job[future]
