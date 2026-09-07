@@ -302,3 +302,4 @@ For details on importing and using the core Python classes (such as `Scraper`, `
 - Scrape error logs are written to `logs/{mode}/{date}/scrape_errors_{timestamp}.log`.
 - The `options.json` configuration file drives which disciplines and age categories are scraped. Modifying it allows targeting a subset of events.
 - The code is designed to be run from the **project root directory**.
+- If a new scoring table is released this changes all the scores.
