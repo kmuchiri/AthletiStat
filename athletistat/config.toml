@@ -2,7 +2,7 @@
 # Edit values below to customize behavior. Delete any key to use its default.
 
 [scraper]
-max_workers = 10              # Number of concurrent threads for scraping
+max_workers = 6               # Number of concurrent threads for scraping
 connect_timeout = 5           # Seconds to wait for initial connection
 read_timeout = 30             # Seconds to wait for server response
 retry_total = 5               # Max retry attempts on failed requests
