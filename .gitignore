@@ -5,4 +5,6 @@ __pycache__/
 queues/seasons/*.json
 queues/all-time/*.json
 .pytest_cache
-
+.DS_Store
+.python-version
+.nogil/
