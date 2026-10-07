@@ -2,19 +2,25 @@
 
 # A script to print row count and file size of generated datasets
 
-echo 'Dataset Information' > ./data/datasets/dataset_info.txt
-echo " " >> ./data/datasets/dataset_info.txt
-
 dir_path="./data/datasets"
+output_file="./data/datasets/dataset_info.txt"
 
-for csv_file in "$dir_path"/**/*.csv;
-do
-    echo $csv_file
-    name=$(basename $csv_file)
-    file_size=$(($(wc -c $csv_file | cut -d ' ' -f 1)/1000000))
-    row_count=$(sed 1d $csv_file | wc -l)
+shopt -s globstar nullglob
 
-    echo "$name has $row_count records and is $file_size MB in size " >> ./data/datasets/dataset_info.txt
+table=$(
+    for csv_file in "$dir_path"/**/*.csv; do
+        [ -f "$csv_file" ] || continue
+        name=$(basename "$csv_file")
+        bytes=$(wc -c < "$csv_file")
+        file_size=$((bytes / 1000000))
+        lines=$(wc -l < "$csv_file")
+        row_count=$((lines > 0 ? lines - 1 : 0))
+        printf "%d\t%s\t%s\t%s MB\n" "$bytes" "$name" "$row_count" "$file_size"
+    done | sort -n | cut -f2- | (printf "Filename\tRowCount\tSize\n"; cat) | column -t -s $'\t'
+)
 
-done
+echo 'Dataset Information' > "$output_file"
+echo "" >> "$output_file"
+echo "$table" >> "$output_file"
 
+echo "$table"

@@ -1,30 +1,141 @@
 Dataset Information
- 
-top_track_field_performances_all_time.csv has 676513 records and is 121 MB in size 
-2001_track_field_performances.csv has 42941 records and is 7 MB in size 
-2002_track_field_performances.csv has 85850 records and is 14 MB in size 
-2003_track_field_performances.csv has 92169 records and is 15 MB in size 
-2004_track_field_performances.csv has 97248 records and is 16 MB in size 
-2005_track_field_performances.csv has 94037 records and is 15 MB in size 
-2006_track_field_performances.csv has 94922 records and is 16 MB in size 
-2007_track_field_performances.csv has 99067 records and is 16 MB in size 
-2008_track_field_performances.csv has 87195 records and is 14 MB in size 
-2009_track_field_performances.csv has 269089 records and is 45 MB in size 
-2010_track_field_performances.csv has 431907 records and is 72 MB in size 
-2011_track_field_performances.csv has 495810 records and is 83 MB in size 
-2012_track_field_performances.csv has 551713 records and is 93 MB in size 
-2013_track_field_performances.csv has 565634 records and is 95 MB in size 
-2014_track_field_performances.csv has 602079 records and is 101 MB in size 
-2015_track_field_performances.csv has 602002 records and is 101 MB in size 
-2016_track_field_performances.csv has 592121 records and is 99 MB in size 
-2017_track_field_performances.csv has 626861 records and is 105 MB in size 
-2018_track_field_performances.csv has 656557 records and is 109 MB in size 
-2019_track_field_performances.csv has 730315 records and is 123 MB in size 
-2020_track_field_performances.csv has 393811 records and is 72 MB in size 
-2021_track_field_performances.csv has 644467 records and is 120 MB in size 
-2022_track_field_performances.csv has 753955 records and is 141 MB in size 
-2023_track_field_performances.csv has 1102212 records and is 207 MB in size 
-2024_track_field_performances.csv has 1427049 records and is 267 MB in size 
-2025_track_field_performances.csv has 1610461 records and is 301 MB in size 
-2026_track_field_performances.csv has 1542281 records and is 289 MB in size 
-combined_track_field_performances_2001_2026.csv has 14327987 records and is 2557 MB in size 
+
+Filename                                         RowCount  Size
+50-kilometres-race-walk_2014-2021.csv            392       0 MB
+5-kilometres-race-walk_2003-2026.csv             781       0 MB
+2000-metres_2001-2026.csv                        1038      0 MB
+20000-metres-race-walk_2010-2025.csv             964       0 MB
+35-kilometres-race-walk_2018-2026.csv            1029      0 MB
+3000-metres-race-walk_2010-2026.csv              1046      0 MB
+2000-metres_2001-2026.csv                        1401      0 MB
+20000-metres-race-walk_2010-2026.csv             1354      0 MB
+20-kilometres_2001-2025.csv                      1651      0 MB
+35-kilometres-race-walk_2010-2026.csv            1863      0 MB
+50-metres_2001-2026.csv                          2349      0 MB
+two-miles_2001-2026.csv                          2109      0 MB
+two-miles_2002-2026.csv                          3070      0 MB
+5-kilometres_2018-2026.csv                       4127      0 MB
+50-metres_2001-2026.csv                          4284      0 MB
+10-miles-road_2001-2025.csv                      4005      0 MB
+20-kilometres_2001-2025.csv                      5155      0 MB
+50-kilometres-race-walk_2001-2022.csv            4677      0 MB
+15-kilometres_2001-2026.csv                      5340      0 MB
+15-kilometres_2001-2026.csv                      5836      1 MB
+5-kilometres_2018-2026.csv                       6316      1 MB
+10-miles-road_2001-2025.csv                      7267      1 MB
+2000-metres-steeplechase_2001-2026.csv           9597      1 MB
+1000-metres_2001-2026.csv                        12559     2 MB
+3000-metres-race-walk_2010-2026.csv              11759     2 MB
+10000-metres-race-walk_2010-2026.csv             12563     2 MB
+55-metres_2001-2026.csv                          15442     2 MB
+600-metres_2002-2026.csv                         14230     2 MB
+5-kilometres-race-walk_2001-2026.csv             14074     2 MB
+600-metres_2002-2026.csv                         15575     2 MB
+55-metres_2001-2026.csv                          17629     3 MB
+10000-metres-race-walk_2010-2026.csv             16377     3 MB
+1000-metres_2001-2026.csv                        18971     3 MB
+10-kilometres-race-walk_2001-2026.csv            19541     3 MB
+20-kilometres-race-walk_2001-2026.csv            19273     3 MB
+5000-metres-race-walk_2010-2026.csv              20495     4 MB
+10-kilometres-race-walk_2001-2026.csv            24944     4 MB
+20-kilometres-race-walk_2001-2026.csv            24344     4 MB
+2000-metres-steeplechase_2001-2026.csv           24731     5 MB
+300-metres_2001-2026.csv                         29025     5 MB
+5000-metres-race-walk_2010-2026.csv              28982     5 MB
+combined-events_2001-2026.csv                    33245     5 MB
+decathlon_2001-2026.csv                          33245     5 MB
+10000-metres_2001-2026.csv                       35411     6 MB
+300-metres_2001-2026.csv                         38093     6 MB
+2001_track_field_performances.csv                42941     7 MB
+10-kilometres_2001-2026.csv                      42121     7 MB
+one-mile_2001-2026.csv                           39162     7 MB
+combined-events_2001-2026.csv                    47425     8 MB
+heptathlon_2001-2026.csv                         47425     8 MB
+marathon_2001-2026.csv                           53684     8 MB
+10-kilometres_2001-2026.csv                      54733     9 MB
+one-mile_2001-2026.csv                           51796     9 MB
+half-marathon_2001-2026.csv                      55301     9 MB
+10000-metres_2001-2026.csv                       67843     12 MB
+marathon_2001-2026.csv                           87870     14 MB
+2002_track_field_performances.csv                85850     14 MB
+2008_track_field_performances.csv                87195     14 MB
+half-marathon_2001-2026.csv                      89616     15 MB
+2003_track_field_performances.csv                92169     15 MB
+2005_track_field_performances.csv                94037     15 MB
+2006_track_field_performances.csv                94922     16 MB
+2004_track_field_performances.csv                97248     16 MB
+2007_track_field_performances.csv                99067     16 MB
+3000-metres-steeplechase_2001-2026.csv           83064     17 MB
+race-walks_2001-2026.csv                         95881     18 MB
+3000-metres-steeplechase_2001-2026.csv           96985     19 MB
+race-walks_2001-2026.csv                         108577    21 MB
+5000-metres_2001-2026.csv                        116384    21 MB
+3000-metres_2001-2026.csv                        124697    23 MB
+hammer-throw_2001-2026.csv                       136006    23 MB
+relay_events_2001-2026.csv                       130936    23 MB
+javelin-throw_2001-2026.csv                      138826    24 MB
+discus-throw_2001-2026.csv                       149970    26 MB
+3000-metres_2001-2026.csv                        146928    27 MB
+road-running_2001-2026.csv                       166229    28 MB
+javelin-throw_2001-2026.csv                      166692    29 MB
+5000-metres_2001-2026.csv                        166153    30 MB
+discus-throw_2001-2026.csv                       173451    30 MB
+hammer-throw_2001-2026.csv                       203183    35 MB
+triple-jump_2001-2026.csv                        216355    37 MB
+400-metres-hurdles_2001-2026.csv                 211378    39 MB
+shot-put_2001-2026.csv                           244508    40 MB
+400-metres-hurdles_2001-2026.csv                 213969    40 MB
+pole-vault_2001-2026.csv                         244773    41 MB
+road-running_2001-2026.csv                       256793    43 MB
+triple-jump_2001-2026.csv                        245233    43 MB
+pole-vault_2001-2026.csv                         261282    43 MB
+high-jump_2001-2026.csv                          272517    45 MB
+2009_track_field_performances.csv                269089    45 MB
+high-jump_2001-2026.csv                          295059    49 MB
+1500-metres_2001-2026.csv                        274702    50 MB
+shot-put_2001-2026.csv                           321613    54 MB
+110-metres-hurdles_2001-2026.csv                 287465    54 MB
+1500-metres_2001-2026.csv                        305352    55 MB
+long-jump_2001-2026.csv                          342991    58 MB
+800-metres_2001-2026.csv                         340880    62 MB
+100-metres-hurdles_2001-2026.csv                 343182    66 MB
+60-metres_2001-2026.csv                          385723    67 MB
+2010_track_field_performances.csv                431907    72 MB
+2020_track_field_performances.csv                393811    72 MB
+800-metres_2001-2026.csv                         441166    79 MB
+2011_track_field_performances.csv                495810    83 MB
+long-jump_2001-2026.csv                          520454    89 MB
+2012_track_field_performances.csv                551713    93 MB
+hurdles_2001-2026.csv                            498843    93 MB
+2013_track_field_performances.csv                565634    95 MB
+60-metres_2001-2026.csv                          552957    96 MB
+2016_track_field_performances.csv                592121    99 MB
+2015_track_field_performances.csv                602002    101 MB
+2014_track_field_performances.csv                602079    101 MB
+2017_track_field_performances.csv                626861    105 MB
+hurdles_2001-2026.csv                            557151    107 MB
+400-metres_2001-2026.csv                         620681    107 MB
+2018_track_field_performances.csv                656557    109 MB
+400-metres_2001-2026.csv                         637680    111 MB
+throws_2001-2026.csv                             669310    113 MB
+100-metres_2001-2026.csv                         643663    116 MB
+2021_track_field_performances.csv                644467    120 MB
+top_track_field_performances_all_time.csv        676513    121 MB
+2019_track_field_performances.csv                730315    123 MB
+200-metres_2001-2026.csv                         686050    123 MB
+200-metres_2001-2026.csv                         710730    126 MB
+100-metres_2001-2026.csv                         762019    135 MB
+2022_track_field_performances.csv                753955    141 MB
+throws_2001-2026.csv                             864939    149 MB
+jumps_2001-2026.csv                              1076636   182 MB
+middlelong_2001-2026.csv                         1093867   204 MB
+2023_track_field_performances.csv                1102212   207 MB
+jumps_2001-2026.csv                              1322028   226 MB
+middlelong_2001-2026.csv                         1299937   239 MB
+2024_track_field_performances.csv                1427049   267 MB
+2026_track_field_performances.csv                1542281   289 MB
+2025_track_field_performances.csv                1610461   301 MB
+sprints_2001-2026.csv                            2525969   444 MB
+sprints_2001-2026.csv                            2580356   458 MB
+individual_events_2001-2026.csv                  13197186  2345 MB
+combined_track_field_performances_2001_2026.csv  14327987  2557 MB
