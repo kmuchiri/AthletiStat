@@ -6,7 +6,7 @@ This document traces exactly how data moves through the pipeline from raw scrape
 
 ## Stage 1 - Extraction (`scraper.py`)
 
-**Input:** `athletistat/options.json` (discipline/gender/age-category config)
+**Input:** `options.json` (discipline/gender/age-category config)
 
 **Output directory:** `data/processing/output/{mode}/`
 

@@ -13,7 +13,7 @@ user_agent = "Mozilla/5.0"    # User-Agent header sent with requests
 verify_ssl = true             # Whether to verify SSL certificates
 
 [paths]
-options_file = "athletistat/options.json"              # Discipline mappings config
+options_file = "options.json"                          # Discipline mappings config
 scraper_output = "data/processing/output"              # Raw scraped CSV output
 queue_dir = "queues"                                   # Scrape job queue storage
 log_dir = "logs"                                       # Scrape error logs

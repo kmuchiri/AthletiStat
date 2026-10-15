@@ -1,6 +1,6 @@
 # options.json Configuration Reference
 
-`athletistat/options.json` is the central configuration file that drives which disciplines, age categories, genders, and country mappings the pipeline uses. It is a JSON array of option objects, each describing one configurable dimension.
+`options.json` is the central configuration file that drives which disciplines, age categories, genders, and country mappings the pipeline uses. It is a JSON array of option objects, each describing one configurable dimension.
 
 ---
 
