@@ -148,6 +148,7 @@ func NewProgressBar(total int, label string, width int) *ProgressBar {
 		progressbar.OptionSetWidth(width),
 		progressbar.OptionShowCount(),
 		progressbar.OptionShowElapsedTimeOnFinish(),
+		progressbar.OptionEnableColorCodes(true),
 		progressbar.OptionSetTheme(progressbar.Theme{
 			Saucer:        "[green]=[reset]",
 			SaucerHead:    "[green]>[reset]",

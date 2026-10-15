@@ -15,7 +15,7 @@ func TestDefaultConfig(t *testing.T) {
 	assert.Equal(t, 5, cfg.Scraper.ConnectTimeout)
 	assert.Equal(t, 30, cfg.Scraper.ReadTimeout)
 	assert.Equal(t, 1.5, cfg.Scraper.PageDelay)
-	assert.Equal(t, "athletistat/options.json", cfg.Paths.OptionsFile)
+	assert.Equal(t, "options.json", cfg.Paths.OptionsFile)
 	assert.Equal(t, 30, cfg.Display.ProgressBarWidth)
 	assert.True(t, cfg.Display.ShowSaveLog)
 }

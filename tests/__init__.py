@@ -1,1 +1,0 @@
-# AthletiStat test suite

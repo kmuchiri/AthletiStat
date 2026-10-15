@@ -49,7 +49,7 @@ type Config struct {
 func DefaultConfig() *Config {
 	return &Config{
 		Scraper: ScraperConfig{
-			MaxWorkers:         4,
+			MaxWorkers:         10,
 			ConnectTimeout:     5,
 			ReadTimeout:        30,
 			RetryTotal:         5,
@@ -60,7 +60,7 @@ func DefaultConfig() *Config {
 			VerifySSL:          true,
 		},
 		Paths: PathsConfig{
-			OptionsFile:        "athletistat/options.json",
+			OptionsFile:        "options.json",
 			ScraperOutput:      "data/processing/output",
 			QueueDir:           "queues",
 			LogDir:             "logs",
@@ -83,7 +83,7 @@ func LoadConfig(configPath string) (*Config, error) {
 
 	if configPath == "" {
 		// Try standard locations
-		for _, candidate := range []string{"athletistat/config.toml", "config.toml"} {
+		for _, candidate := range []string{"config.toml", "athletistat/config.toml"} {
 			if _, err := os.Stat(candidate); err == nil {
 				configPath = candidate
 				break
