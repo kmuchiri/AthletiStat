@@ -9,3 +9,4 @@ queues/all-time/*.json
 .python-version
 .nogil/
 bin/
+docs/ref
