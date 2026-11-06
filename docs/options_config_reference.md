@@ -9,10 +9,9 @@
 ```json
 [
   { "name": "ageCategory", ... },
-  { "name": "regionType", ... },
+  { "name": "gender", ... },
   { "name": "region", ... },
-  { "name": "disciplineCode", ... },
-  ...
+  { "name": "disciplineCode", ... }
 ]
 ```
 
@@ -20,11 +19,11 @@ Each object has a `"name"` key that identifies its role. The scraper and preproc
 
 ---
 
-## Entries Used by the Pipeline
+## Entries in options.json
 
 ### `ageCategory`
 
-Defines the valid age categories. The scraper iterates over these when building jobs.
+Defines valid age categories:
 
 ```json
 {
@@ -33,18 +32,32 @@ Defines the valid age categories. The scraper iterates over these when building 
     { "value": "senior", "label": "Senior" },
     { "value": "u20",    "label": "U20" },
     { "value": "u18",    "label": "U18" }
-  ],
-  "defaultValue": "senior"
+  ]
 }
 ```
 
-**Used by:** `Scraper._load_mappings()` - age categories are embedded in the discipline mapping keys.
+---
+
+### `gender`
+
+Defines valid genders (`male`, `female`, and `mixed` for mixed relays):
+
+```json
+{
+  "name": "gender",
+  "values": [
+    { "value": "male",   "label": "Men" },
+    { "value": "female", "label": "Women" },
+    { "value": "mixed",  "label": "Mixed" }
+  ]
+}
+```
 
 ---
 
 ### `region` (countries case)
 
-The `region` entry contains a `cases` array. The case where `"regionType": "countries"` holds the full world country list used to resolve ISO codes to full country names.
+The `region` entry contains a `cases` array with the `countries` case holding the 3-letter WA country codes and their full names.
 
 ```json
 {
@@ -62,7 +75,7 @@ The `region` entry contains a `cases` array. The case where `"regionType": "coun
 }
 ```
 
-**Used by:** `Preprocessor.__init__()` - builds `self.country_lookup` (a `{code: label}` dict) for resolving `nationality` → `nat_full` and `venue_country`.
+**Used by:** `Preprocessor.loadCountryLookup()` for resolving `nationality` → `nat_full` and `venue_country`.
 
 > **Note:** Country codes in this file are lowercase 3-letter WA codes (e.g., `jam`), not standard ISO 3166-1 alpha-3 (e.g., `JAM`). The preprocessor normalizes incoming nationality strings to lowercase before lookup.
 
@@ -70,7 +83,7 @@ The `region` entry contains a `cases` array. The case where `"regionType": "coun
 
 ### `disciplineCode`
 
-This is the most critical entry. It has a `cases` array keyed by `(gender, ageCategory)` pairs. Each case lists all disciplines valid for that combination.
+This entry has a `cases` array keyed by `(gender, ageCategory)` pairs (including `mixed senior` and `mixed u20`). Each case lists all disciplines valid for that combination.
 
 ```json
 {
@@ -81,54 +94,28 @@ This is the most critical entry. It has a `cases` array keyed by `(gender, ageCa
       "ageCategory": "senior",
       "values": [
         {
-          "disciplineNameUrlSlug": "100-metres",
-          "typeNameUrlSlug": "sprints"
+          "value": "10230285",
+          "disciplineNameUrlSlug": "50-metres",
+          "typeNameUrlSlug": "sprints",
+          "environment": "outdoor",
+          "label": "50 Metres"
         },
         {
-          "disciplineNameUrlSlug": "long-jump",
-          "typeNameUrlSlug": "jumps"
+          "value": "10229552",
+          "disciplineNameUrlSlug": "200-metres-short-track",
+          "typeNameUrlSlug": "sprints",
+          "environment": "indoor",
+          "label": "200 Metres Short Track"
         },
         ...
       ]
     },
-    {
-      "gender": "female",
-      "ageCategory": "u20",
-      "values": [ ... ]
-    }
+    ...
   ]
 }
 ```
 
-**Used by:** `Scraper._load_mappings()` - produces `self.mappings`, a dict of the form:
-
-```python
-{
-    ("male", "senior"):   [("100-metres", "sprints"), ("long-jump", "jumps"), ...],
-    ("female", "u20"):    [...],
-    ...
-}
-```
-
-This dict is what `Scraper.build_jobs()` iterates over to construct the full job list.
-
----
-
-## Entries Not Used by the Pipeline
-
-The following entries exist in `options.json` because the file is sourced directly from the World Athletics filter API response. They are not consumed by any pipeline code:
-
-| Name | Description |
-| --- | --- |
-| `regionType` | Area/Countries/Groups selector |
-| `environment` | Indoor/outdoor filter |
-| `windReading` | Wind reading filter |
-| `timing` | Timing method filter |
-| `bestResultsOnly` | One-per-athlete vs. all results |
-| `fiftyPercentRule` | Road race regularity filter |
-| `oversizedTrack` | Oversized indoor track filter |
-| `page` | Pagination range (handled dynamically by scraper) |
-| `limit` | Results-per-page limit |
+**Used by:** `Scraper.LoadMappings()` - builds mappings for `Scraper.BuildJobs()` to construct scraping jobs. Short track events carry `"environment": "indoor"` and retain their equivalent outdoor `typeNameUrlSlug`. 2026 race walk additions (`half-marathon-race-walk`, `marathon-race-walk`) and mixed relays (`gender: "mixed"`) are also included.
 
 ---
 
