@@ -1,7 +1,6 @@
 [
   {
     "name": "ageCategory",
-    "label": "Age Category",
     "values": [
       {
         "value": "senior",
@@ -15,72 +14,28 @@
         "value": "u18",
         "label": "U18"
       }
-    ],
-    "defaultValue": "senior"
+    ]
   },
-  
   {
-    "name": "regionType",
-    "label": "Areas\/Countries",
+    "name": "gender",
     "values": [
       {
-        "value": "world",
-        "label": "World"
+        "value": "male",
+        "label": "Men"
       },
       {
-        "value": "area",
-        "label": "Area"
+        "value": "female",
+        "label": "Women"
       },
       {
-        "value": "countries",
-        "label": "Countries"
-      },
-      {
-        "value": "country-group",
-        "label": "Groups of Countries"
+        "value": "mixed",
+        "label": "Mixed"
       }
-    ],
-    "defaultValue": "world"
+    ]
   },
   {
     "name": "region",
-    "dependsOn": [
-      "regionType"
-    ],
     "cases": [
-      {
-        "regionType": "world",
-        "values": null
-      },
-      {
-        "regionType": "area",
-        "values": [
-          {
-            "value": "africa",
-            "label": "Africa"
-          },
-          {
-            "value": "asia",
-            "label": "Asia"
-          },
-          {
-            "value": "europe",
-            "label": "Europe"
-          },
-          {
-            "value": "north and central america",
-            "label": "North and Central America"
-          },
-          {
-            "value": "oceania",
-            "label": "Oceania"
-          },
-          {
-            "value": "south america",
-            "label": "South America"
-          }
-        ]
-      },
       {
         "regionType": "countries",
         "values": [
@@ -278,7 +233,7 @@
           },
           {
             "value": "civ",
-            "label": "Côte d’Ivoire"
+            "label": "C\u00f4te d\u2019Ivoire"
           },
           {
             "value": "cro",
@@ -294,7 +249,7 @@
           },
           {
             "value": "cze",
-            "label": "Czech Republic"
+            "label": "Czechia"
           },
           {
             "value": "cod",
@@ -589,10 +544,6 @@
             "label": "Micronesia"
           },
           {
-            "value": "mda",
-            "label": "Moldova"
-          },
-          {
             "value": "mon",
             "label": "Monaco"
           },
@@ -721,6 +672,10 @@
             "label": "Qatar"
           },
           {
+            "value": "mda",
+            "label": "Republic of Moldova"
+          },
+          {
             "value": "mkd",
             "label": "Republic of North Macedonia"
           },
@@ -734,7 +689,7 @@
           },
           {
             "value": "rus",
-            "label": "Russia"
+            "label": "Russian Federation"
           },
           {
             "value": "rwa",
@@ -878,7 +833,7 @@
           },
           {
             "value": "tur",
-            "label": "Türkiye"
+            "label": "T\u00fcrkiye"
           },
           {
             "value": "tkm",
@@ -941,2265 +896,3406 @@
             "label": "Zimbabwe"
           }
         ]
-      },
+      }
+    ]
+  },
+  {
+    "name": "disciplineCode",
+    "cases": [
       {
-        "regionType": "country-group",
+        "gender": "male",
+        "ageCategory": "senior",
         "values": [
           {
-            "value": "balkan championships",
-            "label": "Balkan Championships"
+            "value": "10230285",
+            "disciplineNameUrlSlug": "50-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "50 Metres"
           },
           {
-            "value": "baltic team championships",
-            "label": "Baltic Team Championships"
+            "value": "10230287",
+            "disciplineNameUrlSlug": "55-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "55 Metres"
           },
           {
-            "value": "cac games",
-            "label": "CAC Games"
+            "value": "10229683",
+            "disciplineNameUrlSlug": "60-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "60 Metres"
           },
           {
-            "value": "central asian games",
-            "label": "Central Asian Games"
+            "value": "10229630",
+            "disciplineNameUrlSlug": "100-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "100 Metres"
           },
           {
-            "value": "commonwealth games",
-            "label": "Commonwealth Games"
+            "value": "10229688",
+            "disciplineNameUrlSlug": "150-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "150 Metres"
           },
           {
-            "value": "east asian games",
-            "label": "East Asian Games"
+            "value": "10229605",
+            "disciplineNameUrlSlug": "200-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "200 Metres"
           },
           {
-            "value": "european combined events team championships first league",
-            "label": "European Combined Events Team Championships First League"
+            "value": "10229552",
+            "disciplineNameUrlSlug": "200-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "200 Metres Short Track"
           },
           {
-            "value": "european combined events team championships second league",
-            "label": "European Combined Events Team Championships Second League"
+            "value": "10229500",
+            "disciplineNameUrlSlug": "300-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "300 Metres"
           },
           {
-            "value": "european combined events team championships super league",
-            "label": "European Combined Events Team Championships Super League"
+            "value": "10229553",
+            "disciplineNameUrlSlug": "300-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "300 Metres Short Track"
           },
           {
-            "value": "european team championships",
-            "label": "European Team Championships"
+            "value": "10229631",
+            "disciplineNameUrlSlug": "400-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "400 Metres"
           },
           {
-            "value": "european team championships 1st division",
-            "label": "European Team Championships 1st Division"
+            "value": "10229554",
+            "disciplineNameUrlSlug": "400-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "400 Metres Short Track"
           },
           {
-            "value": "european team championships 2nd division",
-            "label": "European Team Championships 2nd Division"
+            "value": "204611",
+            "disciplineNameUrlSlug": "500-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "500 Metres"
           },
           {
-            "value": "european team championships 3rd division",
-            "label": "European Team Championships 3rd Division"
+            "value": "10229555",
+            "disciplineNameUrlSlug": "500-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "500 Metres Short Track"
           },
           {
-            "value": "francophone games",
-            "label": "Francophone Games"
+            "value": "10229604",
+            "disciplineNameUrlSlug": "600-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "600 Metres"
           },
           {
-            "value": "games of the small states of europe",
-            "label": "Games of the Small States of Europe"
+            "value": "10229600",
+            "disciplineNameUrlSlug": "600-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "600 Metres Short Track"
           },
           {
-            "value": "ibero-american championships",
-            "label": "Ibero-American Championships"
+            "value": "10229501",
+            "disciplineNameUrlSlug": "800-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "800 Metres"
           },
           {
-            "value": "mediterranean games",
-            "label": "Mediterranean Games"
+            "value": "10229556",
+            "disciplineNameUrlSlug": "800-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "800 Metres Short Track"
           },
           {
-            "value": "nordic championships",
-            "label": "Nordic Championships"
+            "value": "10229606",
+            "disciplineNameUrlSlug": "1000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1000 Metres"
           },
           {
-            "value": "pan american games",
-            "label": "Pan American Games"
+            "value": "10229557",
+            "disciplineNameUrlSlug": "1000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1000 Metres Short Track"
           },
           {
-            "value": "pan arab games\/championships",
-            "label": "Pan Arab Games\/Championships"
+            "value": "10229502",
+            "disciplineNameUrlSlug": "1500-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1500 Metres"
           },
           {
-            "value": "south asian games",
-            "label": "South Asian Games"
+            "value": "10229558",
+            "disciplineNameUrlSlug": "1500-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1500 Metres Short Track"
           },
           {
-            "value": "south-east asian games",
-            "label": "South-East Asian Games"
+            "value": "10229503",
+            "disciplineNameUrlSlug": "one-mile",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "Mile"
+          },
+          {
+            "value": "10229559",
+            "disciplineNameUrlSlug": "one-mile-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "Mile Short Track"
+          },
+          {
+            "value": "10229632",
+            "disciplineNameUrlSlug": "2000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres"
+          },
+          {
+            "value": "10229561",
+            "disciplineNameUrlSlug": "2000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2000 Metres Short Track"
+          },
+          {
+            "value": "10229607",
+            "disciplineNameUrlSlug": "3000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres"
+          },
+          {
+            "value": "10229560",
+            "disciplineNameUrlSlug": "3000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "3000 Metres Short Track"
+          },
+          {
+            "value": "10229608",
+            "disciplineNameUrlSlug": "two-miles",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2 Miles"
+          },
+          {
+            "value": "10229599",
+            "disciplineNameUrlSlug": "two-miles-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2 Miles Short Track"
+          },
+          {
+            "value": "10229609",
+            "disciplineNameUrlSlug": "5000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "5000 Metres"
+          },
+          {
+            "value": "10229562",
+            "disciplineNameUrlSlug": "5000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "5000 Metres Short Track"
+          },
+          {
+            "value": "10229610",
+            "disciplineNameUrlSlug": "10000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "10,000 Metres"
+          },
+          {
+            "value": "10230274",
+            "disciplineNameUrlSlug": "50-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "50 Metres Hurdles"
+          },
+          {
+            "value": "10230289",
+            "disciplineNameUrlSlug": "55-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "55 Metres Hurdles"
+          },
+          {
+            "value": "10230176",
+            "disciplineNameUrlSlug": "60-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles"
+          },
+          {
+            "value": "10229611",
+            "disciplineNameUrlSlug": "110-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "110 Metres Hurdles"
+          },
+          {
+            "value": "10229718",
+            "disciplineNameUrlSlug": "300-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "300 Metres Hurdles"
+          },
+          {
+            "value": "10229612",
+            "disciplineNameUrlSlug": "400-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "400 Metres Hurdles"
+          },
+          {
+            "value": "10229613",
+            "disciplineNameUrlSlug": "2000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres Steeplechase"
+          },
+          {
+            "value": "10229614",
+            "disciplineNameUrlSlug": "3000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres Steeplechase"
+          },
+          {
+            "value": "10229615",
+            "disciplineNameUrlSlug": "high-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "High Jump"
+          },
+          {
+            "value": "10229616",
+            "disciplineNameUrlSlug": "pole-vault",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Pole Vault"
+          },
+          {
+            "value": "10229617",
+            "disciplineNameUrlSlug": "long-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Long Jump"
+          },
+          {
+            "value": "10229618",
+            "disciplineNameUrlSlug": "triple-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Triple Jump"
+          },
+          {
+            "value": "10229619",
+            "disciplineNameUrlSlug": "shot-put",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put"
+          },
+          {
+            "value": "10229620",
+            "disciplineNameUrlSlug": "discus-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw"
+          },
+          {
+            "value": "10229621",
+            "disciplineNameUrlSlug": "hammer-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw"
+          },
+          {
+            "value": "10229636",
+            "disciplineNameUrlSlug": "javelin-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw"
+          },
+          {
+            "value": "10229752",
+            "disciplineNameUrlSlug": "1-mile-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Mile Road"
+          },
+          {
+            "value": "204597",
+            "disciplineNameUrlSlug": "5-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "5 Kilometres Road"
+          },
+          {
+            "value": "10229507",
+            "disciplineNameUrlSlug": "10-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Kilometres Road"
+          },
+          {
+            "value": "10229504",
+            "disciplineNameUrlSlug": "15-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "15 Kilometres Road"
+          },
+          {
+            "value": "10229505",
+            "disciplineNameUrlSlug": "10-miles-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Miles Road"
+          },
+          {
+            "value": "10229506",
+            "disciplineNameUrlSlug": "20-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "20 Kilometres Road"
+          },
+          {
+            "value": "10229633",
+            "disciplineNameUrlSlug": "half-marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Half Marathon"
+          },
+          {
+            "value": "10229634",
+            "disciplineNameUrlSlug": "marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Marathon"
+          },
+          {
+            "value": "10229776",
+            "disciplineNameUrlSlug": "3000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "3000 Metres Race Walk"
+          },
+          {
+            "value": "10229786",
+            "disciplineNameUrlSlug": "3000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "3000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229644",
+            "disciplineNameUrlSlug": "5000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5000 Metres Race Walk"
+          },
+          {
+            "value": "10229624",
+            "disciplineNameUrlSlug": "5-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5 Kilometres Race Walk"
+          },
+          {
+            "value": "10229669",
+            "disciplineNameUrlSlug": "5000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "5000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229637",
+            "disciplineNameUrlSlug": "10000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10,000 Metres Race Walk"
+          },
+          {
+            "value": "10229625",
+            "disciplineNameUrlSlug": "10-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10 Kilometres Race Walk"
+          },
+          {
+            "value": "10229638",
+            "disciplineNameUrlSlug": "20000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20,000 Metres Race Walk"
+          },
+          {
+            "value": "10229508",
+            "disciplineNameUrlSlug": "20-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20 Kilometres Race Walk"
+          },
+          {
+            "value": "10230472",
+            "disciplineNameUrlSlug": "half-marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Half Marathon Race Walk"
+          },
+          {
+            "value": "10229626",
+            "disciplineNameUrlSlug": "30-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "30 Kilometres Race Walk"
+          },
+          {
+            "value": "10229627",
+            "disciplineNameUrlSlug": "35-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "35 Kilometres Race Walk"
+          },
+          {
+            "value": "10230474",
+            "disciplineNameUrlSlug": "marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Marathon Race Walk"
+          },
+          {
+            "value": "10229628",
+            "disciplineNameUrlSlug": "50-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "50 Kilometres Race Walk"
+          },
+          {
+            "value": "10229629",
+            "disciplineNameUrlSlug": "decathlon",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Decathlon"
+          },
+          {
+            "value": "10229571",
+            "disciplineNameUrlSlug": "heptathlon-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Heptathlon Short Track"
+          },
+          {
+            "value": "204593",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay"
+          },
+          {
+            "value": "204601",
+            "disciplineNameUrlSlug": "4x200-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x200 Metres Relay"
+          },
+          {
+            "value": "204602",
+            "disciplineNameUrlSlug": "4x200-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x200 Metres Relay Short Track"
+          },
+          {
+            "value": "10229754",
+            "disciplineNameUrlSlug": "medley-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "Sprint Medley 1000m"
+          },
+          {
+            "value": "204595",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay"
+          },
+          {
+            "value": "204609",
+            "disciplineNameUrlSlug": "4x400-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x400 Metres Relay Short Track"
+          },
+          {
+            "value": "204605",
+            "disciplineNameUrlSlug": "4x800-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x800 Metres Relay"
+          },
+          {
+            "value": "10229643",
+            "disciplineNameUrlSlug": "4x800-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x800 Metres Relay Short Track"
+          },
+          {
+            "value": "204606",
+            "disciplineNameUrlSlug": "4x1500-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x1500 Metres Relay"
+          }
+        ]
+      },
+      {
+        "gender": "male",
+        "ageCategory": "u20",
+        "values": [
+          {
+            "value": "10230285",
+            "disciplineNameUrlSlug": "50-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "50 Metres"
+          },
+          {
+            "value": "10230287",
+            "disciplineNameUrlSlug": "55-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "55 Metres"
+          },
+          {
+            "value": "10229683",
+            "disciplineNameUrlSlug": "60-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "60 Metres"
+          },
+          {
+            "value": "10229630",
+            "disciplineNameUrlSlug": "100-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "100 Metres"
+          },
+          {
+            "value": "10229688",
+            "disciplineNameUrlSlug": "150-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "150 Metres"
+          },
+          {
+            "value": "10229605",
+            "disciplineNameUrlSlug": "200-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "200 Metres"
+          },
+          {
+            "value": "10229552",
+            "disciplineNameUrlSlug": "200-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "200 Metres Short Track"
+          },
+          {
+            "value": "10229500",
+            "disciplineNameUrlSlug": "300-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "300 Metres"
+          },
+          {
+            "value": "10229553",
+            "disciplineNameUrlSlug": "300-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "300 Metres Short Track"
+          },
+          {
+            "value": "10229631",
+            "disciplineNameUrlSlug": "400-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "400 Metres"
+          },
+          {
+            "value": "10229554",
+            "disciplineNameUrlSlug": "400-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "400 Metres Short Track"
+          },
+          {
+            "value": "204611",
+            "disciplineNameUrlSlug": "500-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "500 Metres"
+          },
+          {
+            "value": "10229555",
+            "disciplineNameUrlSlug": "500-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "500 Metres Short Track"
+          },
+          {
+            "value": "10229604",
+            "disciplineNameUrlSlug": "600-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "600 Metres"
+          },
+          {
+            "value": "10229600",
+            "disciplineNameUrlSlug": "600-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "600 Metres Short Track"
+          },
+          {
+            "value": "10229501",
+            "disciplineNameUrlSlug": "800-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "800 Metres"
+          },
+          {
+            "value": "10229556",
+            "disciplineNameUrlSlug": "800-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "800 Metres Short Track"
+          },
+          {
+            "value": "10229606",
+            "disciplineNameUrlSlug": "1000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1000 Metres"
+          },
+          {
+            "value": "10229557",
+            "disciplineNameUrlSlug": "1000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1000 Metres Short Track"
+          },
+          {
+            "value": "10229502",
+            "disciplineNameUrlSlug": "1500-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1500 Metres"
+          },
+          {
+            "value": "10229558",
+            "disciplineNameUrlSlug": "1500-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1500 Metres Short Track"
+          },
+          {
+            "value": "10229503",
+            "disciplineNameUrlSlug": "one-mile",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "Mile"
+          },
+          {
+            "value": "10229559",
+            "disciplineNameUrlSlug": "one-mile-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "Mile Short Track"
+          },
+          {
+            "value": "10229632",
+            "disciplineNameUrlSlug": "2000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres"
+          },
+          {
+            "value": "10229561",
+            "disciplineNameUrlSlug": "2000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2000 Metres Short Track"
+          },
+          {
+            "value": "10229607",
+            "disciplineNameUrlSlug": "3000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres"
+          },
+          {
+            "value": "10229560",
+            "disciplineNameUrlSlug": "3000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "3000 Metres Short Track"
+          },
+          {
+            "value": "10229608",
+            "disciplineNameUrlSlug": "two-miles",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2 Miles"
+          },
+          {
+            "value": "10229599",
+            "disciplineNameUrlSlug": "two-miles-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2 Miles Short Track"
+          },
+          {
+            "value": "10229609",
+            "disciplineNameUrlSlug": "5000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "5000 Metres"
+          },
+          {
+            "value": "10229562",
+            "disciplineNameUrlSlug": "5000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "5000 Metres Short Track"
+          },
+          {
+            "value": "10229610",
+            "disciplineNameUrlSlug": "10000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "10,000 Metres"
+          },
+          {
+            "value": "10230274",
+            "disciplineNameUrlSlug": "50-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "50 Metres Hurdles"
+          },
+          {
+            "value": "10230289",
+            "disciplineNameUrlSlug": "55-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "55 Metres Hurdles"
+          },
+          {
+            "value": "10230176",
+            "disciplineNameUrlSlug": "60-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles"
+          },
+          {
+            "value": "10230280",
+            "disciplineNameUrlSlug": "60m-hurdles-990cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles (99.0cm)"
+          },
+          {
+            "value": "10229611",
+            "disciplineNameUrlSlug": "110-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "110 Metres Hurdles"
+          },
+          {
+            "value": "10229825",
+            "disciplineNameUrlSlug": "110m-hurdles-990cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "110 Metres Hurdles (99.0cm)"
+          },
+          {
+            "value": "10229718",
+            "disciplineNameUrlSlug": "300-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "300 Metres Hurdles"
+          },
+          {
+            "value": "10229612",
+            "disciplineNameUrlSlug": "400-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "400 Metres Hurdles"
+          },
+          {
+            "value": "10229613",
+            "disciplineNameUrlSlug": "2000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres Steeplechase"
+          },
+          {
+            "value": "10229614",
+            "disciplineNameUrlSlug": "3000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres Steeplechase"
+          },
+          {
+            "value": "10229615",
+            "disciplineNameUrlSlug": "high-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "High Jump"
+          },
+          {
+            "value": "10229616",
+            "disciplineNameUrlSlug": "pole-vault",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Pole Vault"
+          },
+          {
+            "value": "10229617",
+            "disciplineNameUrlSlug": "long-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Long Jump"
+          },
+          {
+            "value": "10229618",
+            "disciplineNameUrlSlug": "triple-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Triple Jump"
+          },
+          {
+            "value": "10229619",
+            "disciplineNameUrlSlug": "shot-put",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put"
+          },
+          {
+            "value": "10229813",
+            "disciplineNameUrlSlug": "shot-put-6kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put (6kg)"
+          },
+          {
+            "value": "10229620",
+            "disciplineNameUrlSlug": "discus-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw"
+          },
+          {
+            "value": "10229686",
+            "disciplineNameUrlSlug": "discus-throw-1750kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw (1,75kg)"
+          },
+          {
+            "value": "10229621",
+            "disciplineNameUrlSlug": "hammer-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw"
+          },
+          {
+            "value": "10229814",
+            "disciplineNameUrlSlug": "hammer-throw-6kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw (6kg)"
+          },
+          {
+            "value": "10229636",
+            "disciplineNameUrlSlug": "javelin-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw"
+          },
+          {
+            "value": "10229752",
+            "disciplineNameUrlSlug": "1-mile-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Mile Road"
+          },
+          {
+            "value": "10229507",
+            "disciplineNameUrlSlug": "10-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Kilometres Road"
+          },
+          {
+            "value": "10229504",
+            "disciplineNameUrlSlug": "15-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "15 Kilometres Road"
+          },
+          {
+            "value": "10229505",
+            "disciplineNameUrlSlug": "10-miles-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Miles Road"
+          },
+          {
+            "value": "10229506",
+            "disciplineNameUrlSlug": "20-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "20 Kilometres Road"
+          },
+          {
+            "value": "10229633",
+            "disciplineNameUrlSlug": "half-marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Half Marathon"
+          },
+          {
+            "value": "10229634",
+            "disciplineNameUrlSlug": "marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Marathon"
+          },
+          {
+            "value": "10229776",
+            "disciplineNameUrlSlug": "3000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "3000 Metres Race Walk"
+          },
+          {
+            "value": "10229786",
+            "disciplineNameUrlSlug": "3000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "3000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229644",
+            "disciplineNameUrlSlug": "5000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5000 Metres Race Walk"
+          },
+          {
+            "value": "10229624",
+            "disciplineNameUrlSlug": "5-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5 Kilometres Race Walk"
+          },
+          {
+            "value": "10229669",
+            "disciplineNameUrlSlug": "5000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "5000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229637",
+            "disciplineNameUrlSlug": "10000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10,000 Metres Race Walk"
+          },
+          {
+            "value": "10229625",
+            "disciplineNameUrlSlug": "10-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10 Kilometres Race Walk"
+          },
+          {
+            "value": "10229638",
+            "disciplineNameUrlSlug": "20000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20,000 Metres Race Walk"
+          },
+          {
+            "value": "10229508",
+            "disciplineNameUrlSlug": "20-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20 Kilometres Race Walk"
+          },
+          {
+            "value": "10230472",
+            "disciplineNameUrlSlug": "half-marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Half Marathon Race Walk"
+          },
+          {
+            "value": "10229627",
+            "disciplineNameUrlSlug": "35-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "35 Kilometres Race Walk"
+          },
+          {
+            "value": "10230474",
+            "disciplineNameUrlSlug": "marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Marathon Race Walk"
+          },
+          {
+            "value": "10229628",
+            "disciplineNameUrlSlug": "50-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "50 Kilometres Race Walk"
+          },
+          {
+            "value": "10229629",
+            "disciplineNameUrlSlug": "decathlon",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Decathlon"
+          },
+          {
+            "value": "10229834",
+            "disciplineNameUrlSlug": "decathlon-u20",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Decathlon U20"
+          },
+          {
+            "value": "10229571",
+            "disciplineNameUrlSlug": "heptathlon-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Heptathlon Short Track"
+          },
+          {
+            "value": "10229858",
+            "disciplineNameUrlSlug": "heptathlon-u20-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Heptathlon U20 Short Track"
+          },
+          {
+            "value": "204593",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay"
+          },
+          {
+            "value": "204602",
+            "disciplineNameUrlSlug": "4x200-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x200 Metres Relay Short Track"
+          },
+          {
+            "value": "10229754",
+            "disciplineNameUrlSlug": "medley-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "Sprint Medley 1000m"
+          },
+          {
+            "value": "204595",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay"
+          },
+          {
+            "value": "204609",
+            "disciplineNameUrlSlug": "4x400-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x400 Metres Relay Short Track"
+          }
+        ]
+      },
+      {
+        "gender": "male",
+        "ageCategory": "u18",
+        "values": [
+          {
+            "value": "10230285",
+            "disciplineNameUrlSlug": "50-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "50 Metres"
+          },
+          {
+            "value": "10230287",
+            "disciplineNameUrlSlug": "55-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "55 Metres"
+          },
+          {
+            "value": "10229683",
+            "disciplineNameUrlSlug": "60-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "60 Metres"
+          },
+          {
+            "value": "10229630",
+            "disciplineNameUrlSlug": "100-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "100 Metres"
+          },
+          {
+            "value": "10229688",
+            "disciplineNameUrlSlug": "150-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "150 Metres"
+          },
+          {
+            "value": "10229605",
+            "disciplineNameUrlSlug": "200-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "200 Metres"
+          },
+          {
+            "value": "10229552",
+            "disciplineNameUrlSlug": "200-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "200 Metres Short Track"
+          },
+          {
+            "value": "10229500",
+            "disciplineNameUrlSlug": "300-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "300 Metres"
+          },
+          {
+            "value": "10229553",
+            "disciplineNameUrlSlug": "300-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "300 Metres Short Track"
+          },
+          {
+            "value": "10229631",
+            "disciplineNameUrlSlug": "400-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "400 Metres"
+          },
+          {
+            "value": "10229554",
+            "disciplineNameUrlSlug": "400-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "400 Metres Short Track"
+          },
+          {
+            "value": "204611",
+            "disciplineNameUrlSlug": "500-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "500 Metres"
+          },
+          {
+            "value": "10229555",
+            "disciplineNameUrlSlug": "500-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "500 Metres Short Track"
+          },
+          {
+            "value": "10229604",
+            "disciplineNameUrlSlug": "600-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "600 Metres"
+          },
+          {
+            "value": "10229600",
+            "disciplineNameUrlSlug": "600-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "600 Metres Short Track"
+          },
+          {
+            "value": "10229501",
+            "disciplineNameUrlSlug": "800-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "800 Metres"
+          },
+          {
+            "value": "10229556",
+            "disciplineNameUrlSlug": "800-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "800 Metres Short Track"
+          },
+          {
+            "value": "10229606",
+            "disciplineNameUrlSlug": "1000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1000 Metres"
+          },
+          {
+            "value": "10229557",
+            "disciplineNameUrlSlug": "1000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1000 Metres Short Track"
+          },
+          {
+            "value": "10229502",
+            "disciplineNameUrlSlug": "1500-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1500 Metres"
+          },
+          {
+            "value": "10229558",
+            "disciplineNameUrlSlug": "1500-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1500 Metres Short Track"
+          },
+          {
+            "value": "10229503",
+            "disciplineNameUrlSlug": "one-mile",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "Mile"
+          },
+          {
+            "value": "10229559",
+            "disciplineNameUrlSlug": "one-mile-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "Mile Short Track"
+          },
+          {
+            "value": "10229632",
+            "disciplineNameUrlSlug": "2000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres"
+          },
+          {
+            "value": "10229561",
+            "disciplineNameUrlSlug": "2000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2000 Metres Short Track"
+          },
+          {
+            "value": "10229607",
+            "disciplineNameUrlSlug": "3000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres"
+          },
+          {
+            "value": "10229560",
+            "disciplineNameUrlSlug": "3000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "3000 Metres Short Track"
+          },
+          {
+            "value": "10229608",
+            "disciplineNameUrlSlug": "two-miles",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2 Miles"
+          },
+          {
+            "value": "10229599",
+            "disciplineNameUrlSlug": "two-miles-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2 Miles Short Track"
+          },
+          {
+            "value": "10229609",
+            "disciplineNameUrlSlug": "5000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "5000 Metres"
+          },
+          {
+            "value": "10229562",
+            "disciplineNameUrlSlug": "5000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "5000 Metres Short Track"
+          },
+          {
+            "value": "10229610",
+            "disciplineNameUrlSlug": "10000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "10,000 Metres"
+          },
+          {
+            "value": "10230176",
+            "disciplineNameUrlSlug": "60-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles"
+          },
+          {
+            "value": "10230282",
+            "disciplineNameUrlSlug": "60m-hurdles-914cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles (91.4cm)"
+          },
+          {
+            "value": "10229611",
+            "disciplineNameUrlSlug": "110-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "110 Metres Hurdles"
+          },
+          {
+            "value": "10229829",
+            "disciplineNameUrlSlug": "110m-hurdles-914cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "110 Metres Hurdles (91.4cm)"
+          },
+          {
+            "value": "10229876",
+            "disciplineNameUrlSlug": "300-metres-hurdles-840cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "300 Metres Hurdles (84.0cm)"
+          },
+          {
+            "value": "10229612",
+            "disciplineNameUrlSlug": "400-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "400 Metres Hurdles"
+          },
+          {
+            "value": "10229830",
+            "disciplineNameUrlSlug": "400m-hurdles-840cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "400m hurdles (84.0cm)"
+          },
+          {
+            "value": "10229613",
+            "disciplineNameUrlSlug": "2000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres Steeplechase"
+          },
+          {
+            "value": "10230067",
+            "disciplineNameUrlSlug": "2000-metres-steeplechase-84cm",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres Steeplechase (0.84)"
+          },
+          {
+            "value": "10229614",
+            "disciplineNameUrlSlug": "3000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres Steeplechase"
+          },
+          {
+            "value": "10229615",
+            "disciplineNameUrlSlug": "high-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "High Jump"
+          },
+          {
+            "value": "10229616",
+            "disciplineNameUrlSlug": "pole-vault",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Pole Vault"
+          },
+          {
+            "value": "10229617",
+            "disciplineNameUrlSlug": "long-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Long Jump"
+          },
+          {
+            "value": "10229618",
+            "disciplineNameUrlSlug": "triple-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Triple Jump"
+          },
+          {
+            "value": "10229619",
+            "disciplineNameUrlSlug": "shot-put",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put"
+          },
+          {
+            "value": "10229819",
+            "disciplineNameUrlSlug": "shot-put-5kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put (5kg)"
+          },
+          {
+            "value": "10229620",
+            "disciplineNameUrlSlug": "discus-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw"
+          },
+          {
+            "value": "10229826",
+            "disciplineNameUrlSlug": "discus-throw-1500kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw (1,5kg)"
+          },
+          {
+            "value": "10229621",
+            "disciplineNameUrlSlug": "hammer-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw"
+          },
+          {
+            "value": "10229827",
+            "disciplineNameUrlSlug": "hammer-throw-5kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw (5kg)"
+          },
+          {
+            "value": "10229636",
+            "disciplineNameUrlSlug": "javelin-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw"
+          },
+          {
+            "value": "10229828",
+            "disciplineNameUrlSlug": "javelin-throw-700g",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw (700g)"
+          },
+          {
+            "value": "10229752",
+            "disciplineNameUrlSlug": "1-mile-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Mile Road"
+          },
+          {
+            "value": "10229507",
+            "disciplineNameUrlSlug": "10-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Kilometres Road"
+          },
+          {
+            "value": "10229504",
+            "disciplineNameUrlSlug": "15-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "15 Kilometres Road"
+          },
+          {
+            "value": "10229505",
+            "disciplineNameUrlSlug": "10-miles-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Miles Road"
+          },
+          {
+            "value": "10229506",
+            "disciplineNameUrlSlug": "20-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "20 Kilometres Road"
+          },
+          {
+            "value": "10229633",
+            "disciplineNameUrlSlug": "half-marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Half Marathon"
+          },
+          {
+            "value": "10229776",
+            "disciplineNameUrlSlug": "3000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "3000 Metres Race Walk"
+          },
+          {
+            "value": "10229786",
+            "disciplineNameUrlSlug": "3000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "3000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229644",
+            "disciplineNameUrlSlug": "5000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5000 Metres Race Walk"
+          },
+          {
+            "value": "10229624",
+            "disciplineNameUrlSlug": "5-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5 Kilometres Race Walk"
+          },
+          {
+            "value": "10229669",
+            "disciplineNameUrlSlug": "5000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "5000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229637",
+            "disciplineNameUrlSlug": "10000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10,000 Metres Race Walk"
+          },
+          {
+            "value": "10229625",
+            "disciplineNameUrlSlug": "10-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10 Kilometres Race Walk"
+          },
+          {
+            "value": "10229638",
+            "disciplineNameUrlSlug": "20000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20,000 Metres Race Walk"
+          },
+          {
+            "value": "10229508",
+            "disciplineNameUrlSlug": "20-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20 Kilometres Race Walk"
+          },
+          {
+            "value": "10230472",
+            "disciplineNameUrlSlug": "half-marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Half Marathon Race Walk"
+          },
+          {
+            "value": "10229627",
+            "disciplineNameUrlSlug": "35-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "35 Kilometres Race Walk"
+          },
+          {
+            "value": "10229628",
+            "disciplineNameUrlSlug": "50-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "50 Kilometres Race Walk"
+          },
+          {
+            "value": "10229843",
+            "disciplineNameUrlSlug": "decathlon-boys",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Decathlon Boys"
+          },
+          {
+            "value": "10229986",
+            "disciplineNameUrlSlug": "heptathlon-boys-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Heptathlon U18 Short Track"
+          },
+          {
+            "value": "10229833",
+            "disciplineNameUrlSlug": "octathlon-boys",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Octathlon Boys"
+          },
+          {
+            "value": "204593",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay"
+          },
+          {
+            "value": "204602",
+            "disciplineNameUrlSlug": "4x200-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x200 Metres Relay Short Track"
+          },
+          {
+            "value": "10229754",
+            "disciplineNameUrlSlug": "medley-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "Sprint Medley 1000m"
+          },
+          {
+            "value": "204595",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay"
+          },
+          {
+            "value": "204609",
+            "disciplineNameUrlSlug": "4x400-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x400 Metres Relay Short Track"
+          }
+        ]
+      },
+      {
+        "gender": "female",
+        "ageCategory": "senior",
+        "values": [
+          {
+            "value": "10230286",
+            "disciplineNameUrlSlug": "50-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "50 Metres"
+          },
+          {
+            "value": "10230288",
+            "disciplineNameUrlSlug": "55-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "55 Metres"
+          },
+          {
+            "value": "10229684",
+            "disciplineNameUrlSlug": "60-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "60 Metres"
+          },
+          {
+            "value": "10229509",
+            "disciplineNameUrlSlug": "100-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "100 Metres"
+          },
+          {
+            "value": "10229689",
+            "disciplineNameUrlSlug": "150-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "150 Metres"
+          },
+          {
+            "value": "10229510",
+            "disciplineNameUrlSlug": "200-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "200 Metres"
+          },
+          {
+            "value": "10229575",
+            "disciplineNameUrlSlug": "200-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "200 Metres Short Track"
+          },
+          {
+            "value": "10229515",
+            "disciplineNameUrlSlug": "300-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "300 Metres"
+          },
+          {
+            "value": "10229576",
+            "disciplineNameUrlSlug": "300-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "300 Metres Short Track"
+          },
+          {
+            "value": "10229511",
+            "disciplineNameUrlSlug": "400-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "400 Metres"
+          },
+          {
+            "value": "10229577",
+            "disciplineNameUrlSlug": "400-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "400 Metres Short Track"
+          },
+          {
+            "value": "204612",
+            "disciplineNameUrlSlug": "500-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "500 Metres"
+          },
+          {
+            "value": "10229578",
+            "disciplineNameUrlSlug": "500-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "500 Metres Short Track"
+          },
+          {
+            "value": "10229602",
+            "disciplineNameUrlSlug": "600-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "600 Metres"
+          },
+          {
+            "value": "10229601",
+            "disciplineNameUrlSlug": "600-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "600 Metres Short Track"
+          },
+          {
+            "value": "10229512",
+            "disciplineNameUrlSlug": "800-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "800 Metres"
+          },
+          {
+            "value": "10229579",
+            "disciplineNameUrlSlug": "800-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "800 Metres Short Track"
+          },
+          {
+            "value": "10229516",
+            "disciplineNameUrlSlug": "1000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1000 Metres"
+          },
+          {
+            "value": "10229580",
+            "disciplineNameUrlSlug": "1000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1000 Metres Short Track"
+          },
+          {
+            "value": "10229513",
+            "disciplineNameUrlSlug": "1500-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1500 Metres"
+          },
+          {
+            "value": "10229581",
+            "disciplineNameUrlSlug": "1500-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1500 Metres Short Track"
+          },
+          {
+            "value": "10229517",
+            "disciplineNameUrlSlug": "one-mile",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "Mile"
+          },
+          {
+            "value": "10229582",
+            "disciplineNameUrlSlug": "one-mile-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "Mile Short Track"
+          },
+          {
+            "value": "10229518",
+            "disciplineNameUrlSlug": "2000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres"
+          },
+          {
+            "value": "10229583",
+            "disciplineNameUrlSlug": "2000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2000 Metres Short Track"
+          },
+          {
+            "value": "10229519",
+            "disciplineNameUrlSlug": "3000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres"
+          },
+          {
+            "value": "10229584",
+            "disciplineNameUrlSlug": "3000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "3000 Metres Short Track"
+          },
+          {
+            "value": "10229520",
+            "disciplineNameUrlSlug": "two-miles",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2 Miles"
+          },
+          {
+            "value": "10229585",
+            "disciplineNameUrlSlug": "two-miles-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2 Miles Short Track"
+          },
+          {
+            "value": "10229514",
+            "disciplineNameUrlSlug": "5000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "5000 Metres"
+          },
+          {
+            "value": "10229586",
+            "disciplineNameUrlSlug": "5000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "5000 Metres Short Track"
+          },
+          {
+            "value": "10229521",
+            "disciplineNameUrlSlug": "10000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "10,000 Metres"
+          },
+          {
+            "value": "10230275",
+            "disciplineNameUrlSlug": "50-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "50 Metres Hurdles"
+          },
+          {
+            "value": "10230290",
+            "disciplineNameUrlSlug": "55-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "55 Metres Hurdles"
+          },
+          {
+            "value": "10230177",
+            "disciplineNameUrlSlug": "60-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles"
+          },
+          {
+            "value": "10229522",
+            "disciplineNameUrlSlug": "100-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "100 Metres Hurdles"
+          },
+          {
+            "value": "10229523",
+            "disciplineNameUrlSlug": "400-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "400 Metres Hurdles"
+          },
+          {
+            "value": "10229525",
+            "disciplineNameUrlSlug": "2000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres Steeplechase"
+          },
+          {
+            "value": "10229524",
+            "disciplineNameUrlSlug": "3000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres Steeplechase"
+          },
+          {
+            "value": "10229526",
+            "disciplineNameUrlSlug": "high-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "High Jump"
+          },
+          {
+            "value": "10229527",
+            "disciplineNameUrlSlug": "pole-vault",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Pole Vault"
+          },
+          {
+            "value": "10229528",
+            "disciplineNameUrlSlug": "long-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Long Jump"
+          },
+          {
+            "value": "10229529",
+            "disciplineNameUrlSlug": "triple-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Triple Jump"
+          },
+          {
+            "value": "10229530",
+            "disciplineNameUrlSlug": "shot-put",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put"
+          },
+          {
+            "value": "10229531",
+            "disciplineNameUrlSlug": "discus-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw"
+          },
+          {
+            "value": "10229532",
+            "disciplineNameUrlSlug": "hammer-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw"
+          },
+          {
+            "value": "10229533",
+            "disciplineNameUrlSlug": "javelin-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw"
+          },
+          {
+            "value": "10229753",
+            "disciplineNameUrlSlug": "1-mile-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Mile Road"
+          },
+          {
+            "value": "204598",
+            "disciplineNameUrlSlug": "5-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "5 Kilometres Road"
+          },
+          {
+            "value": "10229537",
+            "disciplineNameUrlSlug": "10-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Kilometres Road"
+          },
+          {
+            "value": "10229538",
+            "disciplineNameUrlSlug": "15-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "15 Kilometres Road"
+          },
+          {
+            "value": "10229539",
+            "disciplineNameUrlSlug": "10-miles-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Miles Road"
+          },
+          {
+            "value": "10229540",
+            "disciplineNameUrlSlug": "20-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "20 Kilometres Road"
+          },
+          {
+            "value": "10229541",
+            "disciplineNameUrlSlug": "half-marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Half Marathon"
+          },
+          {
+            "value": "10229534",
+            "disciplineNameUrlSlug": "marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Marathon"
+          },
+          {
+            "value": "10229659",
+            "disciplineNameUrlSlug": "3000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "3000 Metres Race Walk"
+          },
+          {
+            "value": "10229682",
+            "disciplineNameUrlSlug": "3000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "3000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229641",
+            "disciplineNameUrlSlug": "5000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5000 Metres Race Walk"
+          },
+          {
+            "value": "10229546",
+            "disciplineNameUrlSlug": "5-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5 Kilometres Race Walk"
+          },
+          {
+            "value": "10229787",
+            "disciplineNameUrlSlug": "5000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "5000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229639",
+            "disciplineNameUrlSlug": "10000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10,000 Metres Race Walk"
+          },
+          {
+            "value": "10229547",
+            "disciplineNameUrlSlug": "10-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10 Kilometres Race Walk"
+          },
+          {
+            "value": "10229640",
+            "disciplineNameUrlSlug": "20000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20,000 Metres Race Walk"
+          },
+          {
+            "value": "10229535",
+            "disciplineNameUrlSlug": "20-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20 Kilometres Race Walk"
+          },
+          {
+            "value": "10230473",
+            "disciplineNameUrlSlug": "half-marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Half Marathon Race Walk"
+          },
+          {
+            "value": "10229989",
+            "disciplineNameUrlSlug": "35-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "35 Kilometres Race Walk"
+          },
+          {
+            "value": "10230475",
+            "disciplineNameUrlSlug": "marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Marathon Race Walk"
+          },
+          {
+            "value": "10229603",
+            "disciplineNameUrlSlug": "50-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "50 Kilometres Race Walk"
+          },
+          {
+            "value": "10229536",
+            "disciplineNameUrlSlug": "heptathlon",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Heptathlon"
+          },
+          {
+            "value": "10229985",
+            "disciplineNameUrlSlug": "decathlon",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Decathlon"
+          },
+          {
+            "value": "10229595",
+            "disciplineNameUrlSlug": "pentathlon-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Pentathlon Short Track"
+          },
+          {
+            "value": "204594",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay"
+          },
+          {
+            "value": "204603",
+            "disciplineNameUrlSlug": "4x200-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x200 Metres Relay"
+          },
+          {
+            "value": "204604",
+            "disciplineNameUrlSlug": "4x200-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x200 Metres Relay Short Track"
+          },
+          {
+            "value": "10229755",
+            "disciplineNameUrlSlug": "medley-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "Sprint Medley 1000m"
+          },
+          {
+            "value": "204596",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay"
+          },
+          {
+            "value": "204610",
+            "disciplineNameUrlSlug": "4x400-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x400 Metres Relay Short Track"
+          },
+          {
+            "value": "204607",
+            "disciplineNameUrlSlug": "4x800-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x800 Metres Relay"
+          },
+          {
+            "value": "10229642",
+            "disciplineNameUrlSlug": "4x800-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x800 Metres Relay Short Track"
+          },
+          {
+            "value": "204608",
+            "disciplineNameUrlSlug": "4x1500-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x1500 Metres Relay"
+          }
+        ]
+      },
+      {
+        "gender": "female",
+        "ageCategory": "u20",
+        "values": [
+          {
+            "value": "10230286",
+            "disciplineNameUrlSlug": "50-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "50 Metres"
+          },
+          {
+            "value": "10230288",
+            "disciplineNameUrlSlug": "55-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "55 Metres"
+          },
+          {
+            "value": "10229684",
+            "disciplineNameUrlSlug": "60-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "60 Metres"
+          },
+          {
+            "value": "10229509",
+            "disciplineNameUrlSlug": "100-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "100 Metres"
+          },
+          {
+            "value": "10229689",
+            "disciplineNameUrlSlug": "150-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "150 Metres"
+          },
+          {
+            "value": "10229510",
+            "disciplineNameUrlSlug": "200-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "200 Metres"
+          },
+          {
+            "value": "10229575",
+            "disciplineNameUrlSlug": "200-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "200 Metres Short Track"
+          },
+          {
+            "value": "10229515",
+            "disciplineNameUrlSlug": "300-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "300 Metres"
+          },
+          {
+            "value": "10229576",
+            "disciplineNameUrlSlug": "300-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "300 Metres Short Track"
+          },
+          {
+            "value": "10229511",
+            "disciplineNameUrlSlug": "400-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "400 Metres"
+          },
+          {
+            "value": "10229577",
+            "disciplineNameUrlSlug": "400-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "400 Metres Short Track"
+          },
+          {
+            "value": "204612",
+            "disciplineNameUrlSlug": "500-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "500 Metres"
+          },
+          {
+            "value": "10229578",
+            "disciplineNameUrlSlug": "500-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "500 Metres Short Track"
+          },
+          {
+            "value": "10229602",
+            "disciplineNameUrlSlug": "600-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "600 Metres"
+          },
+          {
+            "value": "10229601",
+            "disciplineNameUrlSlug": "600-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "600 Metres Short Track"
+          },
+          {
+            "value": "10229512",
+            "disciplineNameUrlSlug": "800-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "800 Metres"
+          },
+          {
+            "value": "10229579",
+            "disciplineNameUrlSlug": "800-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "800 Metres Short Track"
+          },
+          {
+            "value": "10229516",
+            "disciplineNameUrlSlug": "1000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1000 Metres"
+          },
+          {
+            "value": "10229580",
+            "disciplineNameUrlSlug": "1000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1000 Metres Short Track"
+          },
+          {
+            "value": "10229513",
+            "disciplineNameUrlSlug": "1500-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1500 Metres"
+          },
+          {
+            "value": "10229581",
+            "disciplineNameUrlSlug": "1500-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1500 Metres Short Track"
+          },
+          {
+            "value": "10229517",
+            "disciplineNameUrlSlug": "one-mile",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "Mile"
+          },
+          {
+            "value": "10229582",
+            "disciplineNameUrlSlug": "one-mile-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "Mile Short Track"
+          },
+          {
+            "value": "10229518",
+            "disciplineNameUrlSlug": "2000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres"
+          },
+          {
+            "value": "10229583",
+            "disciplineNameUrlSlug": "2000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2000 Metres Short Track"
+          },
+          {
+            "value": "10229519",
+            "disciplineNameUrlSlug": "3000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres"
+          },
+          {
+            "value": "10229584",
+            "disciplineNameUrlSlug": "3000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "3000 Metres Short Track"
+          },
+          {
+            "value": "10229520",
+            "disciplineNameUrlSlug": "two-miles",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2 Miles"
+          },
+          {
+            "value": "10229585",
+            "disciplineNameUrlSlug": "two-miles-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2 Miles Short Track"
+          },
+          {
+            "value": "10229514",
+            "disciplineNameUrlSlug": "5000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "5000 Metres"
+          },
+          {
+            "value": "10229586",
+            "disciplineNameUrlSlug": "5000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "5000 Metres Short Track"
+          },
+          {
+            "value": "10229521",
+            "disciplineNameUrlSlug": "10000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "10,000 Metres"
+          },
+          {
+            "value": "10230275",
+            "disciplineNameUrlSlug": "50-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "50 Metres Hurdles"
+          },
+          {
+            "value": "10230290",
+            "disciplineNameUrlSlug": "55-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "55 Metres Hurdles"
+          },
+          {
+            "value": "10230177",
+            "disciplineNameUrlSlug": "60-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles"
+          },
+          {
+            "value": "10229522",
+            "disciplineNameUrlSlug": "100-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "100 Metres Hurdles"
+          },
+          {
+            "value": "10229523",
+            "disciplineNameUrlSlug": "400-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "400 Metres Hurdles"
+          },
+          {
+            "value": "10229525",
+            "disciplineNameUrlSlug": "2000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres Steeplechase"
+          },
+          {
+            "value": "10229524",
+            "disciplineNameUrlSlug": "3000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres Steeplechase"
+          },
+          {
+            "value": "10229526",
+            "disciplineNameUrlSlug": "high-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "High Jump"
+          },
+          {
+            "value": "10229527",
+            "disciplineNameUrlSlug": "pole-vault",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Pole Vault"
+          },
+          {
+            "value": "10229528",
+            "disciplineNameUrlSlug": "long-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Long Jump"
+          },
+          {
+            "value": "10229529",
+            "disciplineNameUrlSlug": "triple-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Triple Jump"
+          },
+          {
+            "value": "10229530",
+            "disciplineNameUrlSlug": "shot-put",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put"
+          },
+          {
+            "value": "10229531",
+            "disciplineNameUrlSlug": "discus-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw"
+          },
+          {
+            "value": "10229532",
+            "disciplineNameUrlSlug": "hammer-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw"
+          },
+          {
+            "value": "10229533",
+            "disciplineNameUrlSlug": "javelin-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw"
+          },
+          {
+            "value": "10229753",
+            "disciplineNameUrlSlug": "1-mile-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Mile Road"
+          },
+          {
+            "value": "10229537",
+            "disciplineNameUrlSlug": "10-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Kilometres Road"
+          },
+          {
+            "value": "10229538",
+            "disciplineNameUrlSlug": "15-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "15 Kilometres Road"
+          },
+          {
+            "value": "10229539",
+            "disciplineNameUrlSlug": "10-miles-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Miles Road"
+          },
+          {
+            "value": "10229540",
+            "disciplineNameUrlSlug": "20-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "20 Kilometres Road"
+          },
+          {
+            "value": "10229541",
+            "disciplineNameUrlSlug": "half-marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Half Marathon"
+          },
+          {
+            "value": "10229534",
+            "disciplineNameUrlSlug": "marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Marathon"
+          },
+          {
+            "value": "10229659",
+            "disciplineNameUrlSlug": "3000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "3000 Metres Race Walk"
+          },
+          {
+            "value": "10229682",
+            "disciplineNameUrlSlug": "3000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "3000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229641",
+            "disciplineNameUrlSlug": "5000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5000 Metres Race Walk"
+          },
+          {
+            "value": "10229546",
+            "disciplineNameUrlSlug": "5-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5 Kilometres Race Walk"
+          },
+          {
+            "value": "10229787",
+            "disciplineNameUrlSlug": "5000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "5000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229639",
+            "disciplineNameUrlSlug": "10000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10,000 Metres Race Walk"
+          },
+          {
+            "value": "10229547",
+            "disciplineNameUrlSlug": "10-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10 Kilometres Race Walk"
+          },
+          {
+            "value": "10229640",
+            "disciplineNameUrlSlug": "20000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20,000 Metres Race Walk"
+          },
+          {
+            "value": "10229535",
+            "disciplineNameUrlSlug": "20-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20 Kilometres Race Walk"
+          },
+          {
+            "value": "10230473",
+            "disciplineNameUrlSlug": "half-marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Half Marathon Race Walk"
+          },
+          {
+            "value": "10229989",
+            "disciplineNameUrlSlug": "35-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "35 Kilometres Race Walk"
+          },
+          {
+            "value": "10230475",
+            "disciplineNameUrlSlug": "marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Marathon Race Walk"
+          },
+          {
+            "value": "10229536",
+            "disciplineNameUrlSlug": "heptathlon",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Heptathlon"
+          },
+          {
+            "value": "10229985",
+            "disciplineNameUrlSlug": "decathlon",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Decathlon"
+          },
+          {
+            "value": "10229595",
+            "disciplineNameUrlSlug": "pentathlon-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Pentathlon Short Track"
+          },
+          {
+            "value": "204594",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay"
+          },
+          {
+            "value": "204604",
+            "disciplineNameUrlSlug": "4x200-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x200 Metres Relay Short Track"
+          },
+          {
+            "value": "10229755",
+            "disciplineNameUrlSlug": "medley-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "Sprint Medley 1000m"
+          },
+          {
+            "value": "204596",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay"
+          },
+          {
+            "value": "204610",
+            "disciplineNameUrlSlug": "4x400-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x400 Metres Relay Short Track"
+          }
+        ]
+      },
+      {
+        "gender": "female",
+        "ageCategory": "u18",
+        "values": [
+          {
+            "value": "10230286",
+            "disciplineNameUrlSlug": "50-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "50 Metres"
+          },
+          {
+            "value": "10230288",
+            "disciplineNameUrlSlug": "55-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "55 Metres"
+          },
+          {
+            "value": "10229684",
+            "disciplineNameUrlSlug": "60-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "60 Metres"
+          },
+          {
+            "value": "10229509",
+            "disciplineNameUrlSlug": "100-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "100 Metres"
+          },
+          {
+            "value": "10229689",
+            "disciplineNameUrlSlug": "150-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "150 Metres"
+          },
+          {
+            "value": "10229510",
+            "disciplineNameUrlSlug": "200-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "200 Metres"
+          },
+          {
+            "value": "10229575",
+            "disciplineNameUrlSlug": "200-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "200 Metres Short Track"
+          },
+          {
+            "value": "10229515",
+            "disciplineNameUrlSlug": "300-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "300 Metres"
+          },
+          {
+            "value": "10229576",
+            "disciplineNameUrlSlug": "300-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "300 Metres Short Track"
+          },
+          {
+            "value": "10229511",
+            "disciplineNameUrlSlug": "400-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "400 Metres"
+          },
+          {
+            "value": "10229577",
+            "disciplineNameUrlSlug": "400-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "400 Metres Short Track"
+          },
+          {
+            "value": "204612",
+            "disciplineNameUrlSlug": "500-metres",
+            "typeNameUrlSlug": "sprints",
+            "environment": "outdoor",
+            "label": "500 Metres"
+          },
+          {
+            "value": "10229578",
+            "disciplineNameUrlSlug": "500-metres-short-track",
+            "typeNameUrlSlug": "sprints",
+            "environment": "indoor",
+            "label": "500 Metres Short Track"
+          },
+          {
+            "value": "10229602",
+            "disciplineNameUrlSlug": "600-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "600 Metres"
+          },
+          {
+            "value": "10229601",
+            "disciplineNameUrlSlug": "600-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "600 Metres Short Track"
+          },
+          {
+            "value": "10229512",
+            "disciplineNameUrlSlug": "800-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "800 Metres"
+          },
+          {
+            "value": "10229579",
+            "disciplineNameUrlSlug": "800-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "800 Metres Short Track"
+          },
+          {
+            "value": "10229516",
+            "disciplineNameUrlSlug": "1000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1000 Metres"
+          },
+          {
+            "value": "10229580",
+            "disciplineNameUrlSlug": "1000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1000 Metres Short Track"
+          },
+          {
+            "value": "10229513",
+            "disciplineNameUrlSlug": "1500-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "1500 Metres"
+          },
+          {
+            "value": "10229581",
+            "disciplineNameUrlSlug": "1500-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "1500 Metres Short Track"
+          },
+          {
+            "value": "10229517",
+            "disciplineNameUrlSlug": "one-mile",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "Mile"
+          },
+          {
+            "value": "10229582",
+            "disciplineNameUrlSlug": "one-mile-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "Mile Short Track"
+          },
+          {
+            "value": "10229518",
+            "disciplineNameUrlSlug": "2000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres"
+          },
+          {
+            "value": "10229583",
+            "disciplineNameUrlSlug": "2000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2000 Metres Short Track"
+          },
+          {
+            "value": "10229519",
+            "disciplineNameUrlSlug": "3000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres"
+          },
+          {
+            "value": "10229584",
+            "disciplineNameUrlSlug": "3000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "3000 Metres Short Track"
+          },
+          {
+            "value": "10229520",
+            "disciplineNameUrlSlug": "two-miles",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2 Miles"
+          },
+          {
+            "value": "10229585",
+            "disciplineNameUrlSlug": "two-miles-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "2 Miles Short Track"
+          },
+          {
+            "value": "10229514",
+            "disciplineNameUrlSlug": "5000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "5000 Metres"
+          },
+          {
+            "value": "10229586",
+            "disciplineNameUrlSlug": "5000-metres-short-track",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "indoor",
+            "label": "5000 Metres Short Track"
+          },
+          {
+            "value": "10229521",
+            "disciplineNameUrlSlug": "10000-metres",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "10,000 Metres"
+          },
+          {
+            "value": "10230177",
+            "disciplineNameUrlSlug": "60-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles"
+          },
+          {
+            "value": "10230283",
+            "disciplineNameUrlSlug": "60m-hurdles-762cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "60 Metres Hurdles (76.2cm)"
+          },
+          {
+            "value": "10229522",
+            "disciplineNameUrlSlug": "100-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "100 Metres Hurdles"
+          },
+          {
+            "value": "10229831",
+            "disciplineNameUrlSlug": "100m-hurdles-762cm",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "100 Metres Hurdles (76.2cm)"
+          },
+          {
+            "value": "10229719",
+            "disciplineNameUrlSlug": "300-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "300 Metres Hurdles"
+          },
+          {
+            "value": "10229523",
+            "disciplineNameUrlSlug": "400-metres-hurdles",
+            "typeNameUrlSlug": "hurdles",
+            "environment": "outdoor",
+            "label": "400 Metres Hurdles"
+          },
+          {
+            "value": "10229525",
+            "disciplineNameUrlSlug": "2000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "2000 Metres Steeplechase"
+          },
+          {
+            "value": "10229524",
+            "disciplineNameUrlSlug": "3000-metres-steeplechase",
+            "typeNameUrlSlug": "middlelong",
+            "environment": "outdoor",
+            "label": "3000 Metres Steeplechase"
+          },
+          {
+            "value": "10229526",
+            "disciplineNameUrlSlug": "high-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "High Jump"
+          },
+          {
+            "value": "10229527",
+            "disciplineNameUrlSlug": "pole-vault",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Pole Vault"
+          },
+          {
+            "value": "10229528",
+            "disciplineNameUrlSlug": "long-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Long Jump"
+          },
+          {
+            "value": "10229529",
+            "disciplineNameUrlSlug": "triple-jump",
+            "typeNameUrlSlug": "jumps",
+            "environment": "outdoor",
+            "label": "Triple Jump"
+          },
+          {
+            "value": "10229530",
+            "disciplineNameUrlSlug": "shot-put",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put"
+          },
+          {
+            "value": "10229866",
+            "disciplineNameUrlSlug": "shot-put-3kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Shot Put (3kg)"
+          },
+          {
+            "value": "10229531",
+            "disciplineNameUrlSlug": "discus-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Discus Throw"
+          },
+          {
+            "value": "10229532",
+            "disciplineNameUrlSlug": "hammer-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw"
+          },
+          {
+            "value": "10229871",
+            "disciplineNameUrlSlug": "hammer-throw-3kg",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Hammer Throw (3kg)"
+          },
+          {
+            "value": "10229533",
+            "disciplineNameUrlSlug": "javelin-throw",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw"
+          },
+          {
+            "value": "10229927",
+            "disciplineNameUrlSlug": "javelin-throw-500g",
+            "typeNameUrlSlug": "throws",
+            "environment": "outdoor",
+            "label": "Javelin Throw (500g)"
+          },
+          {
+            "value": "10229753",
+            "disciplineNameUrlSlug": "1-mile-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Mile Road"
+          },
+          {
+            "value": "10229537",
+            "disciplineNameUrlSlug": "10-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Kilometres Road"
+          },
+          {
+            "value": "10229538",
+            "disciplineNameUrlSlug": "15-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "15 Kilometres Road"
+          },
+          {
+            "value": "10229539",
+            "disciplineNameUrlSlug": "10-miles-road",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "10 Miles Road"
+          },
+          {
+            "value": "10229540",
+            "disciplineNameUrlSlug": "20-kilometres",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "20 Kilometres Road"
+          },
+          {
+            "value": "10229541",
+            "disciplineNameUrlSlug": "half-marathon",
+            "typeNameUrlSlug": "road-running",
+            "environment": "outdoor",
+            "label": "Half Marathon"
+          },
+          {
+            "value": "10229659",
+            "disciplineNameUrlSlug": "3000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "3000 Metres Race Walk"
+          },
+          {
+            "value": "10229682",
+            "disciplineNameUrlSlug": "3000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "3000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229641",
+            "disciplineNameUrlSlug": "5000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5000 Metres Race Walk"
+          },
+          {
+            "value": "10229546",
+            "disciplineNameUrlSlug": "5-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "5 Kilometres Race Walk"
+          },
+          {
+            "value": "10229787",
+            "disciplineNameUrlSlug": "5000-metres-race-walk-short-track",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "indoor",
+            "label": "5000 Metres Race Walk Short Track"
+          },
+          {
+            "value": "10229639",
+            "disciplineNameUrlSlug": "10000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10,000 Metres Race Walk"
+          },
+          {
+            "value": "10229547",
+            "disciplineNameUrlSlug": "10-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "10 Kilometres Race Walk"
+          },
+          {
+            "value": "10229640",
+            "disciplineNameUrlSlug": "20000-metres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20,000 Metres Race Walk"
+          },
+          {
+            "value": "10229535",
+            "disciplineNameUrlSlug": "20-kilometres-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "20 Kilometres Race Walk"
+          },
+          {
+            "value": "10230473",
+            "disciplineNameUrlSlug": "half-marathon-race-walk",
+            "typeNameUrlSlug": "race-walks",
+            "environment": "outdoor",
+            "label": "Half Marathon Race Walk"
+          },
+          {
+            "value": "10229536",
+            "disciplineNameUrlSlug": "heptathlon",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Heptathlon"
+          },
+          {
+            "value": "10229595",
+            "disciplineNameUrlSlug": "pentathlon-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Pentathlon Short Track"
+          },
+          {
+            "value": "10229832",
+            "disciplineNameUrlSlug": "heptathlon-girls",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "outdoor",
+            "label": "Heptathlon U18"
+          },
+          {
+            "value": "10229896",
+            "disciplineNameUrlSlug": "pentathlon-girls-short-track",
+            "typeNameUrlSlug": "combined-events",
+            "environment": "indoor",
+            "label": "Pentathlon Girls Short Track"
+          },
+          {
+            "value": "204594",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay"
+          },
+          {
+            "value": "204604",
+            "disciplineNameUrlSlug": "4x200-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x200 Metres Relay Short Track"
+          },
+          {
+            "value": "10229755",
+            "disciplineNameUrlSlug": "medley-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "Sprint Medley 1000m"
+          },
+          {
+            "value": "204596",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay"
+          },
+          {
+            "value": "204610",
+            "disciplineNameUrlSlug": "4x400-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x400 Metres Relay Short Track"
+          }
+        ]
+      },
+      {
+        "gender": "mixed",
+        "ageCategory": "senior",
+        "values": [
+          {
+            "value": "10230439",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay Mixed"
+          },
+          {
+            "value": "10229988",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay Mixed"
+          },
+          {
+            "value": "10230117",
+            "disciplineNameUrlSlug": "4x400-metres-relay-short-track",
+            "typeNameUrlSlug": "relays",
+            "environment": "indoor",
+            "label": "4x400 Metres Relay Mixed Short Track"
+          }
+        ]
+      },
+      {
+        "gender": "mixed",
+        "ageCategory": "u20",
+        "values": [
+          {
+            "value": "10230439",
+            "disciplineNameUrlSlug": "4x100-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x100 Metres Relay Mixed"
+          },
+          {
+            "value": "10229988",
+            "disciplineNameUrlSlug": "4x400-metres-relay",
+            "typeNameUrlSlug": "relays",
+            "environment": "outdoor",
+            "label": "4x400 Metres Relay Mixed"
           }
         ]
       }
     ]
-  },
-  {
-    "name": "gender",
-    "label": "Gender",
-    "values": [
-      {
-        "value": "male",
-        "label": "Male"
-      },
-      {
-        "value": "female",
-        "label": "Female"
-      },
-      {
-        "value": "mixed",
-        "label": "Mixed"
-      }
-    ],
-    "defaultValue": "male"
-  },
-  {
-    "name": "disciplineCode",
-    "dependsOn": [
-      "gender",
-      "environment",
-      "ageCategory",
-      "regionType"
-    ],
-    "cases": [
-      {
-        "gender": "male",
-        "environment": "outdoor",
-        "ageCategory": "senior",
-        "regionType": "world",
-        "values": [
-          {
-            "value": "50",
-            "disciplineNameUrlSlug": "50-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 50m "
-          },
-          {
-            "value": "55",
-            "disciplineNameUrlSlug": "55-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 55m "
-          },
-          {
-            "value": "60",
-            "disciplineNameUrlSlug": "60-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 60m indoor"
-          },
-          {
-            "value": "100",
-            "disciplineNameUrlSlug": "100-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 100m"
-          },
-          {
-            "value": "200",
-            "disciplineNameUrlSlug": "200-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 200m"
-          },
-          {
-            "value": "300",
-            "disciplineNameUrlSlug": "300-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 300m"
-          },
-          {
-            "value": "400",
-            "disciplineNameUrlSlug": "400-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 400m"
-          },
-          {
-            "value": "600",
-            "disciplineNameUrlSlug": "600-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 600m"
-          },
-          {
-            "value": "800",
-            "disciplineNameUrlSlug": "800-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 800m"
-          },
-          {
-            "value": "1000",
-            "disciplineNameUrlSlug": "1000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 1000m"
-          },
-          {
-            "value": "1500",
-            "disciplineNameUrlSlug": "1500-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 1500m"
-          },
-          {
-            "value": "MILE",
-            "disciplineNameUrlSlug": "one-mile",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's Mile"
-          },
-          {
-            "value": "2000",
-            "disciplineNameUrlSlug": "2000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 2000m"
-          },
-          {
-            "value": "3000",
-            "disciplineNameUrlSlug": "3000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 3000m"
-          },
-          {
-            "value": "2MLS",
-            "disciplineNameUrlSlug": "two-miles",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 2 Miles"
-          },
-          {
-            "value": "5000",
-            "disciplineNameUrlSlug": "5000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 5000m"
-          },
-          {
-            "value": "5RR",
-            "disciplineNameUrlSlug": "5-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's 5km Road Race"
-          },
-          {
-            "value": "10K",
-            "disciplineNameUrlSlug": "10000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 10,000m"
-          },
-          {
-            "value": "10RR",
-            "disciplineNameUrlSlug": "10-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's 10km Road Race"
-          },
-          {
-            "value": "15RR",
-            "disciplineNameUrlSlug": "15-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's 15km Road Race"
-          },
-          {
-            "value": "10MR",
-            "disciplineNameUrlSlug": "10-miles-road",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's 10 Miles Road Race"
-          },
-          {
-            "value": "20RR",
-            "disciplineNameUrlSlug": "20-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's 20km Road Race"
-          },
-          {
-            "value": "HMAR",
-            "disciplineNameUrlSlug": "half-marathon",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's Half Marathon"
-          },
-          {
-            "value": "MAR",
-            "disciplineNameUrlSlug": "marathon",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's Marathon"
-          },
-          {
-            "value": "2KSC",
-            "disciplineNameUrlSlug": "2000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 2000mSC"
-          },
-          {
-            "value": "3KSC",
-            "disciplineNameUrlSlug": "3000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 3000mSC"
-          },
-          {
-            "value": "110H",
-            "disciplineNameUrlSlug": "110-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Men's 110mH"
-          },
-          {
-            "value": "400H",
-            "disciplineNameUrlSlug": "400-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Men's 400mH"
-          },
-          {
-            "value": "HJ",
-            "disciplineNameUrlSlug": "high-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's High Jump"
-          },
-          {
-            "value": "PV",
-            "disciplineNameUrlSlug": "pole-vault",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Pole Vault"
-          },
-          {
-            "value": "LJ",
-            "disciplineNameUrlSlug": "long-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Long Jump"
-          },
-          {
-            "value": "TJ",
-            "disciplineNameUrlSlug": "triple-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Triple Jump"
-          },
-          {
-            "value": "SP",
-            "disciplineNameUrlSlug": "shot-put",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Shot Put"
-          },
-          {
-            "value": "DT",
-            "disciplineNameUrlSlug": "discus-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Discus Throw"
-          },
-          {
-            "value": "HT",
-            "disciplineNameUrlSlug": "hammer-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Hammer Throw"
-          },
-          {
-            "value": "JT",
-            "disciplineNameUrlSlug": "javelin-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Javelin Throw"
-          },
-          {
-            "value": "DEC",
-            "disciplineNameUrlSlug": "decathlon",
-            "typeNameUrlSlug": "combined-events",
-            "label": "Men's Decathlon"
-          },
-          {
-            "value": "3KW",
-            "disciplineNameUrlSlug": "3000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 3000m Race Walk"
-          },
-          {
-            "value": "5KW",
-            "disciplineNameUrlSlug": "5000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 5000m Race Walk"
-          },
-          {
-            "value": "5KR",
-            "disciplineNameUrlSlug": "5-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 5km Race Walk"
-          },
-          {
-            "value": "10KW",
-            "disciplineNameUrlSlug": "10000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 10,000m Race Walk"
-          },
-          {
-            "value": "10KR",
-            "disciplineNameUrlSlug": "10-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 10km Race Walk"
-          },
-          {
-            "value": "20KW",
-            "disciplineNameUrlSlug": "20000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 20,000m Race Walk"
-          },
-          {
-            "value": "20KR",
-            "disciplineNameUrlSlug": "20-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 20km Race Walk"
-          },
-          {
-            "value": "30KR",
-            "disciplineNameUrlSlug": "30-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 30km Race Walk"
-          },
-          {
-            "value": "35KR",
-            "disciplineNameUrlSlug": "35-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 35km Race Walk"
-          },
-          {
-            "value": "50KR",
-            "disciplineNameUrlSlug": "50-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 50km Race Walk"
-          },
-          {
-            "value": "4X1",
-            "disciplineNameUrlSlug": "4x100-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x100m"
-          },
-          {
-            "value": "4X2",
-            "disciplineNameUrlSlug": "4x200-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x200m"
-          },
-          {
-            "value": "4X4",
-            "disciplineNameUrlSlug": "4x400-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x400m"
-          },
-          {
-            "value": "4X8",
-            "disciplineNameUrlSlug": "4x800-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x800m"
-          },
-          {
-            "value": "4X15",
-            "disciplineNameUrlSlug": "4x1500-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x1500m"
-          }
-        ],
-        "defaultValue": "100"
-      },
-      {
-        "gender": "male",
-        "environment": "outdoor",
-        "ageCategory": "u20",
-        "regionType": "world",
-        "values": [
-          {
-            "value": "60",
-            "disciplineNameUrlSlug": "60-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 60m indoor"
-          },
-          {
-            "value": "100",
-            "disciplineNameUrlSlug": "100-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 100m"
-          },
-          {
-            "value": "200",
-            "disciplineNameUrlSlug": "200-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 200m"
-          },
-          {
-            "value": "300",
-            "disciplineNameUrlSlug": "300-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 300m"
-          },
-          {
-            "value": "400",
-            "disciplineNameUrlSlug": "400-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 400m"
-          },
-          {
-            "value": "800",
-            "disciplineNameUrlSlug": "800-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 800m"
-          },
-          {
-            "value": "1000",
-            "disciplineNameUrlSlug": "1000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 1000m"
-          },
-          {
-            "value": "1500",
-            "disciplineNameUrlSlug": "1500-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 1500m"
-          },
-          {
-            "value": "MILE",
-            "disciplineNameUrlSlug": "one-mile",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's Mile"
-          },
-          {
-            "value": "3000",
-            "disciplineNameUrlSlug": "3000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 3000m"
-          },
-          {
-            "value": "5000",
-            "disciplineNameUrlSlug": "5000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 5000m"
-          },
-          {
-            "value": "10K",
-            "disciplineNameUrlSlug": "10000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 10,000m"
-          },
-          {
-            "value": "10RR",
-            "disciplineNameUrlSlug": "10-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's 10km Road Race"
-          },
-          {
-            "value": "HMAR",
-            "disciplineNameUrlSlug": "half-marathon",
-            "typeNameUrlSlug": "road-running",
-            "label": "Men's Half Marathon"
-          },
-          {
-            "value": "2KSC",
-            "disciplineNameUrlSlug": "2000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 2000mSC"
-          },
-          {
-            "value": "3KSC",
-            "disciplineNameUrlSlug": "3000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 3000mSC"
-          },
-          {
-            "value": "110HJ",
-            "disciplineNameUrlSlug": "110m-hurdles-990cm",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Men's 110mH (0.99)"
-          },
-          {
-            "value": "110H",
-            "disciplineNameUrlSlug": "110-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Men's 110mH"
-          },
-          {
-            "value": "400H",
-            "disciplineNameUrlSlug": "400-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Men's 400mH"
-          },
-          {
-            "value": "HJ",
-            "disciplineNameUrlSlug": "high-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's High Jump"
-          },
-          {
-            "value": "PV",
-            "disciplineNameUrlSlug": "pole-vault",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Pole Vault"
-          },
-          {
-            "value": "LJ",
-            "disciplineNameUrlSlug": "long-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Long Jump"
-          },
-          {
-            "value": "TJ",
-            "disciplineNameUrlSlug": "triple-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Triple Jump"
-          },
-          {
-            "value": "SP",
-            "disciplineNameUrlSlug": "shot-put",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Shot Put"
-          },
-          {
-            "value": "SPJ",
-            "disciplineNameUrlSlug": "shot-put-6kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Shot Put (6kg)"
-          },
-          {
-            "value": "DT",
-            "disciplineNameUrlSlug": "discus-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Discus Throw"
-          },
-          {
-            "value": "DTJ",
-            "disciplineNameUrlSlug": "discus-throw-1750kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Discus Throw (1,75kg)"
-          },
-          {
-            "value": "HT",
-            "disciplineNameUrlSlug": "hammer-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Hammer Throw"
-          },
-          {
-            "value": "HTJ",
-            "disciplineNameUrlSlug": "hammer-throw-6kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Hammer Throw (6kg)"
-          },
-          {
-            "value": "JT",
-            "disciplineNameUrlSlug": "javelin-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Javelin Throw"
-          },
-          {
-            "value": "DECJ",
-            "disciplineNameUrlSlug": "decathlon-u20",
-            "typeNameUrlSlug": "combined-events",
-            "label": "Men's Decathlon - U20"
-          },
-          {
-            "value": "5KW",
-            "disciplineNameUrlSlug": "5000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 5000m Race Walk"
-          },
-          {
-            "value": "10KW",
-            "disciplineNameUrlSlug": "10000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 10,000m Race Walk"
-          },
-          {
-            "value": "10KR",
-            "disciplineNameUrlSlug": "10-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 10km Race Walk"
-          },
-          {
-            "value": "20KR",
-            "disciplineNameUrlSlug": "20-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 20km Race Walk"
-          },
-          {
-            "value": "4X1",
-            "disciplineNameUrlSlug": "4x100-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x100m"
-          },
-          {
-            "value": "4X4",
-            "disciplineNameUrlSlug": "4x400-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x400m"
-          }
-        ],
-        "defaultValue": "100"
-      },
-     
-      {
-        "gender": "male",
-        "environment": "outdoor",
-        "ageCategory": "u18",
-        "regionType": "world",
-        "values": [
-          {
-            "value": "60",
-            "disciplineNameUrlSlug": "60-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 60m indoor"
-          },
-          {
-            "value": "100",
-            "disciplineNameUrlSlug": "100-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 100m"
-          },
-          {
-            "value": "200",
-            "disciplineNameUrlSlug": "200-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 200m"
-          },
-          {
-            "value": "400",
-            "disciplineNameUrlSlug": "400-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Men's 400m"
-          },
-          {
-            "value": "800",
-            "disciplineNameUrlSlug": "800-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 800m"
-          },
-          {
-            "value": "1500",
-            "disciplineNameUrlSlug": "1500-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 1500m"
-          },
-          {
-            "value": "3000",
-            "disciplineNameUrlSlug": "3000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 3000m"
-          },
-          {
-            "value": "5000",
-            "disciplineNameUrlSlug": "5000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 5000m"
-          },
-          {
-            "value": "10K",
-            "disciplineNameUrlSlug": "10000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 10,000m"
-          },
-          {
-            "value": "2KSC84",
-            "disciplineNameUrlSlug": "2000-metres-steeplechase-84",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 2000mSC (0.84)"
-          },
-          {
-            "value": "3KSC",
-            "disciplineNameUrlSlug": "3000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Men's 3000mSC"
-          },
-          {
-            "value": "110HY",
-            "disciplineNameUrlSlug": "110m-hurdles-914cm",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Men's 110mH (0.91)"
-          },
-          {
-            "value": "400HY",
-            "disciplineNameUrlSlug": "400m-hurdles-840cm",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Men's 400mH (0.84)"
-          },
-          {
-            "value": "HJ",
-            "disciplineNameUrlSlug": "high-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's High Jump"
-          },
-          {
-            "value": "PV",
-            "disciplineNameUrlSlug": "pole-vault",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Pole Vault"
-          },
-          {
-            "value": "LJ",
-            "disciplineNameUrlSlug": "long-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Long Jump"
-          },
-          {
-            "value": "TJ",
-            "disciplineNameUrlSlug": "triple-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Men's Triple Jump"
-          },
-          {
-            "value": "SPY",
-            "disciplineNameUrlSlug": "shot-put-5kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Shot Put (5kg)"
-          },
-          {
-            "value": "DTY",
-            "disciplineNameUrlSlug": "discus-throw-1500kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Discus Throw (1,5kg)"
-          },
-          {
-            "value": "HTY",
-            "disciplineNameUrlSlug": "hammer-throw-5kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Hammer Throw (5kg)"
-          },
-          {
-            "value": "JTY",
-            "disciplineNameUrlSlug": "javelin-throw-700g",
-            "typeNameUrlSlug": "throws",
-            "label": "Men's Javelin Throw (700gr)"
-          },
-          {
-            "value": "DECY",
-            "disciplineNameUrlSlug": "decathlon-boys",
-            "typeNameUrlSlug": "combined-events",
-            "label": "Men's Decathlon - U18"
-          },
-          {
-            "value": "5KW",
-            "disciplineNameUrlSlug": "5000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 5000m Race Walk"
-          },
-          {
-            "value": "10KW",
-            "disciplineNameUrlSlug": "10000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 10,000m Race Walk"
-          },
-          {
-            "value": "10KR",
-            "disciplineNameUrlSlug": "10-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Men's 10km Race Walk"
-          },
-          {
-            "value": "4X1",
-            "disciplineNameUrlSlug": "4x100-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x100m"
-          },
-          {
-            "value": "4X4",
-            "disciplineNameUrlSlug": "4x400-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's 4x400m"
-          },
-          {
-            "value": "MEAD",
-            "disciplineNameUrlSlug": "medley-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Men's Sprint Medley 1000m"
-          }
-        ],
-        "defaultValue": "100"
-      },
-     
-     
-      {
-        "gender": "female",
-        "environment": "outdoor",
-        "ageCategory": "senior",
-        "regionType": "world",
-        "values": [
-          {
-            "value": "50",
-            "disciplineNameUrlSlug": "50-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 50m indoor"
-          },
-          {
-            "value": "55",
-            "disciplineNameUrlSlug": "55-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 55m indoor"
-          },
-          {
-            "value": "60",
-            "disciplineNameUrlSlug": "60-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 60m indoor"
-          },
-          {
-            "value": "100",
-            "disciplineNameUrlSlug": "100-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 100m"
-          },
-          {
-            "value": "200",
-            "disciplineNameUrlSlug": "200-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 200m"
-          },
-          {
-            "value": "300",
-            "disciplineNameUrlSlug": "300-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 300m"
-          },
-          {
-            "value": "400",
-            "disciplineNameUrlSlug": "400-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 400m"
-          },
-          {
-            "value": "600",
-            "disciplineNameUrlSlug": "600-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 600m"
-          },
-          {
-            "value": "800",
-            "disciplineNameUrlSlug": "800-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 800m"
-          },
-          {
-            "value": "1000",
-            "disciplineNameUrlSlug": "1000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 1000m"
-          },
-          {
-            "value": "1500",
-            "disciplineNameUrlSlug": "1500-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 1500m"
-          },
-          {
-            "value": "MILE",
-            "disciplineNameUrlSlug": "one-mile",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's Mile"
-          },
-          {
-            "value": "2000",
-            "disciplineNameUrlSlug": "2000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 2000m"
-          },
-          {
-            "value": "3000",
-            "disciplineNameUrlSlug": "3000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 3000m"
-          },
-          {
-            "value": "2MLS",
-            "disciplineNameUrlSlug": "two-miles",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 2 Miles"
-          },
-          {
-            "value": "5000",
-            "disciplineNameUrlSlug": "5000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 5000m"
-          },
-          {
-            "value": "5RR",
-            "disciplineNameUrlSlug": "5-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's 5km Road Race"
-          },
-          {
-            "value": "10K",
-            "disciplineNameUrlSlug": "10000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 10,000m"
-          },
-          {
-            "value": "10RR",
-            "disciplineNameUrlSlug": "10-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's 10km Road Race"
-          },
-          {
-            "value": "15RR",
-            "disciplineNameUrlSlug": "15-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's 15km Road Race"
-          },
-          {
-            "value": "10MR",
-            "disciplineNameUrlSlug": "10-miles-road",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's 10 Miles Road Race"
-          },
-          {
-            "value": "20RR",
-            "disciplineNameUrlSlug": "20-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's 20km Road Race"
-          },
-          {
-            "value": "HMAR",
-            "disciplineNameUrlSlug": "half-marathon",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's Half Marathon"
-          },
-          {
-            "value": "MAR",
-            "disciplineNameUrlSlug": "marathon",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's Marathon"
-          },
-          {
-            "value": "2KSC",
-            "disciplineNameUrlSlug": "2000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 2000mSC"
-          },
-          {
-            "value": "3KSC",
-            "disciplineNameUrlSlug": "3000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 3000mSC"
-          },
-          {
-            "value": "100H",
-            "disciplineNameUrlSlug": "100-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Women's 100mH"
-          },
-          {
-            "value": "400H",
-            "disciplineNameUrlSlug": "400-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Women's 400mH"
-          },
-          {
-            "value": "HJ",
-            "disciplineNameUrlSlug": "high-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's High Jump"
-          },
-          {
-            "value": "PV",
-            "disciplineNameUrlSlug": "pole-vault",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Pole Vault"
-          },
-          {
-            "value": "LJ",
-            "disciplineNameUrlSlug": "long-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Long Jump"
-          },
-          {
-            "value": "TJ",
-            "disciplineNameUrlSlug": "triple-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Triple Jump"
-          },
-          {
-            "value": "SP",
-            "disciplineNameUrlSlug": "shot-put",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Shot Put"
-          },
-          {
-            "value": "DT",
-            "disciplineNameUrlSlug": "discus-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Discus Throw"
-          },
-          {
-            "value": "HT",
-            "disciplineNameUrlSlug": "hammer-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Hammer Throw"
-          },
-          {
-            "value": "JT",
-            "disciplineNameUrlSlug": "javelin-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Javelin Throw"
-          },
-          {
-            "value": "HEP",
-            "disciplineNameUrlSlug": "heptathlon",
-            "typeNameUrlSlug": "combined-events",
-            "label": "Women's Heptathlon"
-          },
-          {
-            "value": "3KW",
-            "disciplineNameUrlSlug": "3000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 3000m Race Walk"
-          },
-          {
-            "value": "5KW",
-            "disciplineNameUrlSlug": "5000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 5000m Race Walk"
-          },
-          {
-            "value": "5KR",
-            "disciplineNameUrlSlug": "5-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 5km Race Walk"
-          },
-          {
-            "value": "10KW",
-            "disciplineNameUrlSlug": "10000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 10,000m Race Walk"
-          },
-          {
-            "value": "10KR",
-            "disciplineNameUrlSlug": "10-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 10km Race Walk"
-          },
-          {
-            "value": "20KW",
-            "disciplineNameUrlSlug": "20000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 20,000m Race Walk"
-          },
-          {
-            "value": "20KR",
-            "disciplineNameUrlSlug": "20-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 20km Race Walk"
-          },
-          {
-            "value": "35KR",
-            "disciplineNameUrlSlug": "35-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 35km Race Walk"
-          },
-          {
-            "value": "50KR",
-            "disciplineNameUrlSlug": "50-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 50km Race Walk"
-          },
-          {
-            "value": "4X1",
-            "disciplineNameUrlSlug": "4x100-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x100m"
-          },
-          {
-            "value": "4X2",
-            "disciplineNameUrlSlug": "4x200-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x200m"
-          },
-          {
-            "value": "4X4",
-            "disciplineNameUrlSlug": "4x400-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x400m"
-          },
-          {
-            "value": "4X8",
-            "disciplineNameUrlSlug": "4x800-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x800m"
-          },
-          {
-            "value": "4X15",
-            "disciplineNameUrlSlug": "4x1500-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x1500m"
-          }
-        ],
-        "defaultValue": "100"
-      },
-     
-      {
-        "gender": "female",
-        "environment": "outdoor",
-        "ageCategory": "u20",
-        "regionType": "world",
-        "values": [
-          
-          {
-            "value": "60",
-            "disciplineNameUrlSlug": "60-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 60m indoor"
-          },
-          {
-            "value": "100",
-            "disciplineNameUrlSlug": "100-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 100m"
-          },
-          {
-            "value": "200",
-            "disciplineNameUrlSlug": "200-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 200m"
-          },
-          {
-            "value": "300",
-            "disciplineNameUrlSlug": "300-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 300m"
-          },
-          {
-            "value": "400",
-            "disciplineNameUrlSlug": "400-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 400m"
-          },
-          {
-            "value": "800",
-            "disciplineNameUrlSlug": "800-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 800m"
-          },
-          {
-            "value": "1500",
-            "disciplineNameUrlSlug": "1500-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 1500m"
-          },
-          {
-            "value": "3000",
-            "disciplineNameUrlSlug": "3000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 3000m"
-          },
-          {
-            "value": "5000",
-            "disciplineNameUrlSlug": "5000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 5000m"
-          },
-          {
-            "value": "10K",
-            "disciplineNameUrlSlug": "10000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 10,000m"
-          },
-          {
-            "value": "10RR",
-            "disciplineNameUrlSlug": "10-kilometres",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's 10km Road Race"
-          },
-          {
-            "value": "HMAR",
-            "disciplineNameUrlSlug": "half-marathon",
-            "typeNameUrlSlug": "road-running",
-            "label": "Women's Half Marathon"
-          },
-          {
-            "value": "2KSC",
-            "disciplineNameUrlSlug": "2000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 2000mSC"
-          },
-          {
-            "value": "3KSC",
-            "disciplineNameUrlSlug": "3000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 3000mSC"
-          },
-          {
-            "value": "100H",
-            "disciplineNameUrlSlug": "100-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Women's 100mH"
-          },
-          {
-            "value": "400H",
-            "disciplineNameUrlSlug": "400-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Women's 400mH"
-          },
-          {
-            "value": "HJ",
-            "disciplineNameUrlSlug": "high-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's High Jump"
-          },
-          {
-            "value": "PV",
-            "disciplineNameUrlSlug": "pole-vault",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Pole Vault"
-          },
-          {
-            "value": "LJ",
-            "disciplineNameUrlSlug": "long-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Long Jump"
-          },
-          {
-            "value": "TJ",
-            "disciplineNameUrlSlug": "triple-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Triple Jump"
-          },
-          {
-            "value": "SP",
-            "disciplineNameUrlSlug": "shot-put",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Shot Put"
-          },
-          {
-            "value": "DT",
-            "disciplineNameUrlSlug": "discus-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Discus Throw"
-          },
-          {
-            "value": "HT",
-            "disciplineNameUrlSlug": "hammer-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Hammer Throw"
-          },
-          {
-            "value": "JT",
-            "disciplineNameUrlSlug": "javelin-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Javelin Throw"
-          },
-          {
-            "value": "HEP",
-            "disciplineNameUrlSlug": "heptathlon",
-            "typeNameUrlSlug": "combined-events",
-            "label": "Women's Heptathlon"
-          },
-          {
-            "value": "5KW",
-            "disciplineNameUrlSlug": "5000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 5000m Race Walk"
-          },
-          {
-            "value": "5KR",
-            "disciplineNameUrlSlug": "5-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 5km Race Walk"
-          },
-          {
-            "value": "10KW",
-            "disciplineNameUrlSlug": "10000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 10,000m Race Walk"
-          },
-          {
-            "value": "10KR",
-            "disciplineNameUrlSlug": "10-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 10km Race Walk"
-          },
-          {
-            "value": "20KW",
-            "disciplineNameUrlSlug": "20000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 20,000m Race Walk"
-          },
-          {
-            "value": "20KR",
-            "disciplineNameUrlSlug": "20-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 20km Race Walk"
-          },
-          {
-            "value": "4X1",
-            "disciplineNameUrlSlug": "4x100-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x100m"
-          },
-          {
-            "value": "4X4",
-            "disciplineNameUrlSlug": "4x400-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x400m"
-          }
-        ],
-        "defaultValue": "100"
-      },
-      
-      
-      {
-        "gender": "female",
-        "environment": "outdoor",
-        "ageCategory": "u18",
-        "regionType": "world",
-        "values": [
-
-          {
-            "value": "60",
-            "disciplineNameUrlSlug": "60-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 60m indoor"
-          },
-          {
-            "value": "100",
-            "disciplineNameUrlSlug": "100-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 100m"
-          },
-          {
-            "value": "200",
-            "disciplineNameUrlSlug": "200-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 200m"
-          },
-          {
-            "value": "400",
-            "disciplineNameUrlSlug": "400-metres",
-            "typeNameUrlSlug": "sprints",
-            "label": "Women's 400m"
-          },
-          {
-            "value": "800",
-            "disciplineNameUrlSlug": "800-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 800m"
-          },
-          {
-            "value": "1500",
-            "disciplineNameUrlSlug": "1500-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 1500m"
-          },
-          {
-            "value": "3000",
-            "disciplineNameUrlSlug": "3000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 3000m"
-          },
-          {
-            "value": "5000",
-            "disciplineNameUrlSlug": "5000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 5000m"
-          },
-          {
-            "value": "10K",
-            "disciplineNameUrlSlug": "10000-metres",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 10,000m"
-          },
-          {
-            "value": "2KSC",
-            "disciplineNameUrlSlug": "2000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 2000mSC"
-          },
-          {
-            "value": "3KSC",
-            "disciplineNameUrlSlug": "3000-metres-steeplechase",
-            "typeNameUrlSlug": "middlelong",
-            "label": "Women's 3000mSC"
-          },
-          {
-            "value": "100HY",
-            "disciplineNameUrlSlug": "100m-hurdles-762cm",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Women's 100mH (0.76\/8.50)"
-          },
-          {
-            "value": "400H",
-            "disciplineNameUrlSlug": "400-metres-hurdles",
-            "typeNameUrlSlug": "hurdles",
-            "label": "Women's 400mH"
-          },
-          {
-            "value": "HJ",
-            "disciplineNameUrlSlug": "high-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's High Jump"
-          },
-          {
-            "value": "PV",
-            "disciplineNameUrlSlug": "pole-vault",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Pole Vault"
-          },
-          {
-            "value": "LJ",
-            "disciplineNameUrlSlug": "long-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Long Jump"
-          },
-          {
-            "value": "TJ",
-            "disciplineNameUrlSlug": "triple-jump",
-            "typeNameUrlSlug": "jumps",
-            "label": "Women's Triple Jump"
-          },
-          {
-            "value": "SPYG",
-            "disciplineNameUrlSlug": "shot-put-3kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Shot Put (3kg)"
-          },
-          {
-            "value": "DT",
-            "disciplineNameUrlSlug": "discus-throw",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Discus Throw"
-          },
-          {
-            "value": "HTYG",
-            "disciplineNameUrlSlug": "hammer-throw-3kg",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Hammer Throw (3kg)"
-          },
-          {
-            "value": "JTYG",
-            "disciplineNameUrlSlug": "javelin-throw-500g",
-            "typeNameUrlSlug": "throws",
-            "label": "Women's Javelin Throw (500gr)"
-          },
-          {
-            "value": "HEPG",
-            "disciplineNameUrlSlug": "heptathlon-girls",
-            "typeNameUrlSlug": "combined-events",
-            "label": "Women's Heptathlon - U18"
-          },
-          {
-            "value": "3KW",
-            "disciplineNameUrlSlug": "3000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 3000m Race Walk"
-          },
-          {
-            "value": "5KW",
-            "disciplineNameUrlSlug": "5000-metres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 5000m Race Walk"
-          },
-          {
-            "value": "5KR",
-            "disciplineNameUrlSlug": "5-kilometres-race-walk",
-            "typeNameUrlSlug": "race-walks",
-            "label": "Women's 5km Race Walk"
-          },
-          {
-            "value": "4X1",
-            "disciplineNameUrlSlug": "4x100-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x100m"
-          },
-          {
-            "value": "4X4",
-            "disciplineNameUrlSlug": "4x400-metres-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's 4x400m"
-          },
-          {
-            "value": "MEAD",
-            "disciplineNameUrlSlug": "medley-relay",
-            "typeNameUrlSlug": "relays",
-            "label": "Women's Sprint Medley 1000m"
-          }
-        ],
-        "defaultValue": "100"
-      }
-      
-      
-    ]
-  },
-  {
-    "name": "timing",
-    "label": "Timing",
-    "dependsOn": [
-      "disciplineCode"
-    ],
-    "showIf": [
-      [
-        "50"
-      ],
-      [
-        "50"
-      ],
-      [
-        "55"
-      ],
-      [
-        "55"
-      ],
-      [
-        "60"
-      ],
-      [
-        "60"
-      ],
-      [
-        "100"
-      ],
-      [
-        "100"
-      ],
-      [
-        "200"
-      ],
-      [
-        "200"
-      ],
-      [
-        "200"
-      ],
-      [
-        "200"
-      ],
-      [
-        "300"
-      ],
-      [
-        "300"
-      ],
-      [
-        "300"
-      ],
-      [
-        "300"
-      ],
-      [
-        "400"
-      ],
-      [
-        "400"
-      ],
-      [
-        "400"
-      ],
-      [
-        "400"
-      ],
-      [
-        "500"
-      ],
-      [
-        "500"
-      ],
-      [
-        "600"
-      ],
-      [
-        "600"
-      ],
-      [
-        "600"
-      ],
-      [
-        "600"
-      ],
-      [
-        "800"
-      ],
-      [
-        "800"
-      ],
-      [
-        "800"
-      ],
-      [
-        "800"
-      ],
-      [
-        "50H"
-      ],
-      [
-        "50H"
-      ],
-      [
-        "55H"
-      ],
-      [
-        "55H"
-      ],
-      [
-        "60H"
-      ],
-      [
-        "60HY"
-      ],
-      [
-        "60HJ"
-      ],
-      [
-        "60H"
-      ],
-      [
-        "60HYG"
-      ],
-      [
-        "110HJ"
-      ],
-      [
-        "100H"
-      ],
-      [
-        "100HY"
-      ],
-      [
-        "110H"
-      ],
-      [
-        "110HY"
-      ],
-      [
-        "400HY"
-      ],
-      [
-        "400H"
-      ],
-      [
-        "400H"
-      ],
-      [
-        "4X1"
-      ],
-      [
-        "4X1"
-      ],
-      [
-        "4X2"
-      ],
-      [
-        "4X2"
-      ],
-      [
-        "4X2"
-      ],
-      [
-        "4X2"
-      ],
-      [
-        "4X4"
-      ],
-      [
-        "4X4"
-      ],
-      [
-        "4X4"
-      ],
-      [
-        "4X4"
-      ],
-      [
-        "4X4"
-      ],
-      [
-        "SHUTHUR"
-      ],
-      [
-        "MIXSHH"
-      ],
-      [
-        "MEAD"
-      ],
-      [
-        "MEAD"
-      ]
-    ],
-    "values": [
-      {
-        "value": "electronic",
-        "label": "Only electronic"
-      },
-      {
-        "value": "hand timing",
-        "label": "Only manual"
-      },
-      {
-        "value": "all",
-        "label": "All"
-      }
-    ],
-    "defaultValue": "electronic"
-  },
-  {
-    "name": "windReading",
-    "label": "Wind reading",
-    "dependsOn": [
-      "environment",
-      "disciplineCode"
-    ],
-    "showIf": [
-      [
-        "outdoor",
-        "100"
-      ],
-      [
-        "outdoor",
-        "100"
-      ],
-      [
-        "outdoor",
-        "200"
-      ],
-      [
-        "outdoor",
-        "200"
-      ],
-      [
-        "outdoor",
-        "110HJ"
-      ],
-      [
-        "outdoor",
-        "100H"
-      ],
-      [
-        "outdoor",
-        "100HY"
-      ],
-      [
-        "outdoor",
-        "110H"
-      ],
-      [
-        "outdoor",
-        "110HY"
-      ],
-      [
-        "outdoor",
-        "LJ"
-      ],
-      [
-        "outdoor",
-        "LJ"
-      ],
-      [
-        "outdoor",
-        "TJ"
-      ],
-      [
-        "outdoor",
-        "TJ"
-      ],
-      [
-        "outdoor",
-        "HEP"
-      ],
-      [
-        "outdoor",
-        "HEPG"
-      ],
-      [
-        "outdoor",
-        "DEC"
-      ],
-      [
-        "outdoor",
-        "DECJ"
-      ],
-      [
-        "outdoor",
-        "DECY"
-      ]
-    ],
-    "values": [
-      {
-        "value": "regular",
-        "label": "Only regular"
-      },
-      {
-        "value": "irregular",
-        "label": "Only irregular"
-      },
-      {
-        "value": "nwi",
-        "label": "No wind information"
-      },
-      {
-        "value": "all",
-        "label": "All"
-      }
-    ],
-    "defaultValue": "regular"
-  },
-  {
-    "name": "drop",
-    "label": "Drop",
-    "dependsOn": [
-      "environment",
-      "disciplineCode"
-    ],
-    "showIf": [
-      [
-        "outdoor",
-        "5RR"
-      ],
-      [
-        "outdoor",
-        "5RR"
-      ],
-      [
-        "outdoor",
-        "10RR"
-      ],
-      [
-        "outdoor",
-        "10RR"
-      ],
-      [
-        "outdoor",
-        "15RR"
-      ],
-      [
-        "outdoor",
-        "15RR"
-      ],
-      [
-        "outdoor",
-        "10MR"
-      ],
-      [
-        "outdoor",
-        "10MR"
-      ],
-      [
-        "outdoor",
-        "20RR"
-      ],
-      [
-        "outdoor",
-        "20RR"
-      ],
-      [
-        "outdoor",
-        "HMAR"
-      ],
-      [
-        "outdoor",
-        "HMAR"
-      ],
-      [
-        "outdoor",
-        "MAR"
-      ],
-      [
-        "outdoor",
-        "MAR"
-      ]
-    ],
-    "values": [
-      {
-        "value": "regular",
-        "label": "Only regular"
-      },
-      {
-        "value": "irregular",
-        "label": "Only irregular"
-      },
-      {
-        "value": "all",
-        "label": "All"
-      }
-    ],
-    "defaultValue": "regular"
-  },
-  {
-    "name": "fiftyPercentRule",
-    "label": "Route - 50% rule",
-    "dependsOn": [
-      "environment",
-      "disciplineCode"
-    ],
-    "showIf": [
-      [
-        "outdoor",
-        "5RR"
-      ],
-      [
-        "outdoor",
-        "5RR"
-      ],
-      [
-        "outdoor",
-        "10RR"
-      ],
-      [
-        "outdoor",
-        "10RR"
-      ],
-      [
-        "outdoor",
-        "15RR"
-      ],
-      [
-        "outdoor",
-        "15RR"
-      ],
-      [
-        "outdoor",
-        "10MR"
-      ],
-      [
-        "outdoor",
-        "10MR"
-      ],
-      [
-        "outdoor",
-        "20RR"
-      ],
-      [
-        "outdoor",
-        "20RR"
-      ],
-      [
-        "outdoor",
-        "HMAR"
-      ],
-      [
-        "outdoor",
-        "HMAR"
-      ],
-      [
-        "outdoor",
-        "MAR"
-      ],
-      [
-        "outdoor",
-        "MAR"
-      ]
-    ],
-    "values": [
-      {
-        "value": "regular",
-        "label": "Only regular"
-      },
-      {
-        "value": "irregular",
-        "label": "Only irregular"
-      },
-      {
-        "value": "all",
-        "label": "All"
-      }
-    ],
-    "defaultValue": "regular"
-  },
-  {
-    "name": "oversizedTrack",
-    "label": "Regularity of track\/field",
-    "dependsOn": [
-      "environment",
-      "disciplineCode"
-    ],
-    "showIf": [
-      [
-        "indoor",
-        "200"
-      ],
-      [
-        "indoor",
-        "200"
-      ],
-      [
-        "indoor",
-        "300"
-      ],
-      [
-        "indoor",
-        "300"
-      ],
-      [
-        "indoor",
-        "400"
-      ],
-      [
-        "indoor",
-        "400"
-      ],
-      [
-        "indoor",
-        "500"
-      ],
-      [
-        "indoor",
-        "500"
-      ],
-      [
-        "indoor",
-        "600"
-      ],
-      [
-        "indoor",
-        "600"
-      ],
-      [
-        "indoor",
-        "800"
-      ],
-      [
-        "indoor",
-        "800"
-      ],
-      [
-        "indoor",
-        "1000"
-      ],
-      [
-        "indoor",
-        "1000"
-      ],
-      [
-        "indoor",
-        "1500"
-      ],
-      [
-        "indoor",
-        "1500"
-      ],
-      [
-        "indoor",
-        "MILE"
-      ],
-      [
-        "indoor",
-        "MILE"
-      ],
-      [
-        "indoor",
-        "2000"
-      ],
-      [
-        "indoor",
-        "2000"
-      ],
-      [
-        "indoor",
-        "3000"
-      ],
-      [
-        "indoor",
-        "3000"
-      ],
-      [
-        "indoor",
-        "2MLS"
-      ],
-      [
-        "indoor",
-        "2MLS"
-      ],
-      [
-        "indoor",
-        "5000"
-      ],
-      [
-        "indoor",
-        "5000"
-      ],
-      [
-        "indoor",
-        "PEN"
-      ],
-      [
-        "indoor",
-        "PENG"
-      ],
-      [
-        "indoor",
-        "HEP"
-      ],
-      [
-        "indoor",
-        "HEPJ"
-      ],
-      [
-        "indoor",
-        "HEPB"
-      ],
-      [
-        "indoor",
-        "3KW"
-      ],
-      [
-        "indoor",
-        "3KW"
-      ],
-      [
-        "indoor",
-        "5KW"
-      ],
-      [
-        "indoor",
-        "5KW"
-      ],
-      [
-        "indoor",
-        "10KW"
-      ],
-      [
-        "indoor",
-        "4X2"
-      ],
-      [
-        "indoor",
-        "4X2"
-      ],
-      [
-        "indoor",
-        "4X4"
-      ],
-      [
-        "indoor",
-        "4X4"
-      ],
-      [
-        "indoor",
-        "4X8"
-      ],
-      [
-        "indoor",
-        "4X8"
-      ]
-    ],
-    "values": [
-      {
-        "value": "regular",
-        "label": "Only regular"
-      },
-      {
-        "value": "irregular",
-        "label": "Only irregular"
-      },
-      {
-        "value": "all",
-        "label": "All"
-      }
-    ],
-    "defaultValue": "regular"
-  },
-  {
-    "name": "bestResultsOnly",
-    "label": "Type of the list",
-    "values": [
-      {
-        "value": "true",
-        "label": "One result per athlete"
-      },
-      {
-        "value": "false",
-        "label": "All results"
-      }
-    ],
-    "defaultValue": "true"
-  },
-  {
-    "name": "page",
-    "values": {
-      "from": 1,
-      "to": 1000
-    },
-    "defaultValue": 1
-  },
-  {
-    "name": "limit",
-    "values": {
-      "from": 1,
-      "to": 2147483647
-    },
-    "defaultValue": 1
   }
 ]
