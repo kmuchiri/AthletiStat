@@ -90,6 +90,19 @@ func TestCountryLookup(t *testing.T) {
 	assert.False(t, exists)
 }
 
+func TestRootOptionsJsonCountryLookup(t *testing.T) {
+	rootOpts := filepath.Join("..", "..", "options.json")
+	if _, err := os.Stat(rootOpts); os.IsNotExist(err) {
+		t.Skip("options.json not found in root")
+	}
+
+	p := NewPreprocessor("both", rootOpts)
+	assert.Equal(t, "Kenya", p.CountryLookup["ken"])
+	assert.Equal(t, "United States", p.CountryLookup["usa"])
+	assert.Equal(t, "Jamaica", p.CountryLookup["jam"])
+	assert.GreaterOrEqual(t, len(p.CountryLookup), 200)
+}
+
 func TestTypeSets(t *testing.T) {
 	opts := createTestOptions(t)
 	p := NewPreprocessor("both", opts)
