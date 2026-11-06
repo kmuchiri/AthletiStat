@@ -257,7 +257,7 @@ func (p *Preprocessor) GetFilesByKey(currentMode string, year ...string) map[Gro
 		}
 
 		for _, yr := range targetYears {
-			for _, gender := range []string{"male", "female"} {
+			for _, gender := range []string{"male", "female", "mixed"} {
 				genderPath := filepath.Join(inputRoot, yr, gender)
 				files, err := os.ReadDir(genderPath)
 				if err != nil {
