@@ -75,6 +75,40 @@ func TestLoadMappings(t *testing.T) {
 	}
 }
 
+func TestLoadRootOptionsJson(t *testing.T) {
+	rootOpts := filepath.Join("..", "..", "options.json")
+	if _, err := os.Stat(rootOpts); os.IsNotExist(err) {
+		t.Skip("options.json not found in root")
+	}
+
+	s := NewScraper("both", rootOpts)
+	require.NotEmpty(t, s.Mappings)
+
+	mixedSeniorKey := MappingKey{Gender: "mixed", AgeCategory: "senior"}
+	assert.Contains(t, s.Mappings, mixedSeniorKey)
+	assert.Len(t, s.Mappings[mixedSeniorKey], 3)
+
+	maleSeniorKey := MappingKey{Gender: "male", AgeCategory: "senior"}
+	assert.Contains(t, s.Mappings, maleSeniorKey)
+
+	// Check for short track and 2026 race walk in male senior
+	var hasShortTrack, hasHalfMarathonRW, hasMarathonRW bool
+	for _, pair := range s.Mappings[maleSeniorKey] {
+		if pair.DisciplineSlug == "200-metres-short-track" && pair.TypeSlug == "sprints" {
+			hasShortTrack = true
+		}
+		if pair.DisciplineSlug == "half-marathon-race-walk" && pair.TypeSlug == "race-walks" {
+			hasHalfMarathonRW = true
+		}
+		if pair.DisciplineSlug == "marathon-race-walk" && pair.TypeSlug == "race-walks" {
+			hasMarathonRW = true
+		}
+	}
+	assert.True(t, hasShortTrack, "should contain 200m short track")
+	assert.True(t, hasHalfMarathonRW, "should contain half-marathon race walk")
+	assert.True(t, hasMarathonRW, "should contain marathon race walk")
+}
+
 func TestBuildJobs(t *testing.T) {
 	opts := createScraperTestOptions(t)
 	s := NewScraper("both", opts)
