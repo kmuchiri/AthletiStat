@@ -1,0 +1,84 @@
+﻿.sso-footer-container {
+    background-color: #010127;
+    color: #fff;
+}
+
+.sso-footer-container .sso-footer-links .footer-logo-container {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.sso-footer-container .iaaf-sign-up-banner {
+    padding: 0;
+    background-color: #ff2434;
+}
+.container-fluid {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.sso-footer-container .sso-footer-links {
+    padding-top: 60px;
+}
+
+.sso-footer-container .footer-podcast-column {
+   
+    margin-bottom: 20px;
+}
+
+.sso-footer-container .sso-link-row a:link, .sso-footer-container .sso-link-row a:active, .sso-footer-container .sso-link-row a:visited {
+    color: #fff;
+}
+.sso-footer-container .sso-link-row {
+    margin-bottom: 20px;
+}
+.sso-footer-container .sso-footer-links .footer-logo-container img {
+    width: 100%;
+    max-width: 200px;
+}
+.sso-footer-container .footer-podcast-column div img {
+    width: 250px;
+    display: inline-block;
+}
+.sso-footer-container .sso-footer-links .sso-link-header {
+    margin-bottom: 30px;
+    
+}
+.sso-footer-container .iaaf-sign-up-banner .iaaf-sign-up-inner-content {
+    height: 250px;
+}
+.sso-footer-container .iaaf-sign-up-banner .sign-up-btn {
+    background-color: #fecb00;
+    color: #010127;
+    height: 50px;
+    display: block;
+}
+.sso-footer-container .iaaf-sign-up-banner .iaaf-sign-up-inner-content .sign-up-btn-container {
+    height: inherit;
+    width: inherit;
+    padding-top: 40px;
+}
+.iaaf-sign-up-banner .sign-up-btn {
+    width: 23%;
+    margin: 100px 45.5% 0;
+    font-family: Din,Arial,serif;
+    font-size: 23px;
+    text-transform: uppercase;
+}
+@media screen and (min-width: 765px) {
+    .sso-footer-container .footer-podcast-column .podcast-link {
+        display: block;
+        width: 300px;
+        text-align: left;
+    }
+    .sso-footer-container .iaaf-sign-up-banner {
+    background-image: url(../../Images/sign-up-banner-3.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .sso-footer-container .footer-podcast-column div img {
+    margin: 0;
+}
+}

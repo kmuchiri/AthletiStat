@@ -285,11 +285,11 @@ func (s *DatasetSplitter) SplitDataset(header []string, rows [][]string, modeDir
 	var individualRows [][]string
 	var relayRows [][]string
 
-	// Filter relay columns (drop dob and age_at_event for relays)
+	// Filter relay columns (drop dob, age_at_event, and age_at_event_days for relays)
 	var relayHeader []string
 	var relayColIndices []int
 	for i, h := range header {
-		if h != "dob" && h != "age_at_event" {
+		if h != "dob" && h != "age_at_event" && h != "age_at_event_days" {
 			relayHeader = append(relayHeader, h)
 			relayColIndices = append(relayColIndices, i)
 		}

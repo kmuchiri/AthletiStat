@@ -40,6 +40,7 @@ type Record struct {
 	NatFull              string
 	VenueCountry         string
 	AgeAtEvent           string
+	AgeAtEventDays       string
 	Season               string
 }
 
@@ -447,6 +448,7 @@ func (p *Preprocessor) ProcessData(currentMode string, year ...string) error {
 				// (date - dob).days // 365
 				days := int(parsedDate.Sub(parsedDOB).Hours() / 24)
 				r.AgeAtEvent = strconv.Itoa(days / 365)
+				r.AgeAtEventDays = strconv.Itoa(days)
 			}
 		}
 
@@ -498,7 +500,7 @@ func (p *Preprocessor) ProcessData(currentMode string, year ...string) error {
 			"rank", "mark", "wind", "competitor", "dob", "nationality", "position",
 			"venue", "date", "result_score", "discipline", "type", "sex", "age_cat",
 			"normalized_discipline", "track_field", "mark_numeric", "nat_full",
-			"venue_country", "age_at_event", "season",
+			"venue_country", "age_at_event", "age_at_event_days", "season",
 		}
 		if err := writer.Write(header); err != nil {
 			outFile.Close()
@@ -517,7 +519,7 @@ func (p *Preprocessor) ProcessData(currentMode string, year ...string) error {
 				r.Rank, r.Mark, r.Wind, r.Competitor, r.DOB, r.Nationality, r.Position,
 				r.Venue, r.Date, r.ResultScore, r.Discipline, r.Type, r.Sex, r.AgeCat,
 				r.NormalizedDiscipline, r.TrackField, markNumStr, r.NatFull,
-				r.VenueCountry, r.AgeAtEvent, r.Season,
+				r.VenueCountry, r.AgeAtEvent, r.AgeAtEventDays, r.Season,
 			}
 			_ = writer.Write(row)
 		}
