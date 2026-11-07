@@ -148,8 +148,8 @@ row_count_chunk_size = 1048576  # Stream chunk size for counting CSV rows (1 MB)
 ┌─────────────────────────────────────────────────┬───────────┬───────────┐
 │                    FILE NAME                    │ FILE SIZE │ ROW COUNT │
 ├─────────────────────────────────────────────────┼───────────┼───────────┤
-│ combined_track_field_performances_2001_2026.csv │ 2.77 GB   │ 16313734  │
-│ top_track_field_performances_all_time.csv       │ 134.20 MB │ 760178    │
+│ combined_track_field_performances_2001_2026.csv │ 2.89 GB   │ 16313734  │
+│ top_track_field_performances_all_time.csv       │ 140.67 MB │ 760178    │
 └─────────────────────────────────────────────────┴───────────┴───────────┘
 ```
 <!-- END_DATASET_INFO -->
