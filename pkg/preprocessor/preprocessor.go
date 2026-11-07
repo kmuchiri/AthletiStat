@@ -13,6 +13,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode"
 
 	"athletistat/pkg/config"
 	"athletistat/pkg/console"
@@ -42,6 +43,7 @@ type Record struct {
 	AgeAtEvent           string
 	AgeAtEventDays       string
 	Season               string
+	Environment          string
 }
 
 // GroupKey represents the grouping key for preprocessor raw files.
@@ -54,10 +56,11 @@ type GroupKey struct {
 
 // Preprocessor handles data cleaning and normalization.
 type Preprocessor struct {
-	Mode            string
-	OptionsFile     string
-	CountryLookup   map[string]string
-	ManualAliases   map[string]string
+	Mode                  string
+	OptionsFile           string
+	CountryLookup         map[string]string
+	DisciplineEnvironment map[string]string
+	ManualAliases         map[string]string
 	AscendingTypes  map[string]bool
 	DescendingTypes map[string]bool
 	TrackTypes      map[string]bool
@@ -78,9 +81,10 @@ func NewPreprocessor(mode string, optionsFile string) *Preprocessor {
 	}
 
 	p := &Preprocessor{
-		Mode:          mode,
-		OptionsFile:   optionsFile,
-		CountryLookup: make(map[string]string),
+		Mode:                  mode,
+		OptionsFile:           optionsFile,
+		CountryLookup:         make(map[string]string),
+		DisciplineEnvironment: make(map[string]string),
 		ManualAliases: map[string]string{
 			"100m-hurdles":    "100-metres-hurdles",
 			"110m-hurdles":    "110-metres-hurdles",
@@ -139,26 +143,113 @@ func (p *Preprocessor) loadCountryLookup() {
 
 	for _, item := range optionsData {
 		name, _ := item["name"].(string)
-		if name != "region" {
-			continue
-		}
-		cases, _ := item["cases"].([]interface{})
-		for _, c := range cases {
-			caseMap, _ := c.(map[string]interface{})
-			if caseMap["regionType"] != "countries" {
-				continue
+		if name == "region" {
+			cases, _ := item["cases"].([]interface{})
+			for _, c := range cases {
+				caseMap, _ := c.(map[string]interface{})
+				if caseMap["regionType"] != "countries" {
+					continue
+				}
+				values, _ := caseMap["values"].([]interface{})
+				for _, v := range values {
+					valMap, _ := v.(map[string]interface{})
+					code, _ := valMap["value"].(string)
+					label, _ := valMap["label"].(string)
+					if code != "" && label != "" {
+						p.CountryLookup[strings.ToLower(code)] = label
+					}
+				}
 			}
-			values, _ := caseMap["values"].([]interface{})
-			for _, v := range values {
-				valMap, _ := v.(map[string]interface{})
-				code, _ := valMap["value"].(string)
-				label, _ := valMap["label"].(string)
-				if code != "" && label != "" {
-					p.CountryLookup[strings.ToLower(code)] = label
+		} else if name == "disciplineCode" {
+			cases, _ := item["cases"].([]interface{})
+			for _, c := range cases {
+				caseMap, _ := c.(map[string]interface{})
+				values, _ := caseMap["values"].([]interface{})
+				for _, v := range values {
+					valMap, _ := v.(map[string]interface{})
+					slug, _ := valMap["disciplineNameUrlSlug"].(string)
+					env, _ := valMap["environment"].(string)
+					if slug != "" && env != "" {
+						p.DisciplineEnvironment[slug] = env
+					}
 				}
 			}
 		}
 	}
+}
+
+// GetEnvironment determines if a discipline is "indoor" or "outdoor".
+func (p *Preprocessor) GetEnvironment(disciplineSlug string) string {
+	if env, ok := p.DisciplineEnvironment[disciplineSlug]; ok && env != "" {
+		return env
+	}
+	if strings.Contains(disciplineSlug, "short-track") || strings.Contains(disciplineSlug, "indoor") {
+		return "indoor"
+	}
+	return "outdoor"
+}
+
+// FormatCompetitor formats the competitor last name to have only the first letter capitalised,
+// preserving Mc prefixes (e.g. McAlister) and O' prefixes (e.g. O'Connor).
+// Relay entries (countries/teams) are left unchanged.
+func (p *Preprocessor) FormatCompetitor(name string, isRelay bool) string {
+	if isRelay || strings.TrimSpace(name) == "" {
+		return name
+	}
+	return FormatCompetitorName(name)
+}
+
+// FormatCompetitorName capitalizes only the first letter of last name parts,
+// handling Mc prefixes (e.g. McAlister) and hyphenated last names.
+func FormatCompetitorName(name string) string {
+	tokens := strings.Split(name, " ")
+	out := make([]string, len(tokens))
+	for i, tok := range tokens {
+		hasLower := false
+		hasUpper := false
+		for _, r := range tok {
+			if unicode.IsLower(r) {
+				hasLower = true
+			}
+			if unicode.IsUpper(r) {
+				hasUpper = true
+			}
+		}
+
+		if hasLower && !strings.HasPrefix(strings.ToLower(tok), "mc") && !strings.HasPrefix(strings.ToLower(tok), "o'") {
+			out[i] = tok
+		} else if len(tok) == 2 && tok[1] == '.' {
+			out[i] = tok
+		} else if hasUpper {
+			out[i] = formatLastNameToken(tok)
+		} else {
+			out[i] = tok
+		}
+	}
+	return strings.Join(out, " ")
+}
+
+func formatLastNameToken(tok string) string {
+	parts := strings.Split(tok, "-")
+	for i, part := range parts {
+		parts[i] = formatSubword(part)
+	}
+	return strings.Join(parts, "-")
+}
+
+func formatSubword(p string) string {
+	if len(p) == 0 {
+		return ""
+	}
+	lower := strings.ToLower(p)
+	r := []rune(p)
+	if strings.HasPrefix(lower, "mc") && len(r) > 2 {
+		return "Mc" + string(unicode.ToUpper(r[2])) + strings.ToLower(string(r[3:]))
+	}
+	if strings.HasPrefix(lower, "o'") && len(r) > 2 {
+		return "O'" + string(unicode.ToUpper(r[2])) + strings.ToLower(string(r[3:]))
+	}
+	return string(unicode.ToUpper(r[0])) + strings.ToLower(string(r[1:]))
 }
 
 // NormalizeDiscipline normalizes discipline slugs by mapping aliases and stripping suffixes.
@@ -401,6 +492,8 @@ func (p *Preprocessor) ProcessData(currentMode string, year ...string) error {
 		// Transform records
 		for i := range records {
 			r := &records[i]
+			r.Competitor = p.FormatCompetitor(r.Competitor, key.TypeSlug == "relays")
+			r.Environment = p.GetEnvironment(r.Discipline)
 			r.NormalizedDiscipline = key.BaseDiscipline
 
 			if p.FieldTypes[key.TypeSlug] {
@@ -500,7 +593,7 @@ func (p *Preprocessor) ProcessData(currentMode string, year ...string) error {
 			"rank", "mark", "wind", "competitor", "dob", "nationality", "position",
 			"venue", "date", "result_score", "discipline", "type", "sex", "age_cat",
 			"normalized_discipline", "track_field", "mark_numeric", "nat_full",
-			"venue_country", "age_at_event", "age_at_event_days", "season",
+			"venue_country", "age_at_event", "age_at_event_days", "season", "environment",
 		}
 		if err := writer.Write(header); err != nil {
 			outFile.Close()
@@ -519,7 +612,7 @@ func (p *Preprocessor) ProcessData(currentMode string, year ...string) error {
 				r.Rank, r.Mark, r.Wind, r.Competitor, r.DOB, r.Nationality, r.Position,
 				r.Venue, r.Date, r.ResultScore, r.Discipline, r.Type, r.Sex, r.AgeCat,
 				r.NormalizedDiscipline, r.TrackField, markNumStr, r.NatFull,
-				r.VenueCountry, r.AgeAtEvent, r.AgeAtEventDays, r.Season,
+				r.VenueCountry, r.AgeAtEvent, r.AgeAtEventDays, r.Season, r.Environment,
 			}
 			_ = writer.Write(row)
 		}
