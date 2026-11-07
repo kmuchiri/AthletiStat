@@ -27,6 +27,19 @@ func createTestOptions(t *testing.T) string {
         ]
       }
     ]
+  },
+  {
+    "name": "disciplineCode",
+    "cases": [
+      {
+        "gender": "male",
+        "ageCategory": "senior",
+        "values": [
+          {"disciplineNameUrlSlug": "100-metres", "environment": "outdoor"},
+          {"disciplineNameUrlSlug": "200-metres-short-track", "environment": "indoor"}
+        ]
+      }
+    ]
   }
 ]`
 	err := os.WriteFile(optionsPath, []byte(content), 0644)
@@ -120,4 +133,47 @@ func TestGetFilesByKeyMissingDir(t *testing.T) {
 
 	res := p.GetFilesByKey("seasons")
 	assert.Nil(t, res)
+}
+
+func TestFormatCompetitor(t *testing.T) {
+	opts := createTestOptions(t)
+	p := NewPreprocessor("both", opts)
+
+	// Standard athlete names
+	assert.Equal(t, "Usain Bolt", p.FormatCompetitor("Usain BOLT", false))
+	assert.Equal(t, "Jackie Joyner-Kersee", p.FormatCompetitor("Jackie JOYNER-KERSEE", false))
+	assert.Equal(t, "Shelly-Ann Fraser-Pryce", p.FormatCompetitor("Shelly-Ann FRASER-PRYCE", false))
+	assert.Equal(t, "Ferdinand Omanyala Omurwa", p.FormatCompetitor("Ferdinand OMANYALA OMURWA", false))
+	assert.Equal(t, "Wayde Van Niekerk", p.FormatCompetitor("Wayde VAN NIEKERK", false))
+
+	// Mc exceptions
+	assert.Equal(t, "Eamonn McAlister", p.FormatCompetitor("Eamonn MCALISTER", false))
+	assert.Equal(t, "Chantae McMillan", p.FormatCompetitor("Chantae MCMILLAN", false))
+	assert.Equal(t, "Sydney McLaughlin-Levrone", p.FormatCompetitor("Sydney MCLAUGHLIN-LEVRONE", false))
+	assert.Equal(t, "Miesha McKelvy-Jones", p.FormatCompetitor("Miesha MCKELVY-JONES", false))
+	assert.Equal(t, "Aaliyah McCormick", p.FormatCompetitor("Aaliyah MCCORMICK", false))
+
+	// O' exceptions
+	assert.Equal(t, "Kate O'Connor", p.FormatCompetitor("Kate O'CONNOR", false))
+
+	// Initials
+	assert.Equal(t, "G. Sindhushree", p.FormatCompetitor("G. SINDHUSHREE", false))
+
+	// Relays should NOT be modified
+	assert.Equal(t, "United States", p.FormatCompetitor("United States", true))
+	assert.Equal(t, "USA Red", p.FormatCompetitor("USA Red", true))
+	assert.Equal(t, "Jamaica", p.FormatCompetitor("Jamaica", true))
+
+	// Empty
+	assert.Equal(t, "", p.FormatCompetitor("", false))
+}
+
+func TestGetEnvironment(t *testing.T) {
+	opts := createTestOptions(t)
+	p := NewPreprocessor("both", opts)
+
+	assert.Equal(t, "outdoor", p.GetEnvironment("100-metres"))
+	assert.Equal(t, "indoor", p.GetEnvironment("200-metres-short-track"))
+	assert.Equal(t, "indoor", p.GetEnvironment("heptathlon-short-track"))
+	assert.Equal(t, "outdoor", p.GetEnvironment("marathon"))
 }
