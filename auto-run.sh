@@ -1,3 +1,9 @@
+./bin/athletistat --fetch-data seasons --year 2025
+./bin/athletistat --fetch-data seasons --year 2024
+./bin/athletistat --fetch-data seasons --year 2023
+./bin/athletistat --fetch-data seasons --year 2022
+./bin/athletistat --fetch-data seasons --year 2021
+./bin/athletistat --fetch-data seasons --year 2020
 ./bin/athletistat --fetch-data seasons --year 2019
 ./bin/athletistat --fetch-data seasons --year 2018
 ./bin/athletistat --fetch-data seasons --year 2017
@@ -12,7 +18,6 @@
 ./bin/athletistat --fetch-data seasons --year 2008
 ./bin/athletistat --fetch-data seasons --year 2007
 ./bin/athletistat --fetch-data seasons --year 2006
-./bin/athletistat --fetch-data seasons --year 2005
 ./bin/athletistat --fetch-data seasons --year 2004
 ./bin/athletistat --fetch-data seasons --year 2003
 ./bin/athletistat --fetch-data seasons --year 2002
