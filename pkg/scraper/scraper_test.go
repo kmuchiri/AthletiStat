@@ -3,12 +3,14 @@ package scraper
 import (
 	"context"
 	"encoding/csv"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"athletistat/pkg/config"
 
@@ -188,7 +190,8 @@ func TestScrapeEventSuccess(t *testing.T) {
 	// We temporarily hijack request by setting client transport to route to mock server
 	s.Client.Transport = &rewriteTransport{target: server.URL}
 
-	ok, err := s.ScrapeEvent(context.Background(), job, nil)
+	count, ok, err := s.ScrapeEvent(context.Background(), job, nil)
+	assert.Equal(t, 1, count)
 	assert.True(t, ok)
 	assert.NoError(t, err)
 
@@ -213,4 +216,57 @@ func (t *rewriteTransport) RoundTrip(req *http.Request) (*http.Response, error) 
 	req.URL.Scheme = "http"
 	req.URL.Host = strings.TrimPrefix(t.target, "http://")
 	return http.DefaultTransport.RoundTrip(req)
+}
+
+func TestScraperLogging(t *testing.T) {
+	tmpDir := t.TempDir()
+	config.Cfg.Paths.LogDir = filepath.Join(tmpDir, "logs")
+
+	opts := createScraperTestOptions(t)
+	s := NewScraper("seasons", opts)
+
+	job := ScrapeJob{
+		Gender:         "male",
+		AgeCategory:    "senior",
+		DisciplineSlug: "100-metres",
+		TypeSlug:       "sprints",
+		Mode:           "seasons",
+		Year:           2024,
+	}
+
+	// Test logError
+	testErr := fmt.Errorf("simulated connection failure")
+	s.logError(job, "https://worldathletics.org/test", testErr)
+
+	modeErrorLog := filepath.Join(config.Cfg.Paths.LogDir, "seasons", "scrape_errors.log")
+	assert.FileExists(t, modeErrorLog)
+	content, err := os.ReadFile(modeErrorLog)
+	require.NoError(t, err)
+	assert.Contains(t, string(content), "100-metres")
+	assert.Contains(t, string(content), "simulated connection failure")
+
+	// Test logRunSummary
+	start := time.Now().Add(-2 * time.Minute)
+	end := time.Now()
+	duration := end.Sub(start)
+
+	runLogPath := s.logRunSummary("seasons", 2024, start, end, duration, 1500, 10, 9, 1)
+	assert.FileExists(t, runLogPath)
+
+	runContent, err := os.ReadFile(runLogPath)
+	require.NoError(t, err)
+	runStr := string(runContent)
+	assert.Contains(t, runStr, "SCRAPE RUN SUMMARY")
+	assert.Contains(t, runStr, "Time Started:")
+	assert.Contains(t, runStr, "Time Ended:")
+	assert.Contains(t, runStr, "Time Taken:")
+	assert.Contains(t, runStr, "Total Time:")
+	assert.Contains(t, runStr, "Amount of Records: 1500")
+	assert.Contains(t, runStr, "Total Jobs:        10")
+	assert.Contains(t, runStr, "Successful Jobs:   9")
+	assert.Contains(t, runStr, "Failed Jobs:       1")
+
+	// Check master runs log
+	masterLog := filepath.Join(config.Cfg.Paths.LogDir, "seasons", "scrape_runs.log")
+	assert.FileExists(t, masterLog)
 }
