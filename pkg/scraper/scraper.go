@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"strconv"
 	"strings"
 	"sync"
 	"time"
@@ -209,11 +210,9 @@ func (s *Scraper) BuildJobs(mode string, year ...int) []ScrapeJob {
 }
 
 // ScrapeEvent scrapes a single event table, paginates results, and saves to CSV.
-func (s *Scraper) ScrapeEvent(ctx context.Context, job ScrapeJob, bar *console.ProgressBar) (bool, error) {
+func (s *Scraper) ScrapeEvent(ctx context.Context, job ScrapeJob, bar *console.ProgressBar) (int, bool, error) {
 	page := 1
 	var records []RawRecord
-	logDir := filepath.Join(config.Cfg.Paths.LogDir, job.Mode, s.Today)
-	_ = os.MkdirAll(logDir, 0755)
 
 	for {
 		var url string
@@ -225,40 +224,29 @@ func (s *Scraper) ScrapeEvent(ctx context.Context, job ScrapeJob, bar *console.P
 
 		req, err := http.NewRequestWithContext(ctx, "GET", url, nil)
 		if err != nil {
-			return false, err
+			s.logError(job, url, err)
+			return 0, false, err
 		}
 		req.Header.Set("User-Agent", config.Cfg.Scraper.UserAgent)
 
 		resp, err := s.Client.Do(req)
 		if err != nil {
-			s.lock.Lock()
-			logPath := filepath.Join(logDir, fmt.Sprintf("scrape_errors_%s.log", s.CurrentTime))
-			f, _ := os.OpenFile(logPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-			if f != nil {
-				_, _ = f.WriteString(fmt.Sprintf("FAILED: %s | %v\n", url, err))
-				f.Close()
-			}
-			s.lock.Unlock()
-			return false, err
+			s.logError(job, url, err)
+			return 0, false, err
 		}
 
 		if resp.StatusCode < 200 || resp.StatusCode >= 300 {
 			resp.Body.Close()
-			s.lock.Lock()
-			logPath := filepath.Join(logDir, fmt.Sprintf("scrape_errors_%s.log", s.CurrentTime))
-			f, _ := os.OpenFile(logPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
-			if f != nil {
-				_, _ = f.WriteString(fmt.Sprintf("FAILED: %s | status code %d\n", url, resp.StatusCode))
-				f.Close()
-			}
-			s.lock.Unlock()
-			return false, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+			statusErr := fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+			s.logError(job, url, statusErr)
+			return 0, false, statusErr
 		}
 
 		doc, err := goquery.NewDocumentFromReader(resp.Body)
 		resp.Body.Close()
 		if err != nil {
-			return false, err
+			s.logError(job, url, err)
+			return 0, false, err
 		}
 
 		table := doc.Find("table.records-table")
@@ -352,7 +340,7 @@ func (s *Scraper) ScrapeEvent(ctx context.Context, job ScrapeJob, bar *console.P
 		s.lock.Unlock()
 	}
 
-	return true, nil
+	return len(records), true, nil
 }
 
 // GetQueueInfo determines the queue file path.
@@ -458,9 +446,10 @@ func (s *Scraper) RunScraper(ctx context.Context, mode string, maxWorkers int, y
 	progressBar := console.NewProgressBar(total, modeLabel, config.Cfg.Display.ProgressBarWidth)
 
 	type jobResult struct {
-		job ScrapeJob
-		ok  bool
-		err error
+		job          ScrapeJob
+		recordsCount int
+		ok           bool
+		err          error
 	}
 
 	jobsChan := make(chan ScrapeJob, len(jobs))
@@ -477,8 +466,8 @@ func (s *Scraper) RunScraper(ctx context.Context, mode string, maxWorkers int, y
 		go func() {
 			defer wg.Done()
 			for job := range jobsChan {
-				ok, err := s.ScrapeEvent(ctx, job, progressBar)
-				resultsChan <- jobResult{job: job, ok: ok, err: err}
+				count, ok, err := s.ScrapeEvent(ctx, job, progressBar)
+				resultsChan <- jobResult{job: job, recordsCount: count, ok: ok, err: err}
 			}
 		}()
 	}
@@ -489,18 +478,35 @@ func (s *Scraper) RunScraper(ctx context.Context, mode string, maxWorkers int, y
 	}()
 
 	var remainingJobs []ScrapeJob
+	totalRecords := 0
+	succeededJobs := 0
+
+	activeRemaining := make(map[string]ScrapeJob)
+	for _, j := range jobs {
+		key := fmt.Sprintf("%s|%s|%s|%s|%d", j.Gender, j.AgeCategory, j.TypeSlug, j.DisciplineSlug, j.Year)
+		activeRemaining[key] = j
+	}
+
 	for res := range resultsChan {
+		jobKey := fmt.Sprintf("%s|%s|%s|%s|%d", res.job.Gender, res.job.AgeCategory, res.job.TypeSlug, res.job.DisciplineSlug, res.job.Year)
 		if res.ok {
 			progressBar.Update(1)
+			totalRecords += res.recordsCount
+			succeededJobs++
+			delete(activeRemaining, jobKey)
 		} else {
 			remainingJobs = append(remainingJobs, res.job)
+			s.logError(res.job, "", res.err)
 		}
 
 		// Update persistent queue for historical years or all-time
 		if (mode == "seasons" && year != s.CurrentYear) || mode == "all-time" {
 			s.lock.Lock()
-			// Update queue on disk
-			if bytes, err := json.Marshal(remainingJobs); err == nil {
+			var currentQueue []ScrapeJob
+			for _, j := range activeRemaining {
+				currentQueue = append(currentQueue, j)
+			}
+			if bytes, err := json.Marshal(currentQueue); err == nil {
 				_ = os.WriteFile(queueFile, bytes, 0644)
 			}
 			s.lock.Unlock()
@@ -536,10 +542,126 @@ func (s *Scraper) RunScraper(ctx context.Context, mode string, maxWorkers int, y
 		}
 	}
 
-	totalDuration := time.Since(startTime).Seconds()
+	endTime := time.Now()
+	duration := endTime.Sub(startTime)
+	runLogPath := s.logRunSummary(mode, year, startTime, endTime, duration, totalRecords, total, succeededJobs, len(remainingJobs))
+
 	console.Divider("─", 52, console.Dim)
-	console.Cprint(fmt.Sprintf("%s  %s scraping done in %.1fs (%.2f min)", console.SymClock, strings.Title(mode), totalDuration, totalDuration/60), console.BrightMagenta, true, "", false)
+	console.Cprint(fmt.Sprintf("%s  %s scraping complete", console.SymClock, strings.Title(mode)), console.BrightMagenta, true, "", false)
+	console.Info(fmt.Sprintf("Started:       %s", startTime.Format("2006-01-02 15:04:05")))
+	console.Info(fmt.Sprintf("Ended:         %s", endTime.Format("2006-01-02 15:04:05")))
+	console.Info(fmt.Sprintf("Time Taken:    %s (%.2fs)", formatDuration(duration), duration.Seconds()))
+	console.Info(fmt.Sprintf("Total Records: %d", totalRecords))
+	console.Info(fmt.Sprintf("Jobs:          %d total | %d succeeded | %d failed", total, succeededJobs, len(remainingJobs)))
+	console.Info(fmt.Sprintf("Run log saved: %s", runLogPath))
+	if len(remainingJobs) > 0 {
+		errorLogPath := filepath.Join(config.Cfg.Paths.LogDir, mode, s.Today, fmt.Sprintf("scrape_errors_%s.log", s.CurrentTime))
+		console.Warn(fmt.Sprintf("Errors saved:  %s (%d failed jobs in queue)", errorLogPath, len(remainingJobs)))
+	}
+	console.Divider("─", 52, console.Dim)
 	return nil
+}
+
+func (s *Scraper) logError(job ScrapeJob, url string, err error) {
+	if err == nil {
+		return
+	}
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
+	nowStr := time.Now().Format("2006-01-02 15:04:05")
+	logDir := filepath.Join(config.Cfg.Paths.LogDir, job.Mode, s.Today)
+	_ = os.MkdirAll(logDir, 0755)
+
+	msg := fmt.Sprintf("[%s] Mode: %s | Year: %d | Gender: %s | Age: %s | Type: %s | Discipline: %s | URL: %s | Error: %v\n",
+		nowStr, job.Mode, job.Year, job.Gender, job.AgeCategory, job.TypeSlug, job.DisciplineSlug, url, err)
+
+	datedPath := filepath.Join(logDir, fmt.Sprintf("scrape_errors_%s.log", s.CurrentTime))
+	if f, oErr := os.OpenFile(datedPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); oErr == nil {
+		_, _ = f.WriteString(msg)
+		f.Close()
+	}
+
+	modePath := filepath.Join(config.Cfg.Paths.LogDir, job.Mode, "scrape_errors.log")
+	if f, oErr := os.OpenFile(modePath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); oErr == nil {
+		_, _ = f.WriteString(msg)
+		f.Close()
+	}
+}
+
+func (s *Scraper) logRunSummary(mode string, year int, start, end time.Time, duration time.Duration, totalRecords, totalJobs, succeededJobs, failedJobs int) string {
+	s.lock.Lock()
+	defer s.lock.Unlock()
+
+	logDir := filepath.Join(config.Cfg.Paths.LogDir, mode, s.Today)
+	_ = os.MkdirAll(logDir, 0755)
+
+	durStr := formatDuration(duration)
+	totalSecStr := fmt.Sprintf("%.2fs", duration.Seconds())
+
+	yearStr := "N/A (all-time)"
+	if mode == "seasons" && year > 0 {
+		yearStr = strconv.Itoa(year)
+	}
+
+	summary := fmt.Sprintf(
+`================================================================================
+SCRAPE RUN SUMMARY - %s
+================================================================================
+Mode:              %s
+Year:              %s
+Time Started:      %s
+Time Ended:        %s
+Time Taken:        %s
+Total Time:        %s
+Amount of Records: %d
+Total Jobs:        %d
+Successful Jobs:   %d
+Failed Jobs:       %d
+Remaining Queue:   %d
+================================================================================
+`,
+		strings.ToUpper(mode),
+		mode,
+		yearStr,
+		start.Format("2006-01-02 15:04:05"),
+		end.Format("2006-01-02 15:04:05"),
+		durStr,
+		totalSecStr,
+		totalRecords,
+		totalJobs,
+		succeededJobs,
+		failedJobs,
+		failedJobs,
+	)
+
+	runLogPath := filepath.Join(logDir, fmt.Sprintf("scrape_run_%s.log", start.Format("2006-01-02_150405")))
+	_ = os.WriteFile(runLogPath, []byte(summary), 0644)
+
+	masterLogPath := filepath.Join(config.Cfg.Paths.LogDir, mode, "scrape_runs.log")
+	if f, err := os.OpenFile(masterLogPath, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644); err == nil {
+		_, _ = f.WriteString(summary + "\n")
+		f.Close()
+	}
+
+	return runLogPath
+}
+
+func formatDuration(d time.Duration) string {
+	d = d.Round(time.Millisecond)
+	h := d / time.Hour
+	d -= h * time.Hour
+	m := d / time.Minute
+	d -= m * time.Minute
+	s := float64(d) / float64(time.Second)
+
+	if h > 0 {
+		return fmt.Sprintf("%dh %dm %.1fs", h, m, s)
+	}
+	if m > 0 {
+		return fmt.Sprintf("%dm %.1fs", m, s)
+	}
+	return fmt.Sprintf("%.2fs", s)
 }
 
 // Run dispatches scraping across modes.
