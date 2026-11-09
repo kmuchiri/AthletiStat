@@ -10,3 +10,4 @@ queues/all-time/*.json
 .nogil/
 bin/
 docs/ref
+*.parquet
